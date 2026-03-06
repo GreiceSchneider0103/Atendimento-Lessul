@@ -1,0 +1,12 @@
+-- [Query: dash_por_produto]
+-- Gráfico: Custo por Produto (top 10)
+SELECT
+  produto,
+  COUNT(*)                        AS qtd,
+  COALESCE(SUM(custos_totais), 0) AS custo
+FROM public.tickets
+WHERE ativo = TRUE
+  AND produto IS NOT NULL
+GROUP BY produto
+ORDER BY custo DESC
+LIMIT 10;

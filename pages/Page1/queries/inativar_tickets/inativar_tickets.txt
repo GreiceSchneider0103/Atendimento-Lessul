@@ -1,0 +1,6 @@
+-- [Query: inativar_ticket]
+-- Soft-delete — apenas Admin
+UPDATE public.tickets
+SET ativo = FALSE,
+    atualizado_por = NULLIF({{appsmith.user.idToken.sub || ''}}, '')::UUID
+WHERE id = {{tbl_tickets.selectedRow.id}};

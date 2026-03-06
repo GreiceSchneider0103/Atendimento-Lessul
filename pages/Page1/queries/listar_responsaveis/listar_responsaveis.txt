@@ -1,0 +1,6 @@
+-- [Query: listar_responsaveis]
+-- Popula Select de responsável nos formulários
+SELECT id AS value, nome AS label
+FROM public.perfis
+WHERE ativo = TRUE
+ORDER BY nome;

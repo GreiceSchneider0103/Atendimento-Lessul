@@ -1,0 +1,2 @@
+-- [Query: listar_usuarios]
+SELECT id, nome, email, perfil, ativo, criado_em FROM public.perfis ORDER BY nome;

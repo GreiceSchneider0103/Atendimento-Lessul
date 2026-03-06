@@ -1,0 +1,13 @@
+-- [Query: dash_por_mes]
+-- Gráfico: Tickets por mês/ano (últimos 12 meses)
+SELECT
+  ano_reclamacao  AS ano,
+  mes_reclamacao  AS mes,
+  TO_CHAR(data_reclamacao, 'Mon/YY') AS periodo,
+  COUNT(*)        AS qtd,
+  COALESCE(SUM(custos_totais), 0) AS custo
+FROM public.tickets
+WHERE ativo = TRUE
+  AND data_reclamacao >= (CURRENT_DATE - INTERVAL '12 months')
+GROUP BY ano_reclamacao, mes_reclamacao, TO_CHAR(data_reclamacao, 'Mon/YY')
+ORDER BY ano, mes;

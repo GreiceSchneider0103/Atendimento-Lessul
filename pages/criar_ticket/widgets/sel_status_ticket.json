@@ -1,0 +1,62 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 65,
+  "boxShadow": "none",
+  "defaultOptionValue": "\"\"",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "isDisabled": false,
+  "isFilterable": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "zl16ce4nwt",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelText": "Status do Ticket",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 17,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 32,
+  "mobileLeftColumn": 7,
+  "mobileRightColumn": 27,
+  "mobileTopRow": 25,
+  "needsErrorInfo": false,
+  "optionLabel": "label",
+  "optionValue": "value",
+  "parentColumnSpace": 27.671875,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placeholderText": "Selecione",
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 24,
+  "serverSideFiltering": false,
+  "sourceData": "{{\n[\n  { label: \"Aberto\", value: \"aberto\" },\n  { label: \"Concluído\", value: \"concluido\" },\n  { label: \"Aguardando cliente\", value: \"aguardando_cliente\" },\n  { label: \"Aguardando devolução\", value: \"aguardando_devolucao\" },\n  { label: \"Aguardando assistência\", value: \"aguardando_assistencia\" },\n  { label: \"Aguardando marketplace\", value: \"aguardando_marketplace\" }\n]\n}}",
+  "topRow": 58,
+  "type": "SELECT_WIDGET",
+  "version": 1,
+  "widgetId": "6s4h1jfwfp",
+  "widgetName": "sel_status_ticket"
+}

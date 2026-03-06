@@ -1,0 +1,26 @@
+-- [Query: editar_ticket] (Ajustada com a blindagem NULLIF)
+UPDATE public.tickets SET
+  nome_cliente         = {{inp_nome_cliente.text}},
+  cpf                  = NULLIF({{inp_cpf.text || ''}}, ''),
+  uf                   = NULLIF({{sel_uf.selectedOptionValue || ''}}, ''),
+  data_compra          = NULLIF({{dp_data_compra.selectedDate || ''}}, '')::DATE,
+  numero_venda         = NULLIF({{inp_numero_venda.text || ''}}, ''),
+  link_pedido          = NULLIF({{inp_link_pedido.text || ''}}, ''),
+  canal_marketplace    = NULLIF({{inp_canal.text || ''}}, ''),
+  empresa              = NULLIF({{sel_empresa.selectedOptionValue || ''}}, '')::empresa_enum,
+  produto              = NULLIF({{inp_produto.text || ''}}, ''),
+  sku                  = NULLIF({{inp_sku.text || ''}}, ''),
+  fabricante           = NULLIF({{inp_fabricante.text || ''}}, ''),
+  transportadora       = NULLIF({{inp_transportadora.text || ''}}, ''),
+  status_reclamacao    = NULLIF({{sel_status_reclamacao.selectedOptionValue || ''}}, '')::status_reclamacao_enum,
+  data_reclamacao      = NULLIF({{dp_data_reclamacao.selectedDate || ''}}, '')::DATE,
+  motivo               = NULLIF({{sel_motivo.selectedOptionValue || ''}}, '')::motivo_enum,
+  detalhes_cliente     = NULLIF({{inp_detalhes.text || ''}}, ''),
+  resolucao            = NULLIF({{sel_resolucao.selectedOptionValue || ''}}, '')::resolucao_enum,
+  valor_reembolso      = {{inp_valor_reembolso.text ? parseFloat(inp_valor_reembolso.text.toString().replace(',', '.')) : 0}}::NUMERIC,
+  valor_coleta         = {{inp_valor_coleta.text ? parseFloat(inp_valor_coleta.text.toString().replace(',', '.')) : 0}}::NUMERIC,
+  status_ticket        = NULLIF({{sel_status_ticket.selectedOptionValue || ''}}, '')::status_ticket_enum,
+  prazo_conclusao      = NULLIF({{dp_prazo.selectedDate || ''}}, '')::DATE,
+  responsavel          = NULLIF({{sel_responsavel.selectedOptionValue || ''}}, '')::UUID,
+  atualizado_por       = NULLIF({{appsmith.user.idToken.sub || ''}}, '')::UUID
+WHERE id = {{tbl_tickets.selectedRow.id}};

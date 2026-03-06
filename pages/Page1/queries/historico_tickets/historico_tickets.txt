@@ -1,0 +1,5 @@
+-- [Query: historico_ticket]
+SELECT data_hora, acao, campo, valor_antigo, valor_novo, usuario_nome
+FROM public.ticket_auditoria
+WHERE ticket_id = {{tbl_tickets.selectedRow.id}}
+ORDER BY data_hora DESC;

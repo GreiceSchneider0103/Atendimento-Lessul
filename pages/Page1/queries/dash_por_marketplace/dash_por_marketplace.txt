@@ -1,0 +1,11 @@
+-- [Query: dash_por_marketplace]
+-- Gráfico: Reclamações por Canal
+SELECT
+  canal_marketplace,
+  COUNT(*)                        AS qtd,
+  COALESCE(SUM(custos_totais), 0) AS custo
+FROM public.tickets
+WHERE ativo = TRUE
+  AND canal_marketplace IS NOT NULL
+GROUP BY canal_marketplace
+ORDER BY qtd DESC;

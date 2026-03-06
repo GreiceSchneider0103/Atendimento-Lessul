@@ -1,0 +1,60 @@
+INSERT INTO public.tickets (
+  nome_cliente,
+  cpf,
+  uf,
+  numero_venda,
+  link_pedido,
+  data_compra,
+  canal_marketplace,
+  empresa,
+  produto,
+  sku,
+  fabricante,
+  transportadora,
+  data_reclamacao,
+  motivo,
+  status_reclamacao,
+  resolucao,
+  detalhes_cliente,
+  valor_reembolso,
+  valor_coleta,
+  status_ticket,
+  responsavel,
+  prazo_conclusao,
+  criado_por
+) VALUES (
+  {{ inp_nome_cliente.text ? "'" + inp_nome_cliente.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
+  {{ inp_cpf.text ? "'" + inp_cpf.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
+  {{ sel_uf.selectedOptionValue && sel_uf.selectedOptionValue.trim().length === 2 ? "'" + sel_uf.selectedOptionValue.trim().toUpperCase() + "'" : "NULL" }},
+  {{ inp_numero_venda.text ? "'" + inp_numero_venda.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
+  {{ inp_link_pedido.text ? "'" + inp_link_pedido.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
+  {{ dp_data_compra.formattedDate ? "'" + moment(dp_data_compra.formattedDate).format('YYYY-MM-DD') + "'" : "NULL" }},
+  {{ sel_canal.selectedOptionValue ? "'" + sel_canal.selectedOptionValue.trim().replace(/'/g, "''") + "'" : "NULL" }},
+  {{ sel_empresa.selectedOptionValue ? "'" + sel_empresa.selectedOptionValue + "'::empresa_enum" : "NULL" }},
+  {{ inp_produto.text ? "'" + inp_produto.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
+  {{ inp_sku.text ? "'" + inp_sku.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
+  {{ inp_fabricante.text ? "'" + inp_fabricante.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
+  {{ inp_transportadora.text ? "'" + inp_transportadora.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
+  {{ dp_data_reclamacao.formattedDate ? "'" + moment(dp_data_reclamacao.formattedDate).format('YYYY-MM-DD') + "'" : "NULL" }},
+  {{ sel_motivo.selectedOptionValue ? "'" + sel_motivo.selectedOptionValue + "'::motivo_enum" : "NULL" }},
+  {{ sel_status_reclamacao.selectedOptionValue ? "'" + sel_status_reclamacao.selectedOptionValue + "'::status_reclamacao_enum" : "NULL" }},
+  {{ sel_resolucao.selectedOptionValue ? "'" + sel_resolucao.selectedOptionValue + "'::resolucao_enum" : "NULL" }},
+  {{ inp_detalhes_cliente.text ? "'" + inp_detalhes_cliente.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
+  {{
+    (() => {
+      const v = (inp_valor_reembolso.text || '').replace('R$', '').replace(/\s/g, '').replace(/\./g, '').replace(',', '.');
+      return (v && !isNaN(Number(v))) ? Number(v).toFixed(2) : '0';
+    })()
+  }},
+  {{
+    (() => {
+      const v = (inp_valor_coleta.text || '').replace('R$', '').replace(/\s/g, '').replace(/\./g, '').replace(',', '.');
+      return (v && !isNaN(Number(v))) ? Number(v).toFixed(2) : '0';
+    })()
+  }},
+  {{ sel_status_ticket.selectedOptionValue ? "'" + sel_status_ticket.selectedOptionValue + "'::status_ticket_enum" : "NULL" }},
+  {{ sel_responsavel_form.selectedOptionValue ? "'" + sel_responsavel_form.selectedOptionValue + "'::uuid" : "NULL" }},
+  {{ dp_prazo_conclusao.formattedDate ? "'" + moment(dp_prazo_conclusao.formattedDate).format('YYYY-MM-DD') + "'" : "NULL" }},
+  {{ appsmith.store.user_id ? "'" + appsmith.store.user_id + "'::uuid" : "NULL" }}
+)
+RETURNING id;

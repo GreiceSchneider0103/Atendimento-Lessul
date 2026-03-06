@@ -1,0 +1,11 @@
+-- [Query: relatorio_completo]
+SELECT 
+  t.*, 
+  p.nome AS responsavel_nome -- CORREÇÃO AQUI (Evita duplicidade com t.responsavel)
+FROM public.vw_tickets t
+LEFT JOIN public.perfis p ON p.id = t.responsavel
+WHERE t.ativo = TRUE
+  AND ({{sel_rel_empresa.selectedOptionValue || ''}} = '' OR t.empresa::TEXT = {{sel_rel_empresa.selectedOptionValue}})
+  AND t.data_reclamacao >= ({{ dp_rel_inicio.selectedDate ? dp_rel_inicio.selectedDate : '1970-01-01' }})::DATE
+  AND t.data_reclamacao <= ({{ dp_rel_fim.selectedDate ? dp_rel_fim.selectedDate : '2099-12-31' }})::DATE
+ORDER BY t.data_reclamacao DESC;

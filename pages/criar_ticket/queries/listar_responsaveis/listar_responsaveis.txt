@@ -1,0 +1,6 @@
+SELECT
+  nome AS label,
+  id::text AS value
+FROM public.perfis
+WHERE ativo = true
+ORDER BY nome;

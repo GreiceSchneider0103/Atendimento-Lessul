@@ -1,0 +1,29 @@
+-- [Query: criar_ticket] (Mantive a versão blindada que construímos juntos)
+INSERT INTO public.tickets (
+  nome_cliente, cpf, uf, data_compra, numero_venda, link_pedido, canal_marketplace, empresa, produto, sku, fabricante, transportadora, status_reclamacao, data_reclamacao, motivo, detalhes_cliente, resolucao, valor_reembolso, valor_coleta, status_ticket, prazo_conclusao, responsavel, criado_por
+) VALUES (
+  {{inp_nome_cliente.text}},
+  NULLIF({{inp_cpf.text || ''}}, ''),
+  NULLIF({{sel_uf.selectedOptionValue || ''}}, ''),
+  NULLIF({{dp_data_compra.selectedDate || ''}}, '')::DATE,
+  NULLIF({{inp_numero_venda.text || ''}}, ''),
+  NULLIF({{inp_link_pedido.text || ''}}, ''),
+  NULLIF({{inp_canal.text || ''}}, ''),
+  NULLIF({{sel_empresa.selectedOptionValue || ''}}, '')::empresa_enum,
+  NULLIF({{inp_produto.text || ''}}, ''),
+  NULLIF({{inp_sku.text || ''}}, ''),
+  NULLIF({{inp_fabricante.text || ''}}, ''),
+  NULLIF({{inp_transportadora.text || ''}}, ''),
+  NULLIF({{sel_status_reclamacao.selectedOptionValue || ''}}, '')::status_reclamacao_enum,
+  NULLIF({{dp_data_reclamacao.selectedDate || ''}}, '')::DATE,
+  NULLIF({{sel_motivo.selectedOptionValue || ''}}, ''):
+:motivo_enum,
+  NULLIF({{inp_detalhes.text || ''}}, ''),
+  NULLIF({{sel_resolucao.selectedOptionValue || ''}}, '')::resolucao_enum,
+  {{inp_valor_reembolso.text ? parseFloat(inp_valor_reembolso.text.replace(',', '.')) : 0}}::NUMERIC,
+  {{inp_valor_coleta.text ? parseFloat(inp_valor_coleta.text.replace(',', '.')) : 0}}::NUMERIC,
+  COALESCE(NULLIF({{sel_status_ticket.selectedOptionValue || ''}}, ''), 'aberto')::status_ticket_enum,
+  NULLIF({{dp_prazo.selectedDate || ''}}, '')::DATE,
+  NULLIF({{sel_responsavel.selectedOptionValue || ''}}, '')::UUID,
+  NULLIF({{appsmith.user.idToken.sub || ''}}, '')::UUID
+) RETURNING id;

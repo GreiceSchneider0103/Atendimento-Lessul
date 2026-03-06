@@ -1,0 +1,8 @@
+-- [Query: dash_por_status]
+-- Gráfico: Tickets por Status
+SELECT
+  status_ticket::TEXT,
+  COUNT(*) AS qtd
+FROM public.tickets
+WHERE ativo = TRUE
+GROUP BY status_ticket;

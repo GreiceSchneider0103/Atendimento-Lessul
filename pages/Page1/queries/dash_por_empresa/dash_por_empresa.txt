@@ -1,0 +1,11 @@
+-- [Query: dash_por_empresa]
+-- Gráfico: Reclamações por Empresa
+SELECT
+  empresa::TEXT,
+  COUNT(*)                        AS qtd,
+  COALESCE(SUM(custos_totais), 0) AS custo,
+  COALESCE(SUM(valor_reembolso),0) AS reembolso
+FROM public.tickets
+WHERE ativo = TRUE
+GROUP BY empresa
+ORDER BY qtd DESC;

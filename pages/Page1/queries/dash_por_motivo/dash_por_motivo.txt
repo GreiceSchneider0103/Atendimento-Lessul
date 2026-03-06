@@ -1,0 +1,10 @@
+-- [Query: dash_por_motivo]
+-- Gráfico: Reclamações por Motivo
+SELECT
+  motivo::TEXT,
+  COUNT(*) AS qtd
+FROM public.tickets
+WHERE ativo = TRUE
+  AND motivo IS NOT NULL
+GROUP BY motivo
+ORDER BY qtd DESC;
