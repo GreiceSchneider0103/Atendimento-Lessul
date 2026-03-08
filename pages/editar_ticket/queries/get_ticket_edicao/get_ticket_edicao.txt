@@ -1,0 +1,6 @@
+SELECT t.*, p_resp.nome AS responsavel_nome, p_atu.nome AS atualizado_por_nome
+FROM public.tickets t
+LEFT JOIN public.perfis p_resp ON p_resp.id = t.responsavel
+LEFT JOIN public.perfis p_atu ON p_atu.id = t.atualizado_por
+WHERE t.id = {{Number(appsmith.URL.queryParams.ticket_id || 0)}}
+  AND t.ativo = TRUE;

@@ -51,12 +51,13 @@ WHERE t.ativo = TRUE
 
   AND (
     {{ !sel_canal.selectedOptionValue ? "TRUE" : "FALSE" }}
-    OR LOWER(t.canal_marketplace) = LOWER({{ "'" + sel_canal.selectedOptionValue + "'" }})
+    OR t.canal_marketplace = {{ "'" + sel_canal.selectedOptionValue + "'" }}
   )
 
   AND (
     {{ !sel_responsavel.selectedOptionValue ? "TRUE" : "FALSE" }}
-    OR t.responsavel::TEXT = {{ "'" + sel_responsavel.selectedOptionValue + "'" }}
+    OR t.responsavel = {{ "'" + sel_responsavel.selectedOptionValue + "'::UUID" }}
+    OR t.criado_por  = {{ "'" + sel_responsavel.selectedOptionValue + "'::UUID" }}
   )
 
   AND (

@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "69aae622087fd62d13c0ed07_7d89df74-93dc-4324-adb6-68b6ecfe42ba",
-  "id": "Page1_editar_usuario",
+  "gitSyncId": "69aae622087fd62d13c0ed07_cd96d4b4-4db9-4ec0-bd87-7d291647af27",
+  "id": "editar_ticket_get_ticket_edicao",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "--[Query: editar_usuario] (Com NULLIF!)\nUPDATE public.perfis SET\n  nome   = {{inp_user_nome.text}},\n  perfil = NULLIF({{sel_user_perfil.selectedOptionValue || ''}}, '')::perfil_enum,\n  ativo  = {{swt_ativo.isSwitchedOn}}\nWHERE id = {{tbl_usuarios.selectedRow.id}}::UUID;",
+      "body": "SELECT t.*, p_resp.nome AS responsavel_nome, p_atu.nome AS atualizado_por_nome\nFROM public.tickets t\nLEFT JOIN public.perfis p_resp ON p_resp.id = t.responsavel\nLEFT JOIN public.perfis p_atu ON p_atu.id = t.atualizado_por\nWHERE t.id = {{Number(appsmith.URL.queryParams.ticket_id || 0)}}\n  AND t.ativo = TRUE;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -27,9 +27,9 @@
         "key": "body"
       }
     ],
-    "name": "editar_usuario",
-    "pageId": "Page1",
-    "runBehaviour": "MANUAL",
+    "name": "get_ticket_edicao",
+    "pageId": "editar_ticket",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }

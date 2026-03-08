@@ -1,8 +1,0 @@
--- [Query: criar_usuario] (Com NULLIF!)
-INSERT INTO public.perfis (id, nome, email, perfil)
-VALUES (
-  NULLIF({{inp_user_id.text || ''}}, '')::UUID,
-  {{inp_user_nome.text}},
-  {{inp_user_email.text}},
-  NULLIF({{sel_user_perfil.selectedOptionValue || ''}}, '')::perfil_enum
-);

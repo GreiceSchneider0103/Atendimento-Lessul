@@ -29,7 +29,7 @@ INSERT INTO public.tickets (
   {{ inp_numero_venda.text ? "'" + inp_numero_venda.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
   {{ inp_link_pedido.text ? "'" + inp_link_pedido.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
   {{ dp_data_compra.formattedDate ? "'" + moment(dp_data_compra.formattedDate).format('YYYY-MM-DD') + "'" : "NULL" }},
-  {{ sel_canal.selectedOptionValue ? "'" + sel_canal.selectedOptionValue.trim().replace(/'/g, "''") + "'" : "NULL" }},
+  public.fn_normalizar_canal_marketplace({{ sel_canal.selectedOptionValue ? "'" + sel_canal.selectedOptionValue.trim().replace(/'/g, "''") + "'" : "NULL" }}),
   {{ sel_empresa.selectedOptionValue ? "'" + sel_empresa.selectedOptionValue + "'::empresa_enum" : "NULL" }},
   {{ inp_produto.text ? "'" + inp_produto.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
   {{ inp_sku.text ? "'" + inp_sku.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
@@ -55,6 +55,6 @@ INSERT INTO public.tickets (
   {{ sel_status_ticket.selectedOptionValue ? "'" + sel_status_ticket.selectedOptionValue + "'::status_ticket_enum" : "NULL" }},
   {{ sel_responsavel_form.selectedOptionValue ? "'" + sel_responsavel_form.selectedOptionValue + "'::uuid" : "NULL" }},
   {{ dp_prazo_conclusao.formattedDate ? "'" + moment(dp_prazo_conclusao.formattedDate).format('YYYY-MM-DD') + "'" : "NULL" }},
-  {{ appsmith.user.idToken.sub ? "'" + appsmith.user.idToken.sub + "'::uuid" : "NULL" }}
+  {{(() => { const v = (appsmith.user?.idToken?.sub || appsmith.user?.sub || '').trim(); return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v) ? "'" + v + "'::uuid" : "NULL"; })()}}
 )
 RETURNING id;

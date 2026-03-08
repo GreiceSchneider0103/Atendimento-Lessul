@@ -12,6 +12,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "isDisabled"
     }
   ],
   "dynamicPropertyPathList": [],
@@ -21,7 +24,7 @@
     }
   ],
   "isDefaultClickDisabled": true,
-  "isDisabled": false,
+  "isDisabled": "{{ !inp_nome_cliente.text?.trim() || !sel_empresa.selectedOptionValue || !sel_status_ticket.selectedOptionValue }}",
   "isLoading": false,
   "isVisible": true,
   "key": "u97lhs8d64",
@@ -32,7 +35,7 @@
   "mobileRightColumn": 10,
   "mobileTopRow": 63,
   "needsErrorInfo": false,
-  "onClick": "{{criar_tickets.run().then(() => {\n  navigateTo('Page1', {}, 'SAME_WINDOW');\n}).catch(() => {\n  postWindowMessage('Erro', \"window\", \"*\");\n});}}",
+  "onClick": "{{(() => {\n  const erros = [];\n\n  const nomeCliente = (inp_nome_cliente.text || '').trim();\n  const empresa = sel_empresa.selectedOptionValue;\n  const statusTicket = sel_status_ticket.selectedOptionValue;\n  const cpfDigits = (inp_cpf.text || '').replace(/\\D/g, '');\n  const uf = (sel_uf.text || '').trim();\n  const dataCompra = dp_data_compra.formattedDate ? moment(dp_data_compra.formattedDate) : null;\n  const dataReclamacao = dp_data_reclamacao.formattedDate ? moment(dp_data_reclamacao.formattedDate) : null;\n  const prazoConclusao = dp_prazo_conclusao.formattedDate ? moment(dp_prazo_conclusao.formattedDate) : null;\n\n  const parseCurrency = (value) => {\n    const bruto = String(value || '').replace('R$', '').replace(/\\s/g, '').trim();\n    if (!bruto) return 0;\n    const normalizado = bruto.replace(/\\./g, '').replace(',', '.');\n    const numero = Number(normalizado);\n    return Number.isFinite(numero) ? numero : null;\n  };\n\n  const valorReembolso = parseCurrency(inp_valor_reembolso.text);\n  const valorColeta = parseCurrency(inp_valor_coleta.text);\n\n  if (!nomeCliente) erros.push('Nome do cliente é obrigatório.');\n  if (!empresa) erros.push('Empresa é obrigatória.');\n  if (!statusTicket) erros.push('Status do ticket é obrigatório.');\n\n  if ((inp_cpf.text || '').trim() && cpfDigits.length !== 11) {\n    erros.push('CPF deve conter 11 dígitos (somente números).');\n  }\n\n  if (uf && !/^[A-Za-z]{2}$/.test(uf)) {\n    erros.push('UF deve conter 2 letras (ex.: SP).');\n  }\n\n  if (valorReembolso === null || valorReembolso < 0) {\n    erros.push('Valor de reembolso deve ser numérico e maior ou igual a zero.');\n  }\n\n  if (valorColeta === null || valorColeta < 0) {\n    erros.push('Valor de coleta deve ser numérico e maior ou igual a zero.');\n  }\n\n  if (dataCompra && dataReclamacao && dataCompra.isAfter(dataReclamacao, 'day')) {\n    erros.push('Data da compra não pode ser maior que a data da reclamação.');\n  }\n\n  if (prazoConclusao && dataReclamacao && prazoConclusao.isBefore(dataReclamacao, 'day')) {\n    erros.push('Prazo de conclusão não pode ser anterior à data da reclamação.');\n  }\n\n  const userId = (appsmith.user?.idToken?.sub || appsmith.user?.sub || '').trim();\n  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(userId)) {\n    erros.push('Não foi possível validar seu usuário autenticado. Faça login novamente.');\n  }\n\n  if (erros.length) {\n    showAlert(`Revise os campos obrigatórios antes de salvar:\\n• ${erros.join('\\n• ')}`, 'error');\n    return;\n  }\n\n  criar_tickets.run()\n    .then(() => {\n      showAlert('Ticket criado com sucesso.', 'success');\n      navigateTo('Page1', {}, 'SAME_WINDOW');\n    })\n    .catch(() => {\n      showAlert('Não foi possível criar o ticket. Verifique os dados e tente novamente.', 'error');\n    });\n})();}}",
   "parentColumnSpace": 27.671875,
   "parentId": "0",
   "parentRowSpace": 10,

@@ -12,6 +12,12 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "isVisible"
+    },
+    {
+      "key": "isDisabled"
     }
   ],
   "dynamicTriggerPathList": [
@@ -20,9 +26,9 @@
     }
   ],
   "isDefaultClickDisabled": true,
-  "isDisabled": false,
+  "isDisabled": "{{get_meu_perfil.data?.[0]?.perfil !== 'admin'}}",
   "isLoading": false,
-  "isVisible": true,
+  "isVisible": "{{get_meu_perfil.data?.[0]?.perfil === 'admin'}}",
   "key": "c5b8701f73",
   "leftColumn": 58,
   "minWidth": 120,
@@ -31,7 +37,7 @@
   "mobileRightColumn": 23,
   "mobileTopRow": 18,
   "needsErrorInfo": false,
-  "onClick": "{{navigateTo('admin', {}, 'SAME_WINDOW');}}",
+  "onClick": "{{get_meu_perfil.run().then(() => { if (get_meu_perfil.data?.[0]?.perfil === 'admin') { navigateTo('admin', {}, 'SAME_WINDOW'); } else { showAlert('Acesso restrito ao perfil Admin', 'warning'); } });}}",
   "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,

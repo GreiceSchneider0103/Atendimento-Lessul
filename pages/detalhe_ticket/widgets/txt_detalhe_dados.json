@@ -1,0 +1,50 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 34,
+  "dynamicBindingPathList": [
+    {
+      "key": "truncateButtonColor"
+    },
+    {
+      "key": "fontFamily"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicTriggerPathList": [],
+  "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+  "fontSize": "1rem",
+  "fontStyle": "",
+  "isLoading": false,
+  "isVisible": true,
+  "key": "7b5cd5a364",
+  "leftColumn": 2,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 6,
+  "mobileLeftColumn": 7,
+  "mobileRightColumn": 23,
+  "mobileTopRow": 2,
+  "needsErrorInfo": false,
+  "overflow": "NONE",
+  "parentColumnSpace": 27.671875,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 62,
+  "shouldTruncate": false,
+  "text": "Dados do Cliente\n• Nome: {{get_ticket_detalhe.data?.[0]?.nome_cliente || '-'}}\n• CPF: {{get_ticket_detalhe.data?.[0]?.cpf || '-'}}\n• UF: {{get_ticket_detalhe.data?.[0]?.uf || '-'}}\n\nDados do Pedido\n• Nº Venda: {{get_ticket_detalhe.data?.[0]?.numero_venda || '-'}}\n• Link: {{get_ticket_detalhe.data?.[0]?.link_pedido || '-'}}\n• Data compra: {{get_ticket_detalhe.data?.[0]?.data_compra || '-'}}\n• Canal: {{get_ticket_detalhe.data?.[0]?.canal_marketplace || '-'}}\n• Empresa: {{get_ticket_detalhe.data?.[0]?.empresa || '-'}}\n• Produto: {{get_ticket_detalhe.data?.[0]?.produto || '-'}} | SKU: {{get_ticket_detalhe.data?.[0]?.sku || '-'}}\n\nDados da Reclamação\n• Data reclamação: {{get_ticket_detalhe.data?.[0]?.data_reclamacao || '-'}}\n• Motivo: {{get_ticket_detalhe.data?.[0]?.motivo || '-'}}\n• Status reclamação: {{get_ticket_detalhe.data?.[0]?.status_reclamacao || '-'}}\n• Resolução: {{get_ticket_detalhe.data?.[0]?.resolucao || '-'}}\n• Detalhes: {{get_ticket_detalhe.data?.[0]?.detalhes_cliente || '-'}}\n\nValores e Prazo\n• Reembolso: {{get_ticket_detalhe.data?.[0]?.valor_reembolso || 0}}\n• Coleta: {{get_ticket_detalhe.data?.[0]?.valor_coleta || 0}}\n• Custos totais: {{get_ticket_detalhe.data?.[0]?.custos_totais || 0}}\n• Prazo: {{get_ticket_detalhe.data?.[0]?.prazo_conclusao || '-'}}\n• SLA: {{get_ticket_detalhe.data?.[0]?.sla_status || '-'}}\n• Status ticket: {{get_ticket_detalhe.data?.[0]?.status_ticket || '-'}}\n\nRastreabilidade\n• Criado por: {{get_ticket_detalhe.data?.[0]?.criado_por_nome || '-'}} em {{get_ticket_detalhe.data?.[0]?.criado_em || '-'}}\n• Atualizado por: {{get_ticket_detalhe.data?.[0]?.atualizado_por_nome || '-'}} em {{get_ticket_detalhe.data?.[0]?.atualizado_em || '-'}}",
+  "textAlign": "LEFT",
+  "textColor": "#231F20",
+  "topRow": 8,
+  "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "type": "TEXT_WIDGET",
+  "version": 1,
+  "widgetId": "edc6fd1124",
+  "widgetName": "txt_detalhe_dados"
+}

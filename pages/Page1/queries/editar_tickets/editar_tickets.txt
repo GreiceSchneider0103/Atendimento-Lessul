@@ -7,7 +7,7 @@ UPDATE public.tickets SET
   data_compra       = COALESCE(NULLIF({{tbl_tickets.updatedRow.data_compra || ''}}, '')::DATE, data_compra),
   numero_venda      = COALESCE(NULLIF({{tbl_tickets.updatedRow.numero_venda || ''}}, ''), numero_venda),
   link_pedido       = COALESCE(NULLIF({{tbl_tickets.updatedRow.link_pedido || ''}}, ''), link_pedido),
-  canal_marketplace = COALESCE(NULLIF({{tbl_tickets.updatedRow.canal_marketplace || ''}}, ''), canal_marketplace),
+  canal_marketplace = COALESCE(public.fn_normalizar_canal_marketplace(NULLIF({{tbl_tickets.updatedRow.canal_marketplace || ''}}, '')), canal_marketplace),
   empresa           = COALESCE(NULLIF({{tbl_tickets.updatedRow.empresa || ''}}, '')::empresa_enum, empresa),
   produto           = COALESCE(NULLIF({{tbl_tickets.updatedRow.produto || ''}}, ''), produto),
   sku               = COALESCE(NULLIF({{tbl_tickets.updatedRow.sku || ''}}, ''), sku),
@@ -23,5 +23,5 @@ UPDATE public.tickets SET
   status_ticket     = COALESCE(NULLIF({{tbl_tickets.updatedRow.status_ticket || ''}}, '')::status_ticket_enum, status_ticket),
   prazo_conclusao   = COALESCE(NULLIF({{tbl_tickets.updatedRow.prazo_conclusao || ''}}, '')::DATE, prazo_conclusao),
   responsavel       = COALESCE(NULLIF({{tbl_tickets.updatedRow.responsavel || ''}}, '')::UUID, responsavel),
-  atualizado_por    = NULLIF({{appsmith.user.idToken.sub || ''}}, '')::UUID
+  atualizado_por    = NULLIF({{(() => { const v = (appsmith.user?.idToken?.sub || appsmith.user?.sub || '').trim(); return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v) ? v : ''; })()}}, '')::UUID
 WHERE id = {{tbl_tickets.selectedRow.id}};
