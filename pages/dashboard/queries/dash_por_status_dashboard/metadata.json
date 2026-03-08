@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT status_ticket::TEXT AS status, COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY status_ticket\nORDER BY qtd DESC;",
+      "body": "SELECT\n  status_ticket::TEXT AS status,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY status_ticket\nORDER BY qtd DESC;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

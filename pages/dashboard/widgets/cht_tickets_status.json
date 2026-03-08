@@ -1,0 +1,40 @@
+{
+  "animateLoading": true,
+  "bottomRow": 96,
+  "chartData": "{{(dash_por_status_dashboard.data || []).map(x => ({ x: x.status, y: Number(x.qtd || 0) }))}}",
+  "chartName": "Tickets por Status",
+  "chartType": "COLUMN_CHART",
+  "dynamicBindingPathList": [
+    {
+      "key": "chartData"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "chartData"
+    }
+  ],
+  "isLoading": false,
+  "isVisible": true,
+  "key": "b1c905811c",
+  "leftColumn": 2,
+  "minWidth": 450,
+  "mobileBottomRow": 40,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 24,
+  "mobileTopRow": 20,
+  "needsErrorInfo": false,
+  "parentColumnSpace": 11.59375,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 32,
+  "topRow": 78,
+  "type": "CHART_WIDGET",
+  "version": 1,
+  "widgetId": "b5a4887ed9",
+  "widgetName": "cht_tickets_status",
+  "xAxisName": "Categoria",
+  "yAxisName": "Quantidade"
+}

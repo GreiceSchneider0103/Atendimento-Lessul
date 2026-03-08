@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT empresa::TEXT AS empresa, COUNT(*) AS qtd, COALESCE(SUM(custos_totais),0) AS custo\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY empresa\nORDER BY qtd DESC;",
+      "body": "SELECT\n  empresa::TEXT AS empresa,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY empresa\nORDER BY qtd DESC;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

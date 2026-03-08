@@ -1,5 +1,7 @@
-SELECT motivo::TEXT AS motivo, COUNT(*) AS qtd
+SELECT
+  COALESCE(motivo::TEXT, 'nao_informado') AS motivo,
+  COUNT(*) AS qtd
 FROM public.tickets
-WHERE ativo = TRUE AND motivo IS NOT NULL
+WHERE ativo = TRUE
 GROUP BY motivo
 ORDER BY qtd DESC;

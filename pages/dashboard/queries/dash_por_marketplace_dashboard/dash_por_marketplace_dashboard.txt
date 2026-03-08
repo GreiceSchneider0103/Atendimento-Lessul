@@ -1,0 +1,7 @@
+SELECT
+  COALESCE(canal_marketplace, 'nao_informado') AS marketplace,
+  COUNT(*) AS qtd
+FROM public.tickets
+WHERE ativo = TRUE
+GROUP BY COALESCE(canal_marketplace, 'nao_informado')
+ORDER BY qtd DESC;

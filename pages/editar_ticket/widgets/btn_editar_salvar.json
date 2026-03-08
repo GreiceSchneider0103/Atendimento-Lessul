@@ -1,0 +1,53 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 30,
+  "boxShadow": "none",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "isDisabled"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": "{{ !inp_editar_nome_cliente.text?.trim() || !sel_editar_empresa.selectedOptionValue || !sel_editar_status_ticket.selectedOptionValue }}",
+  "isLoading": false,
+  "isVisible": true,
+  "key": "e838f51ce8",
+  "leftColumn": 48,
+  "minWidth": 120,
+  "mobileBottomRow": 22,
+  "mobileLeftColumn": 7,
+  "mobileRightColumn": 23,
+  "mobileTopRow": 18,
+  "needsErrorInfo": false,
+  "onClick": "{{(() => {\n  const erros = [];\n\n  const nomeCliente = (inp_editar_nome_cliente.text || '').trim();\n  const empresa = sel_editar_empresa.selectedOptionValue;\n  const statusTicket = sel_editar_status_ticket.selectedOptionValue;\n  const cpfDigits = (inp_editar_cpf.text || '').replace(/\\D/g, '');\n  const uf = (inp_editar_uf.text || '').trim();\n  const dataCompra = dp_editar_data_compra.formattedDate ? moment(dp_editar_data_compra.formattedDate) : null;\n  const dataReclamacao = dp_editar_data_reclamacao.formattedDate ? moment(dp_editar_data_reclamacao.formattedDate) : null;\n  const prazoConclusao = dp_editar_prazo_conclusao.formattedDate ? moment(dp_editar_prazo_conclusao.formattedDate) : null;\n\n  const parseCurrency = (value) => {\n    const bruto = String(value || '').replace('R$', '').replace(/\\s/g, '').trim();\n    if (!bruto) return 0;\n    const normalizado = bruto.replace(/\\./g, '').replace(',', '.');\n    const numero = Number(normalizado);\n    return Number.isFinite(numero) ? numero : null;\n  };\n\n  const valorReembolso = parseCurrency(inp_editar_valor_reembolso.text);\n  const valorColeta = parseCurrency(inp_editar_valor_coleta.text);\n\n  if (!nomeCliente) erros.push('Nome do cliente é obrigatório.');\n  if (!empresa) erros.push('Empresa é obrigatória.');\n  if (!statusTicket) erros.push('Status do ticket é obrigatório.');\n\n  if ((inp_editar_cpf.text || '').trim() && cpfDigits.length !== 11) {\n    erros.push('CPF deve conter 11 dígitos (somente números).');\n  }\n\n  if (uf && !/^[A-Za-z]{2}$/.test(uf)) {\n    erros.push('UF deve conter 2 letras (ex.: SP).');\n  }\n\n  if (valorReembolso === null || valorReembolso < 0) {\n    erros.push('Valor de reembolso deve ser numérico e maior ou igual a zero.');\n  }\n\n  if (valorColeta === null || valorColeta < 0) {\n    erros.push('Valor de coleta deve ser numérico e maior ou igual a zero.');\n  }\n\n  if (dataCompra && dataReclamacao && dataCompra.isAfter(dataReclamacao, 'day')) {\n    erros.push('Data da compra não pode ser maior que a data da reclamação.');\n  }\n\n  if (prazoConclusao && dataReclamacao && prazoConclusao.isBefore(dataReclamacao, 'day')) {\n    erros.push('Prazo de conclusão não pode ser anterior à data da reclamação.');\n  }\n\n  const userId = (appsmith.user?.idToken?.sub || appsmith.user?.sub || '').trim();\n  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(userId)) {\n    erros.push('Não foi possível validar seu usuário autenticado. Faça login novamente.');\n  }\n\n  if (erros.length) {\n    showAlert(`Revise os campos obrigatórios antes de salvar:\\n• ${erros.join('\\n• ')}`, 'error');\n    return;\n  }\n\n  atualizar_ticket_dedicado.run()\n    .then(() => {\n      showAlert('Ticket atualizado com sucesso.', 'success');\n      navigateTo('detalhe_ticket', { ticket_id: appsmith.URL.queryParams.ticket_id }, 'SAME_WINDOW');\n    })\n    .catch(() => {\n      showAlert('Não foi possível salvar as alterações. Revise os dados e tente novamente.', 'error');\n    });\n})();}}",
+  "parentColumnSpace": 11.59375,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 62,
+  "text": "Salvar Alterações",
+  "topRow": 25,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "0bfaikx3cv",
+  "widgetName": "btn_editar_salvar"
+}

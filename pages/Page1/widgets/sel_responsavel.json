@@ -56,7 +56,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 52,
   "serverSideFiltering": false,
-  "sourceData": "{{listar_responsaveis.data.map( (obj) =>{ return  {'label': obj.value, 'value': obj.label } })}}",
+  "sourceData": "{{ [{ label: 'Todos', value: '' }].concat((listar_responsaveis.data || []).map(obj => ({ label: obj.label, value: obj.value }))) }}",
   "topRow": 10,
   "type": "SELECT_WIDGET",
   "version": 1,
