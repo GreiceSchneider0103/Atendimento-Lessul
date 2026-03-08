@@ -77,6 +77,13 @@ CREATE TABLE public.tickets (
   ativo                BOOLEAN NOT NULL DEFAULT TRUE
 );
 
+ALTER TABLE public.tickets
+  ADD CONSTRAINT ck_tickets_canal_marketplace
+  CHECK (
+    canal_marketplace IS NULL
+    OR canal_marketplace IN ('mercado_livre','shopee','magalu','amazon','site')
+  );
+
 CREATE TABLE public.ticket_auditoria (
   id            BIGSERIAL PRIMARY KEY,
   ticket_id     BIGINT NOT NULL REFERENCES public.tickets(id) ON DELETE CASCADE,
@@ -125,6 +132,50 @@ BEGIN
   RETURN NEW;
 END;
 $$;
+
+CREATE OR REPLACE FUNCTION public.fn_normalizar_canal_marketplace(v TEXT)
+RETURNS TEXT
+LANGUAGE plpgsql
+IMMUTABLE
+AS $$
+DECLARE
+  n TEXT;
+BEGIN
+  IF v IS NULL OR BTRIM(v) = '' THEN
+    RETURN NULL;
+  END IF;
+
+  n := LOWER(REPLACE(BTRIM(v), ' ', '_'));
+
+  IF n IN ('mercado_livre','mercadolivre','mercado-livre') THEN
+    RETURN 'mercado_livre';
+  ELSIF n = 'shopee' THEN
+    RETURN 'shopee';
+  ELSIF n = 'magalu' THEN
+    RETURN 'magalu';
+  ELSIF n = 'amazon' THEN
+    RETURN 'amazon';
+  ELSIF n = 'site' THEN
+    RETURN 'site';
+  END IF;
+
+  RETURN NULL;
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION public.fn_normalizar_ticket_canal_marketplace()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  NEW.canal_marketplace := public.fn_normalizar_canal_marketplace(NEW.canal_marketplace);
+  RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER trg_tickets_normalizar_canal_marketplace
+BEFORE INSERT OR UPDATE OF canal_marketplace ON public.tickets
+FOR EACH ROW EXECUTE FUNCTION public.fn_normalizar_ticket_canal_marketplace();
 
 CREATE TRIGGER trg_tickets_atualizado_em
 BEFORE UPDATE ON public.tickets

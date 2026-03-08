@@ -51,7 +51,7 @@ WHERE t.ativo = TRUE
 
   AND (
     {{ !sel_canal.selectedOptionValue ? "TRUE" : "FALSE" }}
-    OR LOWER(t.canal_marketplace) = LOWER({{ "'" + sel_canal.selectedOptionValue + "'" }})
+    OR t.canal_marketplace = {{ "'" + sel_canal.selectedOptionValue + "'" }}
   )
 
   AND (

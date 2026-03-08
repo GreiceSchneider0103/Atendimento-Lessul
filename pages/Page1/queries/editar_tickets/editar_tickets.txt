@@ -7,7 +7,7 @@ UPDATE public.tickets SET
   data_compra       = COALESCE(NULLIF({{tbl_tickets.updatedRow.data_compra || ''}}, '')::DATE, data_compra),
   numero_venda      = COALESCE(NULLIF({{tbl_tickets.updatedRow.numero_venda || ''}}, ''), numero_venda),
   link_pedido       = COALESCE(NULLIF({{tbl_tickets.updatedRow.link_pedido || ''}}, ''), link_pedido),
-  canal_marketplace = COALESCE(NULLIF({{tbl_tickets.updatedRow.canal_marketplace || ''}}, ''), canal_marketplace),
+  canal_marketplace = COALESCE(public.fn_normalizar_canal_marketplace(NULLIF({{tbl_tickets.updatedRow.canal_marketplace || ''}}, '')), canal_marketplace),
   empresa           = COALESCE(NULLIF({{tbl_tickets.updatedRow.empresa || ''}}, '')::empresa_enum, empresa),
   produto           = COALESCE(NULLIF({{tbl_tickets.updatedRow.produto || ''}}, ''), produto),
   sku               = COALESCE(NULLIF({{tbl_tickets.updatedRow.sku || ''}}, ''), sku),

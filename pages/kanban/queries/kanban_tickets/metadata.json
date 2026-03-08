@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT id, nome_cliente, canal_marketplace, empresa::TEXT AS empresa, motivo::TEXT AS motivo, prazo_conclusao, status_ticket::TEXT AS status_ticket\nFROM public.tickets\nWHERE ativo = TRUE\nORDER BY prazo_conclusao NULLS LAST, criado_em DESC\nLIMIT 300;",
+      "body": "SELECT id, nome_cliente,\n       COALESCE(public.fn_normalizar_canal_marketplace(canal_marketplace), 'nao_informado') AS canal_marketplace,\n       empresa::TEXT AS empresa,\n       motivo::TEXT AS motivo,\n       prazo_conclusao,\n       status_ticket::TEXT AS status_ticket\nFROM public.tickets\nWHERE ativo = TRUE\nORDER BY prazo_conclusao NULLS LAST, criado_em DESC\nLIMIT 300;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

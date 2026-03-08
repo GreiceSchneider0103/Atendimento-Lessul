@@ -29,7 +29,7 @@ INSERT INTO public.tickets (
   {{ inp_numero_venda.text ? "'" + inp_numero_venda.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
   {{ inp_link_pedido.text ? "'" + inp_link_pedido.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
   {{ dp_data_compra.formattedDate ? "'" + moment(dp_data_compra.formattedDate).format('YYYY-MM-DD') + "'" : "NULL" }},
-  {{ sel_canal.selectedOptionValue ? "'" + sel_canal.selectedOptionValue.trim().replace(/'/g, "''") + "'" : "NULL" }},
+  public.fn_normalizar_canal_marketplace({{ sel_canal.selectedOptionValue ? "'" + sel_canal.selectedOptionValue.trim().replace(/'/g, "''") + "'" : "NULL" }}),
   {{ sel_empresa.selectedOptionValue ? "'" + sel_empresa.selectedOptionValue + "'::empresa_enum" : "NULL" }},
   {{ inp_produto.text ? "'" + inp_produto.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
   {{ inp_sku.text ? "'" + inp_sku.text.trim().replace(/'/g, "''") + "'" : "NULL" }},

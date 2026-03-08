@@ -23,6 +23,8 @@ Foram aplicados ajustes para alinhar os filtros da tela principal com os mesmos 
   - `status_ticket`: `aberto`, `concluido`, `aguardando_cliente`, `aguardando_devolucao`, `aguardando_assistencia`, `aguardando_marketplace`
   - `status_reclamacao`: `afetando`, `nao_afetando`, `removida`
   - `motivo`: `desistencia`, `defeito_fabricacao`, `produto_incorreto`, `faltando_itens`, `produto_danificado`, `problema`
+- `canal_marketplace` padronizado em todo o app para valores canônicos:
+  - `mercado_livre`, `shopee`, `magalu`, `amazon`, `site`
 - Consulta `listar_tickets` revisada para usar os mesmos valores de filtro e sanitizar melhor a busca por nome.
 - Script SQL completo de referência adicionado em `database/mvp_schema.sql` com:
   - tabelas `tickets`, `ticket_auditoria` e `perfis`
@@ -58,4 +60,3 @@ Foram aplicados ajustes para alinhar os filtros da tela principal com os mesmos 
 - Botões de navegação rápida na `Page1` para os novos módulos.
 
 > Se não aparecer no Appsmith publicado, acione **Git Sync → Pull** no workspace da aplicação e publique novamente.
-

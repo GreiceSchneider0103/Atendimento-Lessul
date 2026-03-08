@@ -31,7 +31,7 @@ INSERT INTO public.tickets (
   NULLIF({{tbl_tickets.newRow.data_compra || ''}}, '')::DATE,
   NULLIF({{tbl_tickets.newRow.numero_venda || ''}}, ''),
   NULLIF({{tbl_tickets.newRow.link_pedido || ''}}, ''),
-  NULLIF({{tbl_tickets.newRow.canal_marketplace || ''}}, ''),
+  public.fn_normalizar_canal_marketplace(NULLIF({{tbl_tickets.newRow.canal_marketplace || ''}}, '')),
   NULLIF({{tbl_tickets.newRow.empresa || ''}}, '')::empresa_enum,
   NULLIF({{tbl_tickets.newRow.produto || ''}}, ''),
   NULLIF({{tbl_tickets.newRow.sku || ''}}, ''),

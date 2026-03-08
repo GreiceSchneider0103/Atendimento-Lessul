@@ -50,7 +50,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 44,
   "serverSideFiltering": false,
-  "sourceData": "[\n  {\"label\": \"Todos\", \"value\": \"\"},\n  {\"label\": \"Mercado Livre\", \"value\": \"Mercado Livre\"},\n  {\"label\": \"Shopee\", \"value\": \"Shopee\"},\n  {\"label\": \"Magalu\", \"value\": \"Magalu\"},\n  {\"label\": \"Amazon\", \"value\": \"Amazon\"},\n  {\"label\": \"Site\", \"value\": \"Site\"}\n]",
+  "sourceData": "[\n  {\"label\": \"Todos\", \"value\": \"\"},\n  {\"label\": \"Mercado Livre\", \"value\": \"mercado_livre\"},\n  {\"label\": \"Shopee\", \"value\": \"shopee\"},\n  {\"label\": \"Magalu\", \"value\": \"magalu\"},\n  {\"label\": \"Amazon\", \"value\": \"amazon\"},\n  {\"label\": \"Site\", \"value\": \"site\"}\n]",
   "topRow": 10,
   "type": "SELECT_WIDGET",
   "version": 1,
