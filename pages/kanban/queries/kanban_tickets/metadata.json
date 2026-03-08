@@ -29,7 +29,7 @@
     ],
     "name": "kanban_tickets",
     "pageId": "kanban",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

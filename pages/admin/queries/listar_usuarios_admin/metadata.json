@@ -29,7 +29,7 @@
     ],
     "name": "listar_usuarios_admin",
     "pageId": "admin",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

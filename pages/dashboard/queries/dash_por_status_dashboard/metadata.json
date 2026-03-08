@@ -29,7 +29,7 @@
     ],
     "name": "dash_por_status_dashboard",
     "pageId": "dashboard",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

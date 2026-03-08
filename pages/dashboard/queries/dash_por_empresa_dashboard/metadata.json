@@ -29,7 +29,7 @@
     ],
     "name": "dash_por_empresa_dashboard",
     "pageId": "dashboard",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }
