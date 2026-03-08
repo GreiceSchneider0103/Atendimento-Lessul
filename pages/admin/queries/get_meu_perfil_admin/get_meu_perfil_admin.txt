@@ -1,0 +1,4 @@
+SELECT id, nome, email, perfil
+FROM public.perfis
+WHERE id = {{appsmith.user.idToken.sub}}::UUID
+  AND ativo = TRUE;

@@ -1,0 +1,5 @@
+SELECT status_ticket::TEXT AS status, COUNT(*) AS qtd
+FROM public.tickets
+WHERE ativo = TRUE
+GROUP BY status_ticket
+ORDER BY qtd DESC;

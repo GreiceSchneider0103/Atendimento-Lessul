@@ -50,7 +50,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 13,
   "serverSideFiltering": false,
-  "sourceData": "[\n  {\"label\": \"Todas\", \"value\": \"\"},\n  {\"label\": \"Lessul\", \"value\": \"Lessul\"},\n  {\"label\": \"MS Decor\", \"value\": \"MS Decor\"},\n  {\"label\": \"Viva Vida\", \"value\": \"Viva Vida\"},\n  {\"label\": \"Movelbento\", \"value\": \"Movelbento\"},\n  {\"label\": \"Modifika\", \"value\": \"Modifika\"}\n]",
+  "sourceData": "[\n  {\"label\": \"Todas\", \"value\": \"\"},\n  {\"label\": \"Lessul\", \"value\": \"lessul\"},\n  {\"label\": \"MS Decor\", \"value\": \"ms_decor\"},\n  {\"label\": \"Viva Vida\", \"value\": \"viva_vida\"},\n  {\"label\": \"Movelbento\", \"value\": \"movelbento\"},\n  {\"label\": \"Modifika\", \"value\": \"modifika\"}\n]",
   "topRow": 10,
   "type": "SELECT_WIDGET",
   "version": 1,

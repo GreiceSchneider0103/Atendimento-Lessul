@@ -1,0 +1,5 @@
+SELECT empresa::TEXT AS empresa, COUNT(*) AS qtd, COALESCE(SUM(custos_totais),0) AS custo
+FROM public.tickets
+WHERE ativo = TRUE
+GROUP BY empresa
+ORDER BY qtd DESC;

@@ -1,19 +1,9 @@
 -- [Query: dash_cards]
 SELECT
-  COUNT(*)                                                        AS total_tickets,
-  -- CORREÇÃO: status_ticket agora é 'concluido' sem acento
-  COUNT(*) FILTER (WHERE status_ticket <> 'concluido')            AS tickets_abertos,
-  COUNT(*) FILTER (WHERE sla_status = 'atrasado')                 AS tickets_atrasados,
-  COALESCE(SUM(custos_totais), 0)                                 AS custo_total,
-  COALESCE(SUM(valor_reembolso), 0)                               AS total_reembolso,
-  COALESCE(SUM(valor_coleta), 0)                                  AS total_coleta
-FROM public.vw_tickets -- CORREÇÃO: Exige VIEW por causa do sla_status
-WHERE ativo = TRUE;
-
--- Nota: Para dash_por_marketplace, dash_por_empresa, etc.
--- O SQL original estava bom, pois não depende de SLA. 
--- Deixarei um exemplo ajustado para segurança padrão:
-
---[Query: dash_por_empresa]
-SELECT empresa::TEXT, COUNT(*) AS qtd, COALESCE(SUM(custos_totais), 0) AS custo, COALESCE(SUM(valor_reembolso),0) AS reembolso
-FROM public.tickets WHERE ativo = TRUE GROUP BY empresa ORDER BY qtd DESC;
+  COUNT(*) FILTER (WHERE ativo = TRUE)                                             AS total_tickets,
+  COUNT(*) FILTER (WHERE ativo = TRUE AND status_ticket <> 'concluido')            AS tickets_abertos,
+  COUNT(*) FILTER (WHERE ativo = TRUE AND sla_status = 'atrasado')                 AS tickets_atrasados,
+  COALESCE(SUM(custos_totais) FILTER (WHERE ativo = TRUE), 0)                      AS custo_total,
+  COALESCE(SUM(valor_reembolso) FILTER (WHERE ativo = TRUE), 0)                    AS total_reembolso,
+  COALESCE(SUM(valor_coleta) FILTER (WHERE ativo = TRUE), 0)                       AS total_coleta
+FROM public.vw_tickets;
