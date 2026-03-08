@@ -35,7 +35,7 @@ INSERT INTO public.tickets (
   {{ inp_sku.text ? "'" + inp_sku.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
   {{ inp_fabricante.text ? "'" + inp_fabricante.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
   {{ inp_transportadora.text ? "'" + inp_transportadora.text.trim().replace(/'/g, "''") + "'" : "NULL" }},
-  {{ dp_data_reclamacao.formattedDate ? "'" + moment(dp_data_reclamacao.formattedDate).format('YYYY-MM-DD') + "'" : "NULL" }},
+  {{ dp_data_reclamacao.formattedDate ? "'" + moment(dp_data_reclamacao.formattedDate).format('YYYY-MM-DD') + "'" : "CURRENT_DATE" }},
   {{ sel_motivo.selectedOptionValue ? "'" + sel_motivo.selectedOptionValue + "'::motivo_enum" : "NULL" }},
   {{ sel_status_reclamacao.selectedOptionValue ? "'" + sel_status_reclamacao.selectedOptionValue + "'::status_reclamacao_enum" : "NULL" }},
   {{ sel_resolucao.selectedOptionValue ? "'" + sel_resolucao.selectedOptionValue + "'::resolucao_enum" : "NULL" }},
@@ -55,6 +55,6 @@ INSERT INTO public.tickets (
   {{ sel_status_ticket.selectedOptionValue ? "'" + sel_status_ticket.selectedOptionValue + "'::status_ticket_enum" : "NULL" }},
   {{ sel_responsavel_form.selectedOptionValue ? "'" + sel_responsavel_form.selectedOptionValue + "'::uuid" : "NULL" }},
   {{ dp_prazo_conclusao.formattedDate ? "'" + moment(dp_prazo_conclusao.formattedDate).format('YYYY-MM-DD') + "'" : "NULL" }},
-  {{ appsmith.store.user_id ? "'" + appsmith.store.user_id + "'::uuid" : "NULL" }}
+  {{ appsmith.user.idToken.sub ? "'" + appsmith.user.idToken.sub + "'::uuid" : "NULL" }}
 )
 RETURNING id;

@@ -50,7 +50,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 29,
   "serverSideFiltering": false,
-  "sourceData": "[{\"label\":\"Todos\",\"value\":\"\"},{\"label\":\"Desistência\",\"value\":\"Desistência\"},{\"label\":\"Defeito de Fabricação\",\"value\":\"Defeito de Fabricação\"},{\"label\":\"Produto incorreto\",\"value\":\"Produto incorreto\"},{\"label\":\"Faltando ítens\",\"value\":\"Faltando ítens\"},{\"label\":\"Produto danificado\",\"value\":\"Produto danificado\"},{\"label\":\"Problema\",\"value\":\"Problema\"}]",
+  "sourceData": "[{\"label\":\"Todos\",\"value\":\"\"},{\"label\":\"Desistência\",\"value\":\"desistencia\"},{\"label\":\"Defeito de Fabricação\",\"value\":\"defeito_fabricacao\"},{\"label\":\"Produto incorreto\",\"value\":\"produto_incorreto\"},{\"label\":\"Faltando itens\",\"value\":\"faltando_itens\"},{\"label\":\"Produto danificado\",\"value\":\"produto_danificado\"},{\"label\":\"Problema\",\"value\":\"problema\"}]",
   "topRow": 10,
   "type": "SELECT_WIDGET",
   "version": 1,

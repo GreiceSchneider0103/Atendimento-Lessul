@@ -1,0 +1,6 @@
+SELECT
+  COUNT(*) FILTER (WHERE ativo = TRUE) AS total_tickets,
+  COUNT(*) FILTER (WHERE ativo = TRUE AND status_ticket <> 'concluido') AS tickets_abertos,
+  COUNT(*) FILTER (WHERE ativo = TRUE AND sla_status = 'atrasado') AS tickets_atrasados,
+  COALESCE(SUM(custos_totais) FILTER (WHERE ativo = TRUE), 0) AS custo_total
+FROM public.vw_tickets;
