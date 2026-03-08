@@ -177,6 +177,27 @@ CREATE TRIGGER trg_tickets_normalizar_canal_marketplace
 BEFORE INSERT OR UPDATE OF canal_marketplace ON public.tickets
 FOR EACH ROW EXECUTE FUNCTION public.fn_normalizar_ticket_canal_marketplace();
 
+CREATE OR REPLACE FUNCTION public.fn_validar_identidade_ticket()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  IF TG_OP = 'INSERT' AND NEW.criado_por IS NULL THEN
+    RAISE EXCEPTION 'Usuário autenticado inválido: criado_por obrigatório';
+  END IF;
+
+  IF TG_OP = 'UPDATE' AND NEW.atualizado_por IS NULL THEN
+    RAISE EXCEPTION 'Usuário autenticado inválido: atualizado_por obrigatório';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER trg_tickets_validar_identidade
+BEFORE INSERT OR UPDATE ON public.tickets
+FOR EACH ROW EXECUTE FUNCTION public.fn_validar_identidade_ticket();
+
 CREATE TRIGGER trg_tickets_atualizado_em
 BEFORE UPDATE ON public.tickets
 FOR EACH ROW EXECUTE FUNCTION public.fn_set_atualizado_em();

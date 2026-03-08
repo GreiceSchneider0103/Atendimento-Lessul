@@ -5,5 +5,5 @@ SET nome_cliente = COALESCE(NULLIF({{inp_editar_nome_cliente.text || ''}}, ''), 
     status_ticket = COALESCE(NULLIF({{sel_editar_status_ticket.selectedOptionValue || ''}}, '')::status_ticket_enum, status_ticket),
     status_reclamacao = COALESCE(NULLIF({{sel_editar_status_reclamacao.selectedOptionValue || ''}}, '')::status_reclamacao_enum, status_reclamacao),
     prazo_conclusao = COALESCE(NULLIF({{dp_editar_prazo_conclusao.formattedDate || ''}}, '')::DATE, prazo_conclusao),
-    atualizado_por = NULLIF({{appsmith.user.idToken.sub || ''}}, '')::UUID
+    atualizado_por = NULLIF({{(() => { const v = (appsmith.user?.idToken?.sub || appsmith.user?.sub || '').trim(); return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v) ? v : ''; })()}}, '')::UUID
 WHERE id = {{Number(appsmith.URL.queryParams.ticket_id || 0)}};

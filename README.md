@@ -49,7 +49,7 @@ Foram aplicados ajustes para alinhar os filtros da tela principal com os mesmos 
 - Query `Page1/criar_tickets` corrigida (erro de sintaxe em `motivo_enum`) e adaptada para inserção inline via `tbl_tickets.newRow`.
 - Queries de auditoria ajustadas para exibir nome de usuário via `COALESCE(a.usuario_nome, p.nome)` com `LEFT JOIN perfis`.
 - Query `dash_cards` simplificada para **um único SELECT** de cards.
-- Fonte de identidade padronizada para `appsmith.user.idToken.sub` no create ticket da página `criar_ticket`.
+- Fonte de identidade padronizada com fallback seguro (`appsmith.user.idToken.sub` -> `appsmith.user.sub`) e validação de UUID em todas as queries que usam usuário atual.
 
 
 ### Módulos visuais adicionados nesta etapa

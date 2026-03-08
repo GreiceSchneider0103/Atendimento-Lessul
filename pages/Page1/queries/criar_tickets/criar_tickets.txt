@@ -47,6 +47,6 @@ INSERT INTO public.tickets (
   COALESCE(NULLIF({{tbl_tickets.newRow.status_ticket || ''}}, ''), 'aberto')::status_ticket_enum,
   NULLIF({{tbl_tickets.newRow.prazo_conclusao || ''}}, '')::DATE,
   NULLIF({{tbl_tickets.newRow.responsavel || ''}}, '')::UUID,
-  NULLIF({{appsmith.user.idToken.sub || ''}}, '')::UUID
+  NULLIF({{(() => { const v = (appsmith.user?.idToken?.sub || appsmith.user?.sub || '').trim(); return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v) ? v : ''; })()}}, '')::UUID
 )
 RETURNING id;
