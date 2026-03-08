@@ -12,6 +12,18 @@
     {
       "id": "criar_ticket",
       "isDefault": false
+    },
+    {
+      "id": "dashboard",
+      "isDefault": false
+    },
+    {
+      "id": "kanban",
+      "isDefault": false
+    },
+    {
+      "id": "admin",
+      "isDefault": false
     }
   ]
 }

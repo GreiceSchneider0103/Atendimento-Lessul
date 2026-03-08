@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "-- [Query: historico_ticket]\nSELECT data_hora, acao, campo, valor_antigo, valor_novo, usuario_nome\nFROM public.ticket_auditoria\nWHERE ticket_id = {{tbl_tickets.selectedRow.id}}\nORDER BY data_hora DESC;",
+      "body": "-- [Query: historico_ticket]\nSELECT\n  a.data_hora,\n  a.acao,\n  a.campo,\n  a.valor_antigo,\n  a.valor_novo,\n  COALESCE(a.usuario_nome, p.nome) AS usuario_nome\nFROM public.ticket_auditoria a\nLEFT JOIN public.perfis p ON p.id = a.usuario_id\nWHERE a.ticket_id = {{tbl_tickets.selectedRow.id}}\nORDER BY a.data_hora DESC;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
