@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT motivo::TEXT AS motivo, COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE AND motivo IS NOT NULL\nGROUP BY motivo\nORDER BY qtd DESC;",
+      "body": "SELECT\n  COALESCE(motivo::TEXT, 'nao_informado') AS motivo,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY motivo\nORDER BY qtd DESC;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

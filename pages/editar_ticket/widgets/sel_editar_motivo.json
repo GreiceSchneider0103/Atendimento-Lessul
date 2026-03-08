@@ -1,0 +1,65 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 40,
+  "boxShadow": "none",
+  "defaultOptionValue": "{{get_ticket_edicao.data?.[0]?.motivo ? String(get_ticket_edicao.data?.[0]?.motivo) : ''}}",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "sourceData"
+    },
+    {
+      "key": "defaultOptionValue"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "isDisabled": false,
+  "isFilterable": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "zl16ce4nwt",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelText": "Motivo",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 2,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 32,
+  "mobileLeftColumn": 7,
+  "mobileRightColumn": 27,
+  "mobileTopRow": 25,
+  "needsErrorInfo": false,
+  "optionLabel": "label",
+  "optionValue": "value",
+  "parentColumnSpace": 27.671875,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placeholderText": "Selecione",
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 22,
+  "serverSideFiltering": false,
+  "sourceData": "{{\n[\n  { label: \"Desistência\", value: \"desistencia\" },\n  { label: \"Defeito de Fabricação\", value: \"defeito_fabricacao\" },\n  { label: \"Produto incorreto\", value: \"produto_incorreto\" },\n  { label: \"Faltando itens\", value: \"faltando_itens\" },\n  { label: \"Produto danificado\", value: \"produto_danificado\" },\n  { label: \"Problema\", value: \"problema\" }\n]\n}}",
+  "topRow": 33,
+  "type": "SELECT_WIDGET",
+  "version": 1,
+  "widgetId": "l2zv2f27ia",
+  "widgetName": "sel_editar_motivo"
+}

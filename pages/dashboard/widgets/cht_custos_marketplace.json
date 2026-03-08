@@ -1,0 +1,40 @@
+{
+  "animateLoading": true,
+  "bottomRow": 56,
+  "chartData": "{{(dash_custos_por_marketplace_dashboard.data || []).map(x => ({ x: x.marketplace, y: Number(x.custo || 0) }))}}",
+  "chartName": "Custos por Marketplace",
+  "chartType": "COLUMN_CHART",
+  "dynamicBindingPathList": [
+    {
+      "key": "chartData"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "chartData"
+    }
+  ],
+  "isLoading": false,
+  "isVisible": true,
+  "key": "a8a1a1f092",
+  "leftColumn": 32,
+  "minWidth": 450,
+  "mobileBottomRow": 40,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 24,
+  "mobileTopRow": 20,
+  "needsErrorInfo": false,
+  "parentColumnSpace": 11.59375,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 62,
+  "topRow": 38,
+  "type": "CHART_WIDGET",
+  "version": 1,
+  "widgetId": "fab17194f0",
+  "widgetName": "cht_custos_marketplace",
+  "xAxisName": "Categoria",
+  "yAxisName": "Quantidade"
+}

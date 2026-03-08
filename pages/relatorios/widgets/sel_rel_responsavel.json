@@ -1,0 +1,64 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 29,
+  "boxShadow": "none",
+  "defaultOptionValue": "\"\"",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "sourceData"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "isDisabled": false,
+  "isFilterable": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": "true",
+  "key": "0cd793f3c3",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelText": "Responsável/Criador",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 18,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 15,
+  "mobileLeftColumn": 22,
+  "mobileRightColumn": 42,
+  "mobileTopRow": 8,
+  "needsErrorInfo": false,
+  "optionLabel": "label",
+  "optionValue": "value",
+  "parentColumnSpace": 11.59375,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placeholderText": "Todos",
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 34,
+  "serverSideFiltering": false,
+  "sourceData": "{{ [{ label: 'Todos', value: '' }].concat((listar_responsaveis_relatorios.data || []).map(obj => ({ label: obj.label, value: obj.value }))) }}",
+  "topRow": 22,
+  "type": "SELECT_WIDGET",
+  "version": 1,
+  "widgetId": "8f5fdb07b5",
+  "widgetName": "sel_rel_responsavel"
+}

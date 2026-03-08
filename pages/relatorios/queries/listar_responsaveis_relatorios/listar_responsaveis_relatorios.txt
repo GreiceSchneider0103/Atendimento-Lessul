@@ -1,0 +1,4 @@
+SELECT nome AS label, id::TEXT AS value
+FROM public.perfis
+WHERE ativo = TRUE
+ORDER BY nome;

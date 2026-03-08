@@ -1,0 +1,7 @@
+SELECT a.data_hora, a.acao, a.campo, a.valor_antigo, a.valor_novo,
+       COALESCE(a.usuario_nome, p.nome) AS usuario_nome
+FROM public.ticket_auditoria a
+LEFT JOIN public.perfis p ON p.id = a.usuario_id
+WHERE a.ticket_id = {{Number(appsmith.URL.queryParams.ticket_id || 0)}}
+ORDER BY a.data_hora DESC
+LIMIT 200;
