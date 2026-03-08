@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 24,
+  "bottomRow": 15,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -19,12 +19,12 @@
   "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-  "fontSize": "0.875rem",
-  "fontStyle": "",
+  "fontSize": "0.95rem",
+  "fontStyle": "BOLD",
   "isLoading": false,
   "isVisible": true,
-  "key": "48618afc39",
-  "leftColumn": 2,
+  "key": "b7e03d5a09",
+  "leftColumn": 52,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -34,20 +34,20 @@
   "mobileTopRow": 2,
   "needsErrorInfo": false,
   "overflow": "NONE",
-  "parentColumnSpace": 27.671875,
+  "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Por Status\\n{{(dash_por_status_dashboard.data || []).map(x => `• ${x.status}: ${x.qtd}`).join('\\n') || 'Sem dados'}}",
+  "text": "Total de Coleta\nR$ {{Number(dash_cards_dashboard.data?.[0]?.total_coleta || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
-  "topRow": 15,
+  "topRow": 8,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "20f79a6e37",
-  "widgetName": "txt_status"
+  "widgetId": "ff12f96eba",
+  "widgetName": "card_coleta_total"
 }

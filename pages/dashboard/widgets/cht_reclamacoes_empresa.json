@@ -1,0 +1,40 @@
+{
+  "animateLoading": true,
+  "bottomRow": 36,
+  "chartData": "{{(dash_por_empresa_dashboard.data || []).map(x => ({ x: x.empresa, y: Number(x.qtd || 0) }))}}",
+  "chartName": "Reclamações por Empresa",
+  "chartType": "COLUMN_CHART",
+  "dynamicBindingPathList": [
+    {
+      "key": "chartData"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "chartData"
+    }
+  ],
+  "isLoading": false,
+  "isVisible": true,
+  "key": "a7db94521c",
+  "leftColumn": 32,
+  "minWidth": 450,
+  "mobileBottomRow": 40,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 24,
+  "mobileTopRow": 20,
+  "needsErrorInfo": false,
+  "parentColumnSpace": 11.59375,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 62,
+  "topRow": 18,
+  "type": "CHART_WIDGET",
+  "version": 1,
+  "widgetId": "e0f338d45c",
+  "widgetName": "cht_reclamacoes_empresa",
+  "xAxisName": "Categoria",
+  "yAxisName": "Quantidade"
+}

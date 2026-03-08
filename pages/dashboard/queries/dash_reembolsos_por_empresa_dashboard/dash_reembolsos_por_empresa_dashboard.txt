@@ -1,7 +1,7 @@
 SELECT
   empresa::TEXT AS empresa,
-  COUNT(*) AS qtd
+  COALESCE(SUM(valor_reembolso), 0) AS total_reembolso
 FROM public.tickets
 WHERE ativo = TRUE
 GROUP BY empresa
-ORDER BY qtd DESC;
+ORDER BY total_reembolso DESC;

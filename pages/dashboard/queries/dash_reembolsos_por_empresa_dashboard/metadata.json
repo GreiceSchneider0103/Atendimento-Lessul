@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "69aae622087fd62d13c0ed07_6334ed0c-63cc-458f-b07c-d61fcc87b107",
-  "id": "dashboard_dash_por_motivo_dashboard",
+  "gitSyncId": "69aae622087fd62d13c0ed07_013396a8-1b61-40af-b714-3b3e6208a1ff",
+  "id": "dashboard_dash_reembolsos_por_empresa_dashboard",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n  COALESCE(motivo::TEXT, 'nao_informado') AS motivo,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY motivo\nORDER BY qtd DESC;",
+      "body": "SELECT\n  empresa::TEXT AS empresa,\n  COALESCE(SUM(valor_reembolso), 0) AS total_reembolso\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY empresa\nORDER BY total_reembolso DESC;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -27,7 +27,7 @@
         "key": "body"
       }
     ],
-    "name": "dash_por_motivo_dashboard",
+    "name": "dash_reembolsos_por_empresa_dashboard",
     "pageId": "dashboard",
     "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false

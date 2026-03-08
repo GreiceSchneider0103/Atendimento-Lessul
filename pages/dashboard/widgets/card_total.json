@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 13,
+  "bottomRow": 15,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -19,11 +19,11 @@
   "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-  "fontSize": "1rem",
+  "fontSize": "0.95rem",
   "fontStyle": "BOLD",
   "isLoading": false,
   "isVisible": true,
-  "key": "c360574a6a",
+  "key": "42404c1cf5",
   "leftColumn": 2,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
@@ -34,20 +34,20 @@
   "mobileTopRow": 2,
   "needsErrorInfo": false,
   "overflow": "NONE",
-  "parentColumnSpace": 27.671875,
+  "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 16,
+  "rightColumn": 12,
   "shouldTruncate": false,
-  "text": "Total: {{dash_cards_dashboard.data?.[0]?.total_tickets || 0}}",
+  "text": "Total de Tickets\n{{dash_cards_dashboard.data?.[0]?.total_tickets || 0}}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 8,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "64e29fb210",
+  "widgetId": "b2297f4995",
   "widgetName": "card_total"
 }

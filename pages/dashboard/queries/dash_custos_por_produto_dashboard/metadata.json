@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "69aae622087fd62d13c0ed07_6334ed0c-63cc-458f-b07c-d61fcc87b107",
-  "id": "dashboard_dash_por_motivo_dashboard",
+  "gitSyncId": "69aae622087fd62d13c0ed07_5b0fb282-f5c5-4d0e-921f-ab5cf97605b8",
+  "id": "dashboard_dash_custos_por_produto_dashboard",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n  COALESCE(motivo::TEXT, 'nao_informado') AS motivo,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY motivo\nORDER BY qtd DESC;",
+      "body": "SELECT\n  COALESCE(NULLIF(BTRIM(produto), ''), 'nao_informado') AS produto,\n  COALESCE(SUM(custos_totais), 0) AS custo\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY COALESCE(NULLIF(BTRIM(produto), ''), 'nao_informado')\nORDER BY custo DESC\nLIMIT 12;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -27,7 +27,7 @@
         "key": "body"
       }
     ],
-    "name": "dash_por_motivo_dashboard",
+    "name": "dash_custos_por_produto_dashboard",
     "pageId": "dashboard",
     "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false

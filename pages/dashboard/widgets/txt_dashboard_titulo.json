@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 6,
+  "bottomRow": 5,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -36,9 +36,9 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 20,
+  "rightColumn": 28,
   "shouldTruncate": false,
-  "text": "Dashboard de Tickets",
+  "text": "Dashboard Executivo de Tickets",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 1,

@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n  COUNT(*) FILTER (WHERE ativo = TRUE) AS total_tickets,\n  COUNT(*) FILTER (WHERE ativo = TRUE AND status_ticket <> 'concluido') AS tickets_abertos,\n  COUNT(*) FILTER (WHERE ativo = TRUE AND sla_status = 'atrasado') AS tickets_atrasados,\n  COALESCE(SUM(custos_totais) FILTER (WHERE ativo = TRUE), 0) AS custo_total\nFROM public.vw_tickets;",
+      "body": "SELECT\n  COUNT(*) FILTER (WHERE t.ativo = TRUE) AS total_tickets,\n  COUNT(*) FILTER (WHERE t.ativo = TRUE AND t.status_ticket <> 'concluido') AS tickets_abertos,\n  COUNT(*) FILTER (WHERE t.ativo = TRUE AND t.sla_status = 'atrasado') AS tickets_atrasados,\n  COALESCE(SUM(t.custos_totais) FILTER (WHERE t.ativo = TRUE), 0) AS custo_total,\n  COALESCE(SUM(t.valor_reembolso) FILTER (WHERE t.ativo = TRUE), 0) AS valor_total_reembolso,\n  COALESCE(SUM(t.valor_coleta) FILTER (WHERE t.ativo = TRUE), 0) AS total_coleta\nFROM public.vw_tickets t;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

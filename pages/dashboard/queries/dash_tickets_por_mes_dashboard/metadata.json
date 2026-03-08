@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "69aae622087fd62d13c0ed07_6334ed0c-63cc-458f-b07c-d61fcc87b107",
-  "id": "dashboard_dash_por_motivo_dashboard",
+  "gitSyncId": "69aae622087fd62d13c0ed07_72292a31-0a9c-446d-a868-0747f8999d61",
+  "id": "dashboard_dash_tickets_por_mes_dashboard",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n  COALESCE(motivo::TEXT, 'nao_informado') AS motivo,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY motivo\nORDER BY qtd DESC;",
+      "body": "SELECT\n  TO_CHAR(DATE_TRUNC('month', COALESCE(data_reclamacao, criado_em::date)), 'YYYY-MM') AS mes,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY DATE_TRUNC('month', COALESCE(data_reclamacao, criado_em::date))\nORDER BY DATE_TRUNC('month', COALESCE(data_reclamacao, criado_em::date));",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -27,7 +27,7 @@
         "key": "body"
       }
     ],
-    "name": "dash_por_motivo_dashboard",
+    "name": "dash_tickets_por_mes_dashboard",
     "pageId": "dashboard",
     "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
