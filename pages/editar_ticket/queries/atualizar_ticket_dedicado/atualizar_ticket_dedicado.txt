@@ -1,0 +1,9 @@
+UPDATE public.tickets
+SET nome_cliente = COALESCE(NULLIF({{inp_editar_nome_cliente.text || ''}}, ''), nome_cliente),
+    produto = COALESCE(NULLIF({{inp_editar_produto.text || ''}}, ''), produto),
+    numero_venda = COALESCE(NULLIF({{inp_editar_numero_venda.text || ''}}, ''), numero_venda),
+    status_ticket = COALESCE(NULLIF({{sel_editar_status_ticket.selectedOptionValue || ''}}, '')::status_ticket_enum, status_ticket),
+    status_reclamacao = COALESCE(NULLIF({{sel_editar_status_reclamacao.selectedOptionValue || ''}}, '')::status_reclamacao_enum, status_reclamacao),
+    prazo_conclusao = COALESCE(NULLIF({{dp_editar_prazo_conclusao.formattedDate || ''}}, '')::DATE, prazo_conclusao),
+    atualizado_por = NULLIF({{appsmith.user.idToken.sub || ''}}, '')::UUID
+WHERE id = {{Number(appsmith.URL.queryParams.ticket_id || 0)}};

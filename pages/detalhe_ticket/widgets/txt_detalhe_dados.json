@@ -1,0 +1,50 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 34,
+  "dynamicBindingPathList": [
+    {
+      "key": "truncateButtonColor"
+    },
+    {
+      "key": "fontFamily"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicTriggerPathList": [],
+  "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+  "fontSize": "1rem",
+  "fontStyle": "",
+  "isLoading": false,
+  "isVisible": true,
+  "key": "7b5cd5a364",
+  "leftColumn": 2,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 6,
+  "mobileLeftColumn": 7,
+  "mobileRightColumn": 23,
+  "mobileTopRow": 2,
+  "needsErrorInfo": false,
+  "overflow": "NONE",
+  "parentColumnSpace": 27.671875,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 62,
+  "shouldTruncate": false,
+  "text": "Ticket #{{get_ticket_detalhe.data?.[0]?.id || appsmith.URL.queryParams.ticket_id || '-'}}\\nCliente: {{get_ticket_detalhe.data?.[0]?.nome_cliente || '-'}}\\nEmpresa: {{get_ticket_detalhe.data?.[0]?.empresa || '-'}}\\nCanal: {{get_ticket_detalhe.data?.[0]?.canal_marketplace || '-'}}\\nStatus: {{get_ticket_detalhe.data?.[0]?.status_ticket || '-'}}\\nStatus Reclamação: {{get_ticket_detalhe.data?.[0]?.status_reclamacao || '-'}}\\nMotivo: {{get_ticket_detalhe.data?.[0]?.motivo || '-'}}\\nPrazo: {{get_ticket_detalhe.data?.[0]?.prazo_conclusao || '-'}}\\nSLA: {{get_ticket_detalhe.data?.[0]?.sla_status || '-'}}\\nResponsável: {{get_ticket_detalhe.data?.[0]?.responsavel_nome || '-'}}\\nDetalhes: {{get_ticket_detalhe.data?.[0]?.detalhes_cliente || '-'}}",
+  "textAlign": "LEFT",
+  "textColor": "#231F20",
+  "topRow": 8,
+  "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "type": "TEXT_WIDGET",
+  "version": 1,
+  "widgetId": "edc6fd1124",
+  "widgetName": "txt_detalhe_dados"
+}

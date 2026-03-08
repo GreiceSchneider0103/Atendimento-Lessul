@@ -24,6 +24,22 @@
     {
       "id": "admin",
       "isDefault": false
+    },
+    {
+      "id": "detalhe_ticket",
+      "isDefault": false
+    },
+    {
+      "id": "editar_ticket",
+      "isDefault": false
+    },
+    {
+      "id": "usuario",
+      "isDefault": false
+    },
+    {
+      "id": "relatorios",
+      "isDefault": false
     }
   ]
 }

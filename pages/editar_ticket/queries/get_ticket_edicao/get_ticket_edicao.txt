@@ -1,0 +1,4 @@
+SELECT *
+FROM public.tickets
+WHERE id = {{Number(appsmith.URL.queryParams.ticket_id || 0)}}
+  AND ativo = TRUE;
