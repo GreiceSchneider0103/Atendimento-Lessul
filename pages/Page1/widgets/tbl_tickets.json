@@ -991,7 +991,7 @@
       "validation": {},
       "verticalAlignment": "CENTER",
       "width": 130,
-      "onClick": "{{showAlert('Inativando ticket #' + currentRow.id, 'info'); storeValue('ticket_inativar_id', currentRow.id).then(() => inativar_tickets.run(() => listar_tickets.run()));}}"
+      "onClick": "{{(() => {\n  const ticketId = currentRow.id;\n  showAlert(`Inativando ticket #${ticketId}...`, 'info');\n\n  storeValue('ticket_inativar_id', ticketId)\n    .then(() => inativar_tickets.run())\n    .then(() => {\n      showAlert(`Ticket #${ticketId} inativado com sucesso.`, 'success');\n      return listar_tickets.run();\n    })\n    .catch(() => {\n      showAlert('Não foi possível inativar o ticket. Verifique suas permissões e tente novamente.', 'error');\n    });\n})();}}"
     }
   },
   "renderMode": "CANVAS",

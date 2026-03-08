@@ -273,6 +273,50 @@ BEGIN
     INSERT INTO public.ticket_auditoria(ticket_id,acao,campo,valor_antigo,valor_novo,usuario_id,usuario_nome)
     VALUES(NEW.id,'UPDATE','produto',OLD.produto,NEW.produto,NEW.atualizado_por,usr_nome);
   END IF;
+  IF OLD.canal_marketplace IS DISTINCT FROM NEW.canal_marketplace THEN
+    INSERT INTO public.ticket_auditoria(ticket_id,acao,campo,valor_antigo,valor_novo,usuario_id,usuario_nome)
+    VALUES(NEW.id,'UPDATE','canal_marketplace',OLD.canal_marketplace,NEW.canal_marketplace,NEW.atualizado_por,usr_nome);
+  END IF;
+  IF OLD.numero_venda IS DISTINCT FROM NEW.numero_venda THEN
+    INSERT INTO public.ticket_auditoria(ticket_id,acao,campo,valor_antigo,valor_novo,usuario_id,usuario_nome)
+    VALUES(NEW.id,'UPDATE','numero_venda',OLD.numero_venda,NEW.numero_venda,NEW.atualizado_por,usr_nome);
+  END IF;
+  IF OLD.cpf IS DISTINCT FROM NEW.cpf THEN
+    INSERT INTO public.ticket_auditoria(ticket_id,acao,campo,valor_antigo,valor_novo,usuario_id,usuario_nome)
+    VALUES(NEW.id,'UPDATE','cpf',OLD.cpf,NEW.cpf,NEW.atualizado_por,usr_nome);
+  END IF;
+  IF OLD.uf IS DISTINCT FROM NEW.uf THEN
+    INSERT INTO public.ticket_auditoria(ticket_id,acao,campo,valor_antigo,valor_novo,usuario_id,usuario_nome)
+    VALUES(NEW.id,'UPDATE','uf',OLD.uf::TEXT,NEW.uf::TEXT,NEW.atualizado_por,usr_nome);
+  END IF;
+  IF OLD.sku IS DISTINCT FROM NEW.sku THEN
+    INSERT INTO public.ticket_auditoria(ticket_id,acao,campo,valor_antigo,valor_novo,usuario_id,usuario_nome)
+    VALUES(NEW.id,'UPDATE','sku',OLD.sku,NEW.sku,NEW.atualizado_por,usr_nome);
+  END IF;
+  IF OLD.fabricante IS DISTINCT FROM NEW.fabricante THEN
+    INSERT INTO public.ticket_auditoria(ticket_id,acao,campo,valor_antigo,valor_novo,usuario_id,usuario_nome)
+    VALUES(NEW.id,'UPDATE','fabricante',OLD.fabricante,NEW.fabricante,NEW.atualizado_por,usr_nome);
+  END IF;
+  IF OLD.transportadora IS DISTINCT FROM NEW.transportadora THEN
+    INSERT INTO public.ticket_auditoria(ticket_id,acao,campo,valor_antigo,valor_novo,usuario_id,usuario_nome)
+    VALUES(NEW.id,'UPDATE','transportadora',OLD.transportadora,NEW.transportadora,NEW.atualizado_por,usr_nome);
+  END IF;
+  IF OLD.data_compra IS DISTINCT FROM NEW.data_compra THEN
+    INSERT INTO public.ticket_auditoria(ticket_id,acao,campo,valor_antigo,valor_novo,usuario_id,usuario_nome)
+    VALUES(NEW.id,'UPDATE','data_compra',OLD.data_compra::TEXT,NEW.data_compra::TEXT,NEW.atualizado_por,usr_nome);
+  END IF;
+  IF OLD.data_reclamacao IS DISTINCT FROM NEW.data_reclamacao THEN
+    INSERT INTO public.ticket_auditoria(ticket_id,acao,campo,valor_antigo,valor_novo,usuario_id,usuario_nome)
+    VALUES(NEW.id,'UPDATE','data_reclamacao',OLD.data_reclamacao::TEXT,NEW.data_reclamacao::TEXT,NEW.atualizado_por,usr_nome);
+  END IF;
+  IF OLD.link_pedido IS DISTINCT FROM NEW.link_pedido THEN
+    INSERT INTO public.ticket_auditoria(ticket_id,acao,campo,valor_antigo,valor_novo,usuario_id,usuario_nome)
+    VALUES(NEW.id,'UPDATE','link_pedido',OLD.link_pedido,NEW.link_pedido,NEW.atualizado_por,usr_nome);
+  END IF;
+  IF OLD.detalhes_cliente IS DISTINCT FROM NEW.detalhes_cliente THEN
+    INSERT INTO public.ticket_auditoria(ticket_id,acao,campo,valor_antigo,valor_novo,usuario_id,usuario_nome)
+    VALUES(NEW.id,'UPDATE','detalhes_cliente',OLD.detalhes_cliente,NEW.detalhes_cliente,NEW.atualizado_por,usr_nome);
+  END IF;
   IF OLD.ativo IS DISTINCT FROM NEW.ativo THEN
     INSERT INTO public.ticket_auditoria(ticket_id,acao,campo,valor_antigo,valor_novo,usuario_id,usuario_nome)
     VALUES(NEW.id,'UPDATE','ativo',OLD.ativo::TEXT,NEW.ativo::TEXT,NEW.atualizado_por,usr_nome);
