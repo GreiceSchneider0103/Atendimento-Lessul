@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 40,
   "boxShadow": "none",
-  "defaultText": "{{get_ticket_edicao.data?.[0]?.sel_uf || ''}}",
+  "defaultText": "{{get_ticket_edicao.data?.[0]?.uf || ''}}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"

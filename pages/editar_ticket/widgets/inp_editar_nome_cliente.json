@@ -23,7 +23,7 @@
   "inputType": "TEXT",
   "isDisabled": false,
   "isLoading": false,
-  "isRequired": false,
+  "isRequired": true,
   "isVisible": true,
   "key": "d8a6b13c31",
   "label": "Nome do Cliente",

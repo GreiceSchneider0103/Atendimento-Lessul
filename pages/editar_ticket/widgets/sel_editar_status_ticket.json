@@ -26,7 +26,7 @@
   "isDisabled": false,
   "isFilterable": true,
   "isLoading": false,
-  "isRequired": false,
+  "isRequired": true,
   "isVisible": true,
   "key": "5b018c1b4c",
   "labelAlignment": "left",
