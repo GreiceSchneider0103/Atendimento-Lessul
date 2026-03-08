@@ -29,7 +29,7 @@
     ],
     "name": "get_meu_perfil_usuario",
     "pageId": "usuario",
-    "runBehaviour": "MANUAL",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }
