@@ -61,12 +61,12 @@ WHERE t.ativo = TRUE
 
   AND (
     {{ !dp_data_inicio.selectedDate ? "TRUE" : "FALSE" }}
-    OR t.data_reclamacao >= {{ "'" + moment(dp_data_inicio.selectedDate).format("YYYY-MM-DD") + "'" }}
+    OR COALESCE(t.data_reclamacao, t.criado_em::date) >= {{ "'" + moment(dp_data_inicio.selectedDate).format("YYYY-MM-DD") + "'" }}
   )
 
   AND (
     {{ !dp_data_fim.selectedDate ? "TRUE" : "FALSE" }}
-    OR t.data_reclamacao <= {{ "'" + moment(dp_data_fim.selectedDate).format("YYYY-MM-DD") + "'" }}
+    OR COALESCE(t.data_reclamacao, t.criado_em::date) <= {{ "'" + moment(dp_data_fim.selectedDate).format("YYYY-MM-DD") + "'" }}
   )
 
 ORDER BY t.criado_em DESC;
