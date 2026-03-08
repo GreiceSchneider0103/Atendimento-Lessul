@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "-- [Query: criar_usuario] (Com NULLIF!)\nINSERT INTO public.perfis (id, nome, email, perfil)\nVALUES (\n  NULLIF({{inp_user_id.text || ''}}, '')::UUID,\n  {{inp_user_nome.text}},\n  {{inp_user_email.text}},\n  NULLIF({{sel_user_perfil.selectedOptionValue || ''}}, '')::perfil_enum\n);",
+      "body": "-- [Query: criar_usuario] (Com NULLIF!)\nINSERT INTO public.perfis (id, nome, email, perfil)\nSELECT\n  NULLIF({{inp_user_id.text || ''}}, '')::UUID,\n  {{inp_user_nome.text}},\n  {{inp_user_email.text}},\n  NULLIF({{sel_user_perfil.selectedOptionValue || ''}}, '')::perfil_enum\nWHERE public.fn_meu_perfil() = 'admin';\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

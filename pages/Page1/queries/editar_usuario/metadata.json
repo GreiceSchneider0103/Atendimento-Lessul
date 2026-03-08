@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "--[Query: editar_usuario] (Com NULLIF!)\nUPDATE public.perfis SET\n  nome   = {{inp_user_nome.text}},\n  perfil = NULLIF({{sel_user_perfil.selectedOptionValue || ''}}, '')::perfil_enum,\n  ativo  = {{swt_ativo.isSwitchedOn}}\nWHERE id = {{tbl_usuarios.selectedRow.id}}::UUID;",
+      "body": "--[Query: editar_usuario] (Com NULLIF!)\nUPDATE public.perfis SET\n  nome   = {{inp_user_nome.text}},\n  perfil = NULLIF({{sel_user_perfil.selectedOptionValue || ''}}, '')::perfil_enum,\n  ativo  = {{swt_ativo.isSwitchedOn}}\nWHERE id = {{tbl_usuarios.selectedRow.id}}::UUID\n  AND public.fn_meu_perfil() = 'admin';\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

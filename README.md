@@ -50,6 +50,8 @@ Foram aplicados ajustes para alinhar os filtros da tela principal com os mesmos 
 - Queries de auditoria ajustadas para exibir nome de usuário via `COALESCE(a.usuario_nome, p.nome)` com `LEFT JOIN perfis`.
 - Query `dash_cards` simplificada para **um único SELECT** de cards.
 - RLS da `ticket_auditoria` ajustada para leitura por `atendente`, `supervisor` e `admin`, mantendo `INSERT/UPDATE/DELETE` bloqueados para usuários.
+- Botão e visão administrativa protegidos por perfil no Appsmith (visibilidade, disabled e navegação com checagem de perfil).
+- Ação sensível de inativar ticket reforçada para Admin no app e no banco.
 - Fonte de identidade padronizada com fallback seguro (`appsmith.user.idToken.sub` -> `appsmith.user.sub`) e validação de UUID em todas as queries que usam usuário atual.
 
 

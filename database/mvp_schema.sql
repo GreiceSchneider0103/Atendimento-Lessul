@@ -307,6 +307,13 @@ BEGIN
       RAISE EXCEPTION 'Perfil atendente não pode alterar campos sensíveis';
     END IF;
   END IF;
+
+  IF NEW.ativo IS DISTINCT FROM OLD.ativo
+     AND public.fn_meu_perfil() <> 'admin'
+  THEN
+    RAISE EXCEPTION 'Apenas admin pode alterar o status ativo/inativo do ticket';
+  END IF;
+
   RETURN NEW;
 END;
 $$;

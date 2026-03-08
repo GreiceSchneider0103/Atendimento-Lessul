@@ -38,7 +38,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 30,
   "shouldTruncate": false,
-  "text": "Administração de Usuários",
+  "text": "{{get_meu_perfil_admin.data?.[0]?.perfil === 'admin' ? 'Administração de Usuários' : 'Acesso restrito - Admin'}}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 1,

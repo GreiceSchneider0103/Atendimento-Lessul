@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "-- [Query: inativar_ticket]\n-- Soft-delete — apenas Admin\nUPDATE public.tickets\nSET ativo = FALSE,\n    atualizado_por = NULLIF({{(() => { const v = (appsmith.user?.idToken?.sub || appsmith.user?.sub || '').trim(); return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v) ? v : ''; })()}}, '')::UUID\nWHERE id = {{tbl_tickets.selectedRow.id}};\n",
+      "body": "-- [Query: inativar_ticket]\n-- Soft-delete — apenas Admin\nUPDATE public.tickets\nSET ativo = FALSE,\n    atualizado_por = NULLIF({{(() => { const v = (appsmith.user?.idToken?.sub || appsmith.user?.sub || '').trim(); return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v) ? v : ''; })()}}, '')::UUID\nWHERE id = {{tbl_tickets.selectedRow.id}}\n  AND public.fn_meu_perfil() = 'admin';\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

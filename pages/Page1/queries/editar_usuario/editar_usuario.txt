@@ -3,4 +3,5 @@ UPDATE public.perfis SET
   nome   = {{inp_user_nome.text}},
   perfil = NULLIF({{sel_user_perfil.selectedOptionValue || ''}}, '')::perfil_enum,
   ativo  = {{swt_ativo.isSwitchedOn}}
-WHERE id = {{tbl_usuarios.selectedRow.id}}::UUID;
+WHERE id = {{tbl_usuarios.selectedRow.id}}::UUID
+  AND public.fn_meu_perfil() = 'admin';
