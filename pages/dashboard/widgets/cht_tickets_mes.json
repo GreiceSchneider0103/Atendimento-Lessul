@@ -1,0 +1,40 @@
+{
+  "animateLoading": true,
+  "bottomRow": 96,
+  "chartData": "{{(dash_tickets_por_mes_dashboard.data || []).map(x => ({ x: x.mes, y: Number(x.qtd || 0) }))}}",
+  "chartName": "Tickets por Mês",
+  "chartType": "LINE_CHART",
+  "dynamicBindingPathList": [
+    {
+      "key": "chartData"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "chartData"
+    }
+  ],
+  "isLoading": false,
+  "isVisible": true,
+  "key": "d46461a21d",
+  "leftColumn": 32,
+  "minWidth": 450,
+  "mobileBottomRow": 40,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 24,
+  "mobileTopRow": 20,
+  "needsErrorInfo": false,
+  "parentColumnSpace": 11.59375,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 62,
+  "topRow": 78,
+  "type": "CHART_WIDGET",
+  "version": 1,
+  "widgetId": "eb39f27f14",
+  "widgetName": "cht_tickets_mes",
+  "xAxisName": "Mês",
+  "yAxisName": "Tickets"
+}

@@ -1,4 +1,9 @@
-SELECT id, nome_cliente, canal_marketplace, empresa::TEXT AS empresa, motivo::TEXT AS motivo, prazo_conclusao, status_ticket::TEXT AS status_ticket
+SELECT id, nome_cliente,
+       COALESCE(public.fn_normalizar_canal_marketplace(canal_marketplace), 'nao_informado') AS canal_marketplace,
+       empresa::TEXT AS empresa,
+       motivo::TEXT AS motivo,
+       prazo_conclusao,
+       status_ticket::TEXT AS status_ticket
 FROM public.tickets
 WHERE ativo = TRUE
 ORDER BY prazo_conclusao NULLS LAST, criado_em DESC

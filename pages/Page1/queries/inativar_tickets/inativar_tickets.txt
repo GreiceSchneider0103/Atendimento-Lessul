@@ -2,5 +2,6 @@
 -- Soft-delete — apenas Admin
 UPDATE public.tickets
 SET ativo = FALSE,
-    atualizado_por = NULLIF({{appsmith.user.idToken.sub || ''}}, '')::UUID
-WHERE id = {{tbl_tickets.selectedRow.id}};
+    atualizado_por = NULLIF({{(() => { const v = (appsmith.user?.idToken?.sub || appsmith.user?.sub || '').trim(); return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v) ? v : ''; })()}}, '')::UUID
+WHERE id = COALESCE({{appsmith.store.ticket_inativar_id || null}}, {{tbl_tickets.selectedRow.id}})
+  AND public.fn_meu_perfil() = 'admin';

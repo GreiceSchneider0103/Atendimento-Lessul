@@ -1,0 +1,7 @@
+SELECT
+  TO_CHAR(DATE_TRUNC('month', COALESCE(data_reclamacao, criado_em::date)), 'YYYY-MM') AS mes,
+  COUNT(*) AS qtd
+FROM public.tickets
+WHERE ativo = TRUE
+GROUP BY DATE_TRUNC('month', COALESCE(data_reclamacao, criado_em::date))
+ORDER BY DATE_TRUNC('month', COALESCE(data_reclamacao, criado_em::date));

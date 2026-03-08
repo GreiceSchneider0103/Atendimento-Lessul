@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT id, nome, email, perfil, ativo, criado_em\nFROM public.perfis\nORDER BY nome;",
+      "body": "SELECT id, nome, email, perfil, ativo, criado_em\nFROM public.perfis\nWHERE public.fn_meu_perfil() = 'admin'\nORDER BY nome;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

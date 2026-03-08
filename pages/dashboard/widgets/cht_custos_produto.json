@@ -1,0 +1,40 @@
+{
+  "animateLoading": true,
+  "bottomRow": 76,
+  "chartData": "{{(dash_custos_por_produto_dashboard.data || []).map(x => ({ x: x.produto, y: Number(x.custo || 0) }))}}",
+  "chartName": "Custos por Produto (Top 12)",
+  "chartType": "COLUMN_CHART",
+  "dynamicBindingPathList": [
+    {
+      "key": "chartData"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "chartData"
+    }
+  ],
+  "isLoading": false,
+  "isVisible": true,
+  "key": "7ef84dc964",
+  "leftColumn": 2,
+  "minWidth": 450,
+  "mobileBottomRow": 40,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 24,
+  "mobileTopRow": 20,
+  "needsErrorInfo": false,
+  "parentColumnSpace": 11.59375,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 32,
+  "topRow": 58,
+  "type": "CHART_WIDGET",
+  "version": 1,
+  "widgetId": "ebb82ee725",
+  "widgetName": "cht_custos_produto",
+  "xAxisName": "Categoria",
+  "yAxisName": "Quantidade"
+}

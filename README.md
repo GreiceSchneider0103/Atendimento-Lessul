@@ -23,6 +23,8 @@ Foram aplicados ajustes para alinhar os filtros da tela principal com os mesmos 
   - `status_ticket`: `aberto`, `concluido`, `aguardando_cliente`, `aguardando_devolucao`, `aguardando_assistencia`, `aguardando_marketplace`
   - `status_reclamacao`: `afetando`, `nao_afetando`, `removida`
   - `motivo`: `desistencia`, `defeito_fabricacao`, `produto_incorreto`, `faltando_itens`, `produto_danificado`, `problema`
+- `canal_marketplace` padronizado em todo o app para valores canônicos:
+  - `mercado_livre`, `shopee`, `magalu`, `amazon`, `site`
 - Consulta `listar_tickets` revisada para usar os mesmos valores de filtro e sanitizar melhor a busca por nome.
 - Script SQL completo de referência adicionado em `database/mvp_schema.sql` com:
   - tabelas `tickets`, `ticket_auditoria` e `perfis`
@@ -47,7 +49,10 @@ Foram aplicados ajustes para alinhar os filtros da tela principal com os mesmos 
 - Query `Page1/criar_tickets` corrigida (erro de sintaxe em `motivo_enum`) e adaptada para inserção inline via `tbl_tickets.newRow`.
 - Queries de auditoria ajustadas para exibir nome de usuário via `COALESCE(a.usuario_nome, p.nome)` com `LEFT JOIN perfis`.
 - Query `dash_cards` simplificada para **um único SELECT** de cards.
-- Fonte de identidade padronizada para `appsmith.user.idToken.sub` no create ticket da página `criar_ticket`.
+- RLS da `ticket_auditoria` ajustada para leitura por `atendente`, `supervisor` e `admin`, mantendo `INSERT/UPDATE/DELETE` bloqueados para usuários.
+- Botão e visão administrativa protegidos por perfil no Appsmith (visibilidade, disabled e navegação com checagem de perfil).
+- Ação sensível de inativar ticket reforçada para Admin no app e no banco.
+- Fonte de identidade padronizada com fallback seguro (`appsmith.user.idToken.sub` -> `appsmith.user.sub`) e validação de UUID em todas as queries que usam usuário atual.
 
 
 ### Módulos visuais adicionados nesta etapa
@@ -58,4 +63,3 @@ Foram aplicados ajustes para alinhar os filtros da tela principal com os mesmos 
 - Botões de navegação rápida na `Page1` para os novos módulos.
 
 > Se não aparecer no Appsmith publicado, acione **Git Sync → Pull** no workspace da aplicação e publique novamente.
-

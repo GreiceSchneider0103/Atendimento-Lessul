@@ -77,6 +77,13 @@ CREATE TABLE public.tickets (
   ativo                BOOLEAN NOT NULL DEFAULT TRUE
 );
 
+ALTER TABLE public.tickets
+  ADD CONSTRAINT ck_tickets_canal_marketplace
+  CHECK (
+    canal_marketplace IS NULL
+    OR canal_marketplace IN ('mercado_livre','shopee','magalu','amazon','site')
+  );
+
 CREATE TABLE public.ticket_auditoria (
   id            BIGSERIAL PRIMARY KEY,
   ticket_id     BIGINT NOT NULL REFERENCES public.tickets(id) ON DELETE CASCADE,
@@ -125,6 +132,71 @@ BEGIN
   RETURN NEW;
 END;
 $$;
+
+CREATE OR REPLACE FUNCTION public.fn_normalizar_canal_marketplace(v TEXT)
+RETURNS TEXT
+LANGUAGE plpgsql
+IMMUTABLE
+AS $$
+DECLARE
+  n TEXT;
+BEGIN
+  IF v IS NULL OR BTRIM(v) = '' THEN
+    RETURN NULL;
+  END IF;
+
+  n := LOWER(REPLACE(BTRIM(v), ' ', '_'));
+
+  IF n IN ('mercado_livre','mercadolivre','mercado-livre') THEN
+    RETURN 'mercado_livre';
+  ELSIF n = 'shopee' THEN
+    RETURN 'shopee';
+  ELSIF n = 'magalu' THEN
+    RETURN 'magalu';
+  ELSIF n = 'amazon' THEN
+    RETURN 'amazon';
+  ELSIF n = 'site' THEN
+    RETURN 'site';
+  END IF;
+
+  RETURN NULL;
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION public.fn_normalizar_ticket_canal_marketplace()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  NEW.canal_marketplace := public.fn_normalizar_canal_marketplace(NEW.canal_marketplace);
+  RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER trg_tickets_normalizar_canal_marketplace
+BEFORE INSERT OR UPDATE OF canal_marketplace ON public.tickets
+FOR EACH ROW EXECUTE FUNCTION public.fn_normalizar_ticket_canal_marketplace();
+
+CREATE OR REPLACE FUNCTION public.fn_validar_identidade_ticket()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  IF TG_OP = 'INSERT' AND NEW.criado_por IS NULL THEN
+    RAISE EXCEPTION 'Usuário autenticado inválido: criado_por obrigatório';
+  END IF;
+
+  IF TG_OP = 'UPDATE' AND NEW.atualizado_por IS NULL THEN
+    RAISE EXCEPTION 'Usuário autenticado inválido: atualizado_por obrigatório';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER trg_tickets_validar_identidade
+BEFORE INSERT OR UPDATE ON public.tickets
+FOR EACH ROW EXECUTE FUNCTION public.fn_validar_identidade_ticket();
 
 CREATE TRIGGER trg_tickets_atualizado_em
 BEFORE UPDATE ON public.tickets
@@ -235,6 +307,13 @@ BEGIN
       RAISE EXCEPTION 'Perfil atendente não pode alterar campos sensíveis';
     END IF;
   END IF;
+
+  IF NEW.ativo IS DISTINCT FROM OLD.ativo
+     AND public.fn_meu_perfil() <> 'admin'
+  THEN
+    RAISE EXCEPTION 'Apenas admin pode alterar o status ativo/inativo do ticket';
+  END IF;
+
   RETURN NEW;
 END;
 $$;
@@ -256,8 +335,11 @@ DROP POLICY IF EXISTS "tickets: todos leem ativos" ON public.tickets;
 DROP POLICY IF EXISTS "tickets: criar" ON public.tickets;
 DROP POLICY IF EXISTS "tickets: editar" ON public.tickets;
 DROP POLICY IF EXISTS "tickets: sem delete fisico" ON public.tickets;
+DROP POLICY IF EXISTS "auditoria: atendente/supervisor/admin leem" ON public.ticket_auditoria;
 DROP POLICY IF EXISTS "auditoria: supervisor e admin leem" ON public.ticket_auditoria;
 DROP POLICY IF EXISTS "auditoria: apenas triggers gravam" ON public.ticket_auditoria;
+DROP POLICY IF EXISTS "auditoria: sem update" ON public.ticket_auditoria;
+DROP POLICY IF EXISTS "auditoria: sem delete" ON public.ticket_auditoria;
 
 CREATE POLICY "perfis: leitura própria" ON public.perfis FOR SELECT USING (id = auth.uid());
 CREATE POLICY "perfis: admin gerencia" ON public.perfis FOR ALL USING (public.fn_meu_perfil() = 'admin');
@@ -267,5 +349,7 @@ CREATE POLICY "tickets: criar" ON public.tickets FOR INSERT WITH CHECK (public.f
 CREATE POLICY "tickets: editar" ON public.tickets FOR UPDATE USING (public.fn_meu_perfil() IN ('atendente','supervisor','admin'));
 CREATE POLICY "tickets: sem delete fisico" ON public.tickets FOR DELETE USING (FALSE);
 
-CREATE POLICY "auditoria: supervisor e admin leem" ON public.ticket_auditoria FOR SELECT USING (public.fn_meu_perfil() IN ('supervisor','admin'));
+CREATE POLICY "auditoria: atendente/supervisor/admin leem" ON public.ticket_auditoria FOR SELECT USING (public.fn_meu_perfil() IN ('atendente','supervisor','admin'));
 CREATE POLICY "auditoria: apenas triggers gravam" ON public.ticket_auditoria FOR INSERT WITH CHECK (FALSE);
+CREATE POLICY "auditoria: sem update" ON public.ticket_auditoria FOR UPDATE USING (FALSE);
+CREATE POLICY "auditoria: sem delete" ON public.ticket_auditoria FOR DELETE USING (FALSE);

@@ -1,0 +1,80 @@
+SELECT
+  t.id,
+  t.nome_cliente,
+  t.cpf,
+  t.uf,
+  t.numero_venda,
+  t.canal_marketplace,
+  t.empresa,
+  t.produto,
+  t.sku,
+  t.motivo,
+  t.status_reclamacao,
+  t.status_ticket,
+  t.sla_status,
+  t.prazo_conclusao,
+  t.valor_reembolso,
+  t.valor_coleta,
+  t.custos_totais,
+  COALESCE(t.data_reclamacao, t.criado_em::date) AS data_referencia,
+  t.criado_em,
+  p.nome AS responsavel_nome,
+  criador.nome AS criado_por_nome
+FROM public.vw_tickets t
+LEFT JOIN public.perfis p ON p.id = t.responsavel
+LEFT JOIN public.perfis criador ON criador.id = t.criado_por
+WHERE t.ativo = TRUE
+  AND (
+    {{ !inp_rel_nome_cliente.text ? "TRUE" : "FALSE" }}
+    OR LOWER(t.nome_cliente) LIKE LOWER({{ "'%" + inp_rel_nome_cliente.text.trim().replace(/'/g, "''") + "%'" }})
+  )
+  AND (
+    {{ !sel_rel_empresa.selectedOptionValue ? "TRUE" : "FALSE" }}
+    OR t.empresa::TEXT = {{ "'" + sel_rel_empresa.selectedOptionValue + "'" }}
+  )
+  AND (
+    {{ !sel_rel_canal.selectedOptionValue ? "TRUE" : "FALSE" }}
+    OR t.canal_marketplace = {{ "'" + sel_rel_canal.selectedOptionValue + "'" }}
+  )
+  AND (
+    {{ !sel_rel_status_ticket.selectedOptionValue ? "TRUE" : "FALSE" }}
+    OR t.status_ticket::TEXT = {{ "'" + sel_rel_status_ticket.selectedOptionValue + "'" }}
+  )
+  AND (
+    {{ !sel_rel_motivo.selectedOptionValue ? "TRUE" : "FALSE" }}
+    OR t.motivo::TEXT = {{ "'" + sel_rel_motivo.selectedOptionValue + "'" }}
+  )
+  AND (
+    {{ !sel_rel_responsavel.selectedOptionValue ? "TRUE" : "FALSE" }}
+    OR t.responsavel = {{ "'" + sel_rel_responsavel.selectedOptionValue + "'::UUID" }}
+    OR t.criado_por = {{ "'" + sel_rel_responsavel.selectedOptionValue + "'::UUID" }}
+  )
+  AND (
+    {{ !dp_rel_inicio.selectedDate ? "TRUE" : "FALSE" }}
+    OR COALESCE(t.data_reclamacao, t.criado_em::date) >= {{ "'" + moment(dp_rel_inicio.selectedDate).format("YYYY-MM-DD") + "'" }}
+  )
+  AND (
+    {{ !dp_rel_fim.selectedDate ? "TRUE" : "FALSE" }}
+    OR COALESCE(t.data_reclamacao, t.criado_em::date) <= {{ "'" + moment(dp_rel_fim.selectedDate).format("YYYY-MM-DD") + "'" }}
+  )
+  AND (
+    {{ (() => {
+      const perfil = get_meu_perfil_relatorios.data?.[0]?.perfil || 'atendente';
+      const escopo = sel_rel_escopo.selectedOptionValue || 'meus_tickets';
+      const podeCompleto = perfil === 'admin' || perfil === 'supervisor';
+      return podeCompleto && escopo === 'completo' ? 'TRUE' : 'FALSE';
+    })() }}
+    OR t.responsavel = {{ (() => {
+      const v = (appsmith.user?.idToken?.sub || appsmith.user?.sub || '').trim();
+      return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v)
+        ? "'" + v + "'::UUID"
+        : "NULL";
+    })() }}
+    OR t.criado_por = {{ (() => {
+      const v = (appsmith.user?.idToken?.sub || appsmith.user?.sub || '').trim();
+      return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v)
+        ? "'" + v + "'::UUID"
+        : "NULL";
+    })() }}
+  )
+ORDER BY COALESCE(t.data_reclamacao, t.criado_em::date) DESC, t.id DESC;
