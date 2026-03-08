@@ -1,0 +1,5 @@
+SELECT motivo::TEXT AS motivo, COUNT(*) AS qtd
+FROM public.tickets
+WHERE ativo = TRUE AND motivo IS NOT NULL
+GROUP BY motivo
+ORDER BY qtd DESC;

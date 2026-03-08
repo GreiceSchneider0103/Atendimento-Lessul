@@ -26,36 +26,36 @@ WHERE t.ativo = TRUE
 
   AND (
     {{ !inp_busca_nome.text ? "TRUE" : "FALSE" }}
-    OR LOWER(t.nome_cliente) LIKE LOWER({{ "'%" + inp_busca_nome.text + "%'" }})
+    OR LOWER(t.nome_cliente) LIKE LOWER({{ "'%" + inp_busca_nome.text.trim().replace(/'/g, "''") + "%'" }})
   )
 
   AND (
-    {{ !sel_empresa.selectedOptionValue || sel_empresa.selectedOptionValue === "todos" ? "TRUE" : "FALSE" }}
+    {{ !sel_empresa.selectedOptionValue ? "TRUE" : "FALSE" }}
     OR t.empresa::TEXT = {{ "'" + sel_empresa.selectedOptionValue + "'" }}
   )
 
   AND (
-    {{ !sel_status_ticket.selectedOptionValue || sel_status_ticket.selectedOptionValue === "todos" ? "TRUE" : "FALSE" }}
+    {{ !sel_status_ticket.selectedOptionValue ? "TRUE" : "FALSE" }}
     OR t.status_ticket::TEXT = {{ "'" + sel_status_ticket.selectedOptionValue + "'" }}
   )
 
   AND (
-    {{ !sel_motivo.selectedOptionValue || sel_motivo.selectedOptionValue === "todos" ? "TRUE" : "FALSE" }}
+    {{ !sel_motivo.selectedOptionValue ? "TRUE" : "FALSE" }}
     OR t.motivo::TEXT = {{ "'" + sel_motivo.selectedOptionValue + "'" }}
   )
 
   AND (
-    {{ !sel_status_reclamacao.selectedOptionValue || sel_status_reclamacao.selectedOptionValue === "todos" ? "TRUE" : "FALSE" }}
+    {{ !sel_status_reclamacao.selectedOptionValue ? "TRUE" : "FALSE" }}
     OR t.status_reclamacao::TEXT = {{ "'" + sel_status_reclamacao.selectedOptionValue + "'" }}
   )
 
   AND (
-    {{ !sel_canal.selectedOptionValue || sel_canal.selectedOptionValue === "todos" ? "TRUE" : "FALSE" }}
+    {{ !sel_canal.selectedOptionValue ? "TRUE" : "FALSE" }}
     OR LOWER(t.canal_marketplace) = LOWER({{ "'" + sel_canal.selectedOptionValue + "'" }})
   )
 
   AND (
-    {{ !sel_responsavel.selectedOptionValue || sel_responsavel.selectedOptionValue === "todos" ? "TRUE" : "FALSE" }}
+    {{ !sel_responsavel.selectedOptionValue ? "TRUE" : "FALSE" }}
     OR t.responsavel::TEXT = {{ "'" + sel_responsavel.selectedOptionValue + "'" }}
   )
 

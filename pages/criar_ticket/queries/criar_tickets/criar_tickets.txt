@@ -55,6 +55,6 @@ INSERT INTO public.tickets (
   {{ sel_status_ticket.selectedOptionValue ? "'" + sel_status_ticket.selectedOptionValue + "'::status_ticket_enum" : "NULL" }},
   {{ sel_responsavel_form.selectedOptionValue ? "'" + sel_responsavel_form.selectedOptionValue + "'::uuid" : "NULL" }},
   {{ dp_prazo_conclusao.formattedDate ? "'" + moment(dp_prazo_conclusao.formattedDate).format('YYYY-MM-DD') + "'" : "NULL" }},
-  {{ appsmith.store.user_id ? "'" + appsmith.store.user_id + "'::uuid" : "NULL" }}
+  {{ appsmith.user.idToken.sub ? "'" + appsmith.user.idToken.sub + "'::uuid" : "NULL" }}
 )
 RETURNING id;
