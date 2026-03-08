@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 70,
+  "bottomRow": 41,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -38,10 +41,10 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Histórico\\n{{(historico_ticket_edicao.data || []).map(h => `• ${h.data_hora} | ${h.usuario_nome || '-'} | ${h.campo || h.acao}: ${h.valor_antigo || '-'} -> ${h.valor_novo || '-'}`).join('\\n') || 'Sem histórico'}}",
+  "text": "Histórico de alterações (últimos 200 registros)",
   "textAlign": "LEFT",
   "textColor": "#231F20",
-  "topRow": 41,
+  "topRow": 39,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,

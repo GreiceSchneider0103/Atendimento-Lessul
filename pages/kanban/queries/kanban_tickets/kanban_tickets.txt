@@ -1,9 +1,44 @@
 SELECT id, nome_cliente,
-       COALESCE(public.fn_normalizar_canal_marketplace(canal_marketplace), 'nao_informado') AS canal_marketplace,
-       empresa::TEXT AS empresa,
-       motivo::TEXT AS motivo,
+       CASE COALESCE(public.fn_normalizar_canal_marketplace(canal_marketplace), 'nao_informado')
+         WHEN 'mercado_livre' THEN 'Mercado Livre'
+         WHEN 'shopee' THEN 'Shopee'
+         WHEN 'magalu' THEN 'Magalu'
+         WHEN 'amazon' THEN 'Amazon'
+         WHEN 'site' THEN 'Site'
+         ELSE 'Não informado'
+       END AS canal_marketplace,
+       CASE empresa::TEXT
+         WHEN 'lessul' THEN 'Lessul'
+         WHEN 'ms_decor' THEN 'MS Decor'
+         WHEN 'viva_vida' THEN 'Viva Vida'
+         WHEN 'movelbento' THEN 'Movelbento'
+         WHEN 'modifika' THEN 'Modifika'
+         ELSE COALESCE(empresa::TEXT, '-')
+       END AS empresa,
+       CASE motivo::TEXT
+         WHEN 'desistencia' THEN 'Desistência'
+         WHEN 'defeito_fabricacao' THEN 'Defeito de Fabricação'
+         WHEN 'produto_incorreto' THEN 'Produto incorreto'
+         WHEN 'faltando_itens' THEN 'Faltando itens'
+         WHEN 'produto_danificado' THEN 'Produto danificado'
+         WHEN 'problema' THEN 'Problema'
+         ELSE COALESCE(motivo::TEXT, 'Sem motivo')
+       END AS motivo,
        prazo_conclusao,
-       status_ticket::TEXT AS status_ticket
+       CASE status_ticket::TEXT
+         WHEN 'aberto' THEN 'aberto'
+         WHEN 'concluido' THEN 'concluido'
+         ELSE 'andamento'
+       END AS status_ticket,
+       CASE status_ticket::TEXT
+         WHEN 'aberto' THEN 'Aberto'
+         WHEN 'concluido' THEN 'Concluído'
+         WHEN 'aguardando_cliente' THEN 'Aguardando cliente'
+         WHEN 'aguardando_devolucao' THEN 'Aguardando devolução'
+         WHEN 'aguardando_assistencia' THEN 'Aguardando assistência'
+         WHEN 'aguardando_marketplace' THEN 'Aguardando marketplace'
+         ELSE COALESCE(status_ticket::TEXT, '-')
+       END AS status_ticket_label
 FROM public.tickets
 WHERE ativo = TRUE
 ORDER BY prazo_conclusao NULLS LAST, criado_em DESC

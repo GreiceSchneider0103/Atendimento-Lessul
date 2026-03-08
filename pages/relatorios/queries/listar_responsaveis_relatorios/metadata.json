@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT nome AS label, id::TEXT AS value\nFROM public.perfis\nWHERE ativo = TRUE\nORDER BY nome;",
+      "body": "SELECT label, value::TEXT AS value\nFROM public.fn_responsaveis_ativos();\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

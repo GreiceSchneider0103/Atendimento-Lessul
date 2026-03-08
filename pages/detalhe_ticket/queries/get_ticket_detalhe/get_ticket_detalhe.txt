@@ -1,7 +1,60 @@
 SELECT t.*, 
        p_resp.nome AS responsavel_nome,
        p_cri.nome  AS criado_por_nome,
-       p_atu.nome  AS atualizado_por_nome
+       p_atu.nome  AS atualizado_por_nome,
+       CASE COALESCE(t.canal_marketplace, 'nao_informado')
+         WHEN 'mercado_livre' THEN 'Mercado Livre'
+         WHEN 'shopee' THEN 'Shopee'
+         WHEN 'magalu' THEN 'Magalu'
+         WHEN 'amazon' THEN 'Amazon'
+         WHEN 'site' THEN 'Site'
+         ELSE 'Não informado'
+       END AS canal_marketplace_label,
+       CASE t.empresa::TEXT
+         WHEN 'lessul' THEN 'Lessul'
+         WHEN 'ms_decor' THEN 'MS Decor'
+         WHEN 'viva_vida' THEN 'Viva Vida'
+         WHEN 'movelbento' THEN 'Movelbento'
+         WHEN 'modifika' THEN 'Modifika'
+         ELSE COALESCE(t.empresa::TEXT, '-')
+       END AS empresa_label,
+       CASE t.motivo::TEXT
+         WHEN 'desistencia' THEN 'Desistência'
+         WHEN 'defeito_fabricacao' THEN 'Defeito de Fabricação'
+         WHEN 'produto_incorreto' THEN 'Produto incorreto'
+         WHEN 'faltando_itens' THEN 'Faltando itens'
+         WHEN 'produto_danificado' THEN 'Produto danificado'
+         WHEN 'problema' THEN 'Problema'
+         ELSE COALESCE(t.motivo::TEXT, '-')
+       END AS motivo_label,
+       CASE t.status_reclamacao::TEXT
+         WHEN 'afetando' THEN 'Afetando'
+         WHEN 'nao_afetando' THEN 'Não afetando'
+         WHEN 'removida' THEN 'Removida'
+         ELSE COALESCE(t.status_reclamacao::TEXT, '-')
+       END AS status_reclamacao_label,
+       CASE t.resolucao::TEXT
+         WHEN 'assistencia' THEN 'Assistência'
+         WHEN 'devolucao' THEN 'Devolução'
+         WHEN 'reembolso' THEN 'Reembolso'
+         WHEN 'resolvido' THEN 'Resolvido'
+         ELSE COALESCE(t.resolucao::TEXT, '-')
+       END AS resolucao_label,
+       CASE t.status_ticket::TEXT
+         WHEN 'aberto' THEN 'Aberto'
+         WHEN 'concluido' THEN 'Concluído'
+         WHEN 'aguardando_cliente' THEN 'Aguardando cliente'
+         WHEN 'aguardando_devolucao' THEN 'Aguardando devolução'
+         WHEN 'aguardando_assistencia' THEN 'Aguardando assistência'
+         WHEN 'aguardando_marketplace' THEN 'Aguardando marketplace'
+         ELSE COALESCE(t.status_ticket::TEXT, '-')
+       END AS status_ticket_label,
+       CASE t.sla_status
+         WHEN 'concluido' THEN 'Concluído'
+         WHEN 'atrasado' THEN 'Atrasado'
+         WHEN 'no_prazo' THEN 'No prazo'
+         ELSE COALESCE(t.sla_status, '-')
+       END AS sla_status_label
 FROM public.vw_tickets t
 LEFT JOIN public.perfis p_resp ON p_resp.id = t.responsavel
 LEFT JOIN public.perfis p_cri  ON p_cri.id  = t.criado_por

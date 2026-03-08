@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 48,
+  "bottomRow": 60,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -14,6 +14,9 @@
     },
     {
       "key": "text"
+    },
+    {
+      "key": "isVisible"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -41,10 +44,10 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Usuários\\n{{(listar_usuarios_admin.data || []).map(u => `• ${u.nome} (${u.email}) | perfil: ${u.perfil} | ${u.ativo ? 'ativo' : 'inativo'}`).join('\\n') || 'Sem usuários cadastrados'}}",
+  "text": "Resumo: {{(listar_usuarios_admin.data || []).length}} usuário(s) cadastrado(s). Use a tabela para selecionar e editar.",
   "textAlign": "LEFT",
   "textColor": "#231F20",
-  "topRow": 15,
+  "topRow": 56,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
