@@ -1,11 +1,10 @@
 {
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
-  "autoFocus": false,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 15,
+  "bottomRow": 40,
   "boxShadow": "none",
-  "defaultText": "{{get_ticket_edicao.data?.[0]?.nome_cliente || ''}}",
+  "defaultOptionValue": "{{get_ticket_edicao.data?.[0]?.responsavel ? String(get_ticket_edicao.data?.[0]?.responsavel) : ''}}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
@@ -14,45 +13,53 @@
       "key": "borderRadius"
     },
     {
-      "key": "defaultText"
+      "key": "sourceData"
+    },
+    {
+      "key": "defaultOptionValue"
     }
   ],
   "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "sourceData"
+    }
+  ],
   "dynamicTriggerPathList": [],
-  "iconAlign": "left",
-  "inputType": "TEXT",
   "isDisabled": false,
+  "isFilterable": true,
   "isLoading": false,
   "isRequired": false,
   "isVisible": true,
-  "key": "d8a6b13c31",
-  "label": "Nome do Cliente",
+  "key": "zl16ce4nwt",
   "labelAlignment": "left",
   "labelPosition": "Top",
-  "labelStyle": "",
+  "labelText": "Responsável",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
   "leftColumn": 2,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
-  "mobileBottomRow": 16,
-  "mobileLeftColumn": 2,
-  "mobileRightColumn": 22,
-  "mobileTopRow": 9,
+  "mobileBottomRow": 32,
+  "mobileLeftColumn": 7,
+  "mobileRightColumn": 27,
+  "mobileTopRow": 25,
   "needsErrorInfo": false,
-  "parentColumnSpace": 11.59375,
+  "optionLabel": "label",
+  "optionValue": "value",
+  "parentColumnSpace": 27.671875,
   "parentId": "0",
   "parentRowSpace": 10,
-  "placeholderText": "Buscar por nome do cliente...",
+  "placeholderText": "Selecione",
   "renderMode": "CANVAS",
-  "resetOnSubmit": true,
   "responsiveBehavior": "fill",
   "rightColumn": 22,
-  "showStepArrows": false,
-  "topRow": 8,
-  "type": "INPUT_WIDGET_V2",
-  "version": 2,
-  "widgetId": "xl37tfuh8s",
-  "widgetName": "inp_editar_nome_cliente"
+  "serverSideFiltering": false,
+  "sourceData": "{{ listar_responsaveis.data }}",
+  "topRow": 33,
+  "type": "SELECT_WIDGET",
+  "version": 1,
+  "widgetId": "c7k5t6zzqz",
+  "widgetName": "sel_editar_responsavel"
 }

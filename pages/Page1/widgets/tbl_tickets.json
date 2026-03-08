@@ -51,7 +51,10 @@
     "valor_coleta",
     "data_reclamacao",
     "criado_em",
-    "responsavel_nome"
+    "responsavel_nome",
+    "acao_detalhar",
+    "acao_editar",
+    "acao_inativar"
   ],
   "columnUpdatedAt": 1772824342202,
   "columnWidthMap": {},
@@ -135,6 +138,33 @@
     },
     {
       "key": "primaryColumns.responsavel_nome.computedValue"
+    },
+    {
+      "key": "primaryColumns.acao_detalhar.computedValue"
+    },
+    {
+      "key": "primaryColumns.acao_editar.computedValue"
+    },
+    {
+      "key": "primaryColumns.acao_inativar.computedValue"
+    },
+    {
+      "key": "primaryColumns.acao_detalhar.isVisible"
+    },
+    {
+      "key": "primaryColumns.acao_editar.isVisible"
+    },
+    {
+      "key": "primaryColumns.acao_inativar.isVisible"
+    },
+    {
+      "key": "primaryColumns.acao_detalhar.onClick"
+    },
+    {
+      "key": "primaryColumns.acao_editar.onClick"
+    },
+    {
+      "key": "primaryColumns.acao_inativar.onClick"
     }
   ],
   "dynamicPropertyPathList": [
@@ -142,7 +172,17 @@
       "key": "tableData"
     }
   ],
-  "dynamicTriggerPathList": [],
+  "dynamicTriggerPathList": [
+    {
+      "key": "primaryColumns.acao_detalhar.onClick"
+    },
+    {
+      "key": "primaryColumns.acao_editar.onClick"
+    },
+    {
+      "key": "primaryColumns.acao_inativar.onClick"
+    }
+  ],
   "enableClientSideSearch": true,
   "endOfData": false,
   "flexVerticalAlignment": "start",
@@ -847,6 +887,111 @@
       "validation": {},
       "verticalAlignment": "CENTER",
       "width": 150
+    },
+    "acao_detalhar": {
+      "alias": "acao_detalhar",
+      "allowCellWrapping": false,
+      "allowSameOptionsInNewRow": true,
+      "cellBackground": "",
+      "columnType": "button",
+      "computedValue": "{{(() => { const tableData = tbl_tickets.processedTableData || []; return tableData.map(() => 'acao_detalhar'); })()}}",
+      "currencyCode": "USD",
+      "decimals": 0,
+      "enableFilter": true,
+      "enableSort": true,
+      "fontStyle": "",
+      "horizontalAlignment": "LEFT",
+      "id": "acao_detalhar",
+      "index": 20,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isDiscardVisible": true,
+      "isEditable": false,
+      "isSaveVisible": true,
+      "isVisible": "{{true}}",
+      "label": "acao_detalhar",
+      "notation": "standard",
+      "originalId": "acao_detalhar",
+      "sticky": "",
+      "textColor": "",
+      "textSize": "0.75rem",
+      "thousandSeparator": true,
+      "validation": {},
+      "verticalAlignment": "CENTER",
+      "width": 130,
+      "onClick": "{{navigateTo('detalhe_ticket', { ticket_id: currentRow.id }, 'SAME_WINDOW');}}"
+    },
+    "acao_editar": {
+      "alias": "acao_editar",
+      "allowCellWrapping": false,
+      "allowSameOptionsInNewRow": true,
+      "cellBackground": "",
+      "columnType": "button",
+      "computedValue": "{{(() => { const tableData = tbl_tickets.processedTableData || []; return tableData.map(() => 'acao_editar'); })()}}",
+      "currencyCode": "USD",
+      "decimals": 0,
+      "enableFilter": true,
+      "enableSort": true,
+      "fontStyle": "",
+      "horizontalAlignment": "LEFT",
+      "id": "acao_editar",
+      "index": 21,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isDiscardVisible": true,
+      "isEditable": false,
+      "isSaveVisible": true,
+      "isVisible": "{{true}}",
+      "label": "acao_editar",
+      "notation": "standard",
+      "originalId": "acao_editar",
+      "sticky": "",
+      "textColor": "",
+      "textSize": "0.75rem",
+      "thousandSeparator": true,
+      "validation": {},
+      "verticalAlignment": "CENTER",
+      "width": 130,
+      "onClick": "{{navigateTo('editar_ticket', { ticket_id: currentRow.id }, 'SAME_WINDOW');}}"
+    },
+    "acao_inativar": {
+      "alias": "acao_inativar",
+      "allowCellWrapping": false,
+      "allowSameOptionsInNewRow": true,
+      "cellBackground": "",
+      "columnType": "button",
+      "computedValue": "{{(() => { const tableData = tbl_tickets.processedTableData || []; return tableData.map(() => 'acao_inativar'); })()}}",
+      "currencyCode": "USD",
+      "decimals": 0,
+      "enableFilter": true,
+      "enableSort": true,
+      "fontStyle": "",
+      "horizontalAlignment": "LEFT",
+      "id": "acao_inativar",
+      "index": 22,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isDiscardVisible": true,
+      "isEditable": false,
+      "isSaveVisible": true,
+      "isVisible": "{{get_meu_perfil.data?.[0]?.perfil === 'admin'}}",
+      "label": "acao_inativar",
+      "notation": "standard",
+      "originalId": "acao_inativar",
+      "sticky": "",
+      "textColor": "",
+      "textSize": "0.75rem",
+      "thousandSeparator": true,
+      "validation": {},
+      "verticalAlignment": "CENTER",
+      "width": 130,
+      "onClick": "{{showAlert('Inativando ticket #' + currentRow.id, 'info'); storeValue('ticket_inativar_id', currentRow.id).then(() => inativar_tickets.run(() => listar_tickets.run()));}}"
     }
   },
   "renderMode": "CANVAS",

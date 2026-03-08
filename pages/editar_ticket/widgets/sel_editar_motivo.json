@@ -2,15 +2,18 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 23,
+  "bottomRow": 40,
   "boxShadow": "none",
-  "defaultOptionValue": "{{get_ticket_edicao.data?.[0]?.status_ticket ? String(get_ticket_edicao.data?.[0]?.status_ticket) : ''}}",
+  "defaultOptionValue": "{{get_ticket_edicao.data?.[0]?.motivo ? String(get_ticket_edicao.data?.[0]?.motivo) : ''}}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "sourceData"
     },
     {
       "key": "defaultOptionValue"
@@ -28,35 +31,35 @@
   "isLoading": false,
   "isRequired": false,
   "isVisible": true,
-  "key": "5b018c1b4c",
+  "key": "zl16ce4nwt",
   "labelAlignment": "left",
   "labelPosition": "Top",
-  "labelText": "Status Ticket",
+  "labelText": "Motivo",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
   "leftColumn": 2,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
-  "mobileBottomRow": 15,
-  "mobileLeftColumn": 22,
-  "mobileRightColumn": 42,
-  "mobileTopRow": 8,
+  "mobileBottomRow": 32,
+  "mobileLeftColumn": 7,
+  "mobileRightColumn": 27,
+  "mobileTopRow": 25,
   "needsErrorInfo": false,
   "optionLabel": "label",
   "optionValue": "value",
-  "parentColumnSpace": 11.59375,
+  "parentColumnSpace": 27.671875,
   "parentId": "0",
   "parentRowSpace": 10,
-  "placeholderText": "Select option",
+  "placeholderText": "Selecione",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 22,
   "serverSideFiltering": false,
-  "sourceData": "[{\"label\":\"Aberto\",\"value\":\"aberto\"},{\"label\":\"Concluído\",\"value\":\"concluido\"},{\"label\":\"Aguardando cliente\",\"value\":\"aguardando_cliente\"},{\"label\":\"Aguardando devolução\",\"value\":\"aguardando_devolucao\"},{\"label\":\"Aguardando assistência\",\"value\":\"aguardando_assistencia\"},{\"label\":\"Aguardando marketplace\",\"value\":\"aguardando_marketplace\"}]",
-  "topRow": 16,
+  "sourceData": "{{\n[\n  { label: \"Desistência\", value: \"desistencia\" },\n  { label: \"Defeito de Fabricação\", value: \"defeito_fabricacao\" },\n  { label: \"Produto incorreto\", value: \"produto_incorreto\" },\n  { label: \"Faltando itens\", value: \"faltando_itens\" },\n  { label: \"Produto danificado\", value: \"produto_danificado\" },\n  { label: \"Problema\", value: \"problema\" }\n]\n}}",
+  "topRow": 33,
   "type": "SELECT_WIDGET",
   "version": 1,
-  "widgetId": "fwin9ih14s",
-  "widgetName": "sel_editar_status_ticket"
+  "widgetId": "l2zv2f27ia",
+  "widgetName": "sel_editar_motivo"
 }

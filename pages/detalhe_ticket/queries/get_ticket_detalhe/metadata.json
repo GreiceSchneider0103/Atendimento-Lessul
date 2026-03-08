@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT t.*, p.nome AS responsavel_nome\nFROM public.vw_tickets t\nLEFT JOIN public.perfis p ON p.id = t.responsavel\nWHERE t.id = {{Number(appsmith.URL.queryParams.ticket_id || 0)}}\n  AND t.ativo = TRUE;\n",
+      "body": "SELECT t.*, \n       p_resp.nome AS responsavel_nome,\n       p_cri.nome  AS criado_por_nome,\n       p_atu.nome  AS atualizado_por_nome\nFROM public.vw_tickets t\nLEFT JOIN public.perfis p_resp ON p_resp.id = t.responsavel\nLEFT JOIN public.perfis p_cri  ON p_cri.id  = t.criado_por\nLEFT JOIN public.perfis p_atu  ON p_atu.id  = t.atualizado_por\nWHERE t.id = {{Number(appsmith.URL.queryParams.ticket_id || 0)}}\n  AND t.ativo = TRUE;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -29,7 +29,7 @@
     ],
     "name": "get_ticket_detalhe",
     "pageId": "detalhe_ticket",
-    "runBehaviour": "MANUAL",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }

@@ -7,13 +7,16 @@
   "closeOnSelection": true,
   "dateFormat": "DD-MM-YYYY",
   "datePickerType": "DATE_PICKER",
-  "defaultDate": "",
+  "defaultDate": "{{get_ticket_edicao.data?.[0]?.prazo_conclusao || ''}}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "defaultDate"
     }
   ],
   "dynamicHeight": "FIXED",

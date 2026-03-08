@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "69aae622087fd62d13c0ed07_cd96d4b4-4db9-4ec0-bd87-7d291647af27",
-  "id": "editar_ticket_get_ticket_edicao",
+  "gitSyncId": "69aae622087fd62d13c0ed07_historico_ticket_edicao",
+  "id": "editar_ticket_historico_ticket_edicao",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT t.*, p_resp.nome AS responsavel_nome, p_atu.nome AS atualizado_por_nome\nFROM public.tickets t\nLEFT JOIN public.perfis p_resp ON p_resp.id = t.responsavel\nLEFT JOIN public.perfis p_atu ON p_atu.id = t.atualizado_por\nWHERE t.id = {{Number(appsmith.URL.queryParams.ticket_id || 0)}}\n  AND t.ativo = TRUE;\n",
+      "body": "SELECT a.data_hora, a.acao, a.campo, a.valor_antigo, a.valor_novo,\n       COALESCE(a.usuario_nome, p.nome) AS usuario_nome\nFROM public.ticket_auditoria a\nLEFT JOIN public.perfis p ON p.id = a.usuario_id\nWHERE a.ticket_id = {{Number(appsmith.URL.queryParams.ticket_id || 0)}}\nORDER BY a.data_hora DESC\nLIMIT 200;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -27,7 +27,7 @@
         "key": "body"
       }
     ],
-    "name": "get_ticket_edicao",
+    "name": "historico_ticket_edicao",
     "pageId": "editar_ticket",
     "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false

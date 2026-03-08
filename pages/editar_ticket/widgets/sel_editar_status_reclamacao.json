@@ -4,13 +4,16 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 23,
   "boxShadow": "none",
-  "defaultOptionValue": "\"\"",
+  "defaultOptionValue": "{{get_ticket_edicao.data?.[0]?.status_reclamacao ? String(get_ticket_edicao.data?.[0]?.status_reclamacao) : ''}}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "defaultOptionValue"
     }
   ],
   "dynamicHeight": "FIXED",
