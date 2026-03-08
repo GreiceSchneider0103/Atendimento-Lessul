@@ -1,5 +1,12 @@
 SELECT
-  empresa::TEXT AS empresa,
+  CASE empresa::TEXT
+    WHEN 'lessul' THEN 'Lessul'
+    WHEN 'ms_decor' THEN 'MS Decor'
+    WHEN 'viva_vida' THEN 'Viva Vida'
+    WHEN 'movelbento' THEN 'Movelbento'
+    WHEN 'modifika' THEN 'Modifika'
+    ELSE COALESCE(empresa::TEXT, '-')
+  END AS empresa,
   COALESCE(SUM(valor_reembolso), 0) AS total_reembolso
 FROM public.tickets
 WHERE ativo = TRUE

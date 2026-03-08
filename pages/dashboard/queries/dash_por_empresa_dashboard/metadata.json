@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n  empresa::TEXT AS empresa,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY empresa\nORDER BY qtd DESC;",
+      "body": "SELECT\n  CASE empresa::TEXT\n    WHEN 'lessul' THEN 'Lessul'\n    WHEN 'ms_decor' THEN 'MS Decor'\n    WHEN 'viva_vida' THEN 'Viva Vida'\n    WHEN 'movelbento' THEN 'Movelbento'\n    WHEN 'modifika' THEN 'Modifika'\n    ELSE COALESCE(empresa::TEXT, '-')\n  END AS empresa,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY empresa\nORDER BY qtd DESC;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n  COALESCE(motivo::TEXT, 'nao_informado') AS motivo,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY motivo\nORDER BY qtd DESC;",
+      "body": "SELECT\n  CASE COALESCE(motivo::TEXT, 'nao_informado')\n    WHEN 'desistencia' THEN 'Desistência'\n    WHEN 'defeito_fabricacao' THEN 'Defeito de Fabricação'\n    WHEN 'produto_incorreto' THEN 'Produto incorreto'\n    WHEN 'faltando_itens' THEN 'Faltando itens'\n    WHEN 'produto_danificado' THEN 'Produto danificado'\n    WHEN 'problema' THEN 'Problema'\n    ELSE 'Não informado'\n  END AS motivo,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY motivo\nORDER BY qtd DESC;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

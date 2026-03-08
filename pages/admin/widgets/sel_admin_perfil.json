@@ -1,0 +1,68 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 31,
+  "boxShadow": "none",
+  "defaultOptionValue": "{{tbl_admin_lista.selectedRow?.perfil || \"atendente\"}}",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "sourceData"
+    },
+    {
+      "key": "defaultOptionValue"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "isDisabled": false,
+  "isFilterable": true,
+  "isLoading": false,
+  "isRequired": true,
+  "isVisible": "{{get_meu_perfil_admin.data?.[0]?.perfil === \"admin\"}}",
+  "key": "zl16ce4nwt",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelText": "Perfil",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 2,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 32,
+  "mobileLeftColumn": 7,
+  "mobileRightColumn": 27,
+  "mobileTopRow": 25,
+  "needsErrorInfo": false,
+  "optionLabel": "label",
+  "optionValue": "value",
+  "parentColumnSpace": 27.671875,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placeholderText": "Selecione",
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 24,
+  "serverSideFiltering": false,
+  "sourceData": "{{[{\"label\":\"Atendente\",\"value\":\"atendente\"},{\"label\":\"Supervisor\",\"value\":\"supervisor\"},{\"label\":\"Admin\",\"value\":\"admin\"}]}}",
+  "topRow": 24,
+  "type": "SELECT_WIDGET",
+  "version": 1,
+  "widgetId": "admprf01",
+  "widgetName": "sel_admin_perfil"
+}

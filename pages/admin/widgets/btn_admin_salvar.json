@@ -1,0 +1,53 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 28,
+  "boxShadow": "none",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "isVisible"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": "{{get_meu_perfil_admin.data?.[0]?.perfil === \"admin\"}}",
+  "key": "u97lhs8d64",
+  "leftColumn": 50,
+  "minWidth": 120,
+  "mobileBottomRow": 67,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 10,
+  "mobileTopRow": 63,
+  "needsErrorInfo": false,
+  "onClick": "{{(() => { const id=(inp_admin_id.text||\"\").trim(); const nome=(inp_admin_nome.text||\"\").trim(); const email=(inp_admin_email.text||\"\").trim(); if(!id || !/^[0-9a-f-]{36}$/i.test(id)){showAlert(\"Informe um UUID válido do usuário.\",\"error\");return;} if(!nome){showAlert(\"Informe o nome.\",\"error\");return;} if(!email){showAlert(\"Informe o e-mail.\",\"error\");return;} upsert_usuario_admin.run().then(()=>{showAlert(\"Usuário/perfil salvo com sucesso.\",\"success\"); return listar_usuarios_admin.run();}).catch(()=>showAlert(\"Falha ao salvar usuário/perfil.\",\"error\")); })()}}",
+  "parentColumnSpace": 27.671875,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 62,
+  "text": "Salvar Usuário",
+  "topRow": 24,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "admbsv01",
+  "widgetName": "btn_admin_salvar"
+}

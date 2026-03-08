@@ -1,5 +1,12 @@
 SELECT
-  COALESCE(canal_marketplace, 'nao_informado') AS marketplace,
+  CASE COALESCE(canal_marketplace, 'nao_informado')
+    WHEN 'mercado_livre' THEN 'Mercado Livre'
+    WHEN 'shopee' THEN 'Shopee'
+    WHEN 'magalu' THEN 'Magalu'
+    WHEN 'amazon' THEN 'Amazon'
+    WHEN 'site' THEN 'Site'
+    ELSE 'Não informado'
+  END AS marketplace,
   COUNT(*) AS qtd
 FROM public.tickets
 WHERE ativo = TRUE

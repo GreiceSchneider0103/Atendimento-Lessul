@@ -6,34 +6,37 @@
 create extension if not exists pgcrypto;
 
 -- ============================================================
--- 0. LIMPEZA CONTROLADA (idempotente)
+-- 0. BOOTSTRAP NÃO-DESTRUTIVO (ambiente novo ou já existente)
 -- ============================================================
-DROP VIEW IF EXISTS public.vw_tickets CASCADE;
-DROP TABLE IF EXISTS public.ticket_auditoria CASCADE;
-DROP TABLE IF EXISTS public.tickets CASCADE;
-DROP TABLE IF EXISTS public.perfis CASCADE;
-
-DROP TYPE IF EXISTS public.empresa_enum CASCADE;
-DROP TYPE IF EXISTS public.status_reclamacao_enum CASCADE;
-DROP TYPE IF EXISTS public.motivo_enum CASCADE;
-DROP TYPE IF EXISTS public.resolucao_enum CASCADE;
-DROP TYPE IF EXISTS public.status_ticket_enum CASCADE;
-DROP TYPE IF EXISTS public.perfil_enum CASCADE;
+-- Este arquivo NÃO remove tabelas/dados.
+-- Evoluções de ambiente existente devem ser aplicadas por migrations em database/migrations.
 
 -- ============================================================
 -- 1. ENUMS
 -- ============================================================
-CREATE TYPE public.empresa_enum AS ENUM ('lessul','ms_decor','viva_vida','movelbento','modifika');
-CREATE TYPE public.status_reclamacao_enum AS ENUM ('afetando','nao_afetando','removida');
-CREATE TYPE public.motivo_enum AS ENUM ('desistencia','defeito_fabricacao','produto_incorreto','faltando_itens','produto_danificado','problema');
-CREATE TYPE public.resolucao_enum AS ENUM ('assistencia','devolucao','reembolso','resolvido');
-CREATE TYPE public.status_ticket_enum AS ENUM ('aberto','concluido','aguardando_cliente','aguardando_devolucao','aguardando_assistencia','aguardando_marketplace');
-CREATE TYPE public.perfil_enum AS ENUM ('atendente','supervisor','admin');
+DO $$ BEGIN
+  CREATE TYPE public.empresa_enum AS ENUM ('lessul','ms_decor','viva_vida','movelbento','modifika');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE TYPE public.status_reclamacao_enum AS ENUM ('afetando','nao_afetando','removida');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE TYPE public.motivo_enum AS ENUM ('desistencia','defeito_fabricacao','produto_incorreto','faltando_itens','produto_danificado','problema');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE TYPE public.resolucao_enum AS ENUM ('assistencia','devolucao','reembolso','resolvido');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE TYPE public.status_ticket_enum AS ENUM ('aberto','concluido','aguardando_cliente','aguardando_devolucao','aguardando_assistencia','aguardando_marketplace');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE TYPE public.perfil_enum AS ENUM ('atendente','supervisor','admin');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
 -- ============================================================
 -- 2. TABELAS
 -- ============================================================
-CREATE TABLE public.perfis (
+CREATE TABLE IF NOT EXISTS public.perfis (
   id          UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   nome        TEXT NOT NULL,
   email       TEXT NOT NULL,
@@ -42,7 +45,7 @@ CREATE TABLE public.perfis (
   criado_em   TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE public.tickets (
+CREATE TABLE IF NOT EXISTS public.tickets (
   id                   BIGSERIAL PRIMARY KEY,
   nome_cliente         TEXT NOT NULL,
   cpf                  TEXT,
@@ -78,13 +81,16 @@ CREATE TABLE public.tickets (
 );
 
 ALTER TABLE public.tickets
+  DROP CONSTRAINT IF EXISTS ck_tickets_canal_marketplace;
+
+ALTER TABLE public.tickets
   ADD CONSTRAINT ck_tickets_canal_marketplace
   CHECK (
     canal_marketplace IS NULL
     OR canal_marketplace IN ('mercado_livre','shopee','magalu','amazon','site')
   );
 
-CREATE TABLE public.ticket_auditoria (
+CREATE TABLE IF NOT EXISTS public.ticket_auditoria (
   id            BIGSERIAL PRIMARY KEY,
   ticket_id     BIGINT NOT NULL REFERENCES public.tickets(id) ON DELETE CASCADE,
   acao          TEXT NOT NULL,
@@ -114,13 +120,13 @@ FROM public.tickets t;
 -- ============================================================
 -- 4. INDEXES
 -- ============================================================
-CREATE INDEX idx_tickets_empresa         ON public.tickets(empresa);
-CREATE INDEX idx_tickets_status_ticket   ON public.tickets(status_ticket);
-CREATE INDEX idx_tickets_canal           ON public.tickets(canal_marketplace);
-CREATE INDEX idx_tickets_responsavel     ON public.tickets(responsavel);
-CREATE INDEX idx_tickets_data_reclamacao ON public.tickets(data_reclamacao);
-CREATE INDEX idx_tickets_prazo           ON public.tickets(prazo_conclusao);
-CREATE INDEX idx_auditoria_ticket_id     ON public.ticket_auditoria(ticket_id);
+CREATE INDEX IF NOT EXISTS idx_tickets_empresa         ON public.tickets(empresa);
+CREATE INDEX IF NOT EXISTS idx_tickets_status_ticket   ON public.tickets(status_ticket);
+CREATE INDEX IF NOT EXISTS idx_tickets_canal           ON public.tickets(canal_marketplace);
+CREATE INDEX IF NOT EXISTS idx_tickets_responsavel     ON public.tickets(responsavel);
+CREATE INDEX IF NOT EXISTS idx_tickets_data_reclamacao ON public.tickets(data_reclamacao);
+CREATE INDEX IF NOT EXISTS idx_tickets_prazo           ON public.tickets(prazo_conclusao);
+CREATE INDEX IF NOT EXISTS idx_auditoria_ticket_id     ON public.ticket_auditoria(ticket_id);
 
 -- ============================================================
 -- 5. TRIGGERS
@@ -173,6 +179,7 @@ BEGIN
 END;
 $$;
 
+DROP TRIGGER IF EXISTS trg_tickets_normalizar_canal_marketplace ON public.tickets;
 CREATE TRIGGER trg_tickets_normalizar_canal_marketplace
 BEFORE INSERT OR UPDATE OF canal_marketplace ON public.tickets
 FOR EACH ROW EXECUTE FUNCTION public.fn_normalizar_ticket_canal_marketplace();
@@ -194,10 +201,12 @@ BEGIN
 END;
 $$;
 
+DROP TRIGGER IF EXISTS trg_tickets_validar_identidade ON public.tickets;
 CREATE TRIGGER trg_tickets_validar_identidade
 BEFORE INSERT OR UPDATE ON public.tickets
 FOR EACH ROW EXECUTE FUNCTION public.fn_validar_identidade_ticket();
 
+DROP TRIGGER IF EXISTS trg_tickets_atualizado_em ON public.tickets;
 CREATE TRIGGER trg_tickets_atualizado_em
 BEFORE UPDATE ON public.tickets
 FOR EACH ROW EXECUTE FUNCTION public.fn_set_atualizado_em();
@@ -218,6 +227,7 @@ BEGIN
 END;
 $$;
 
+DROP TRIGGER IF EXISTS trg_tickets_auditoria_insert ON public.tickets;
 CREATE TRIGGER trg_tickets_auditoria_insert
 AFTER INSERT ON public.tickets
 FOR EACH ROW EXECUTE FUNCTION public.fn_auditoria_insert();
@@ -326,6 +336,7 @@ BEGIN
 END;
 $$;
 
+DROP TRIGGER IF EXISTS trg_tickets_auditoria_update ON public.tickets;
 CREATE TRIGGER trg_tickets_auditoria_update
 AFTER UPDATE ON public.tickets
 FOR EACH ROW EXECUTE FUNCTION public.fn_auditoria_update();
@@ -362,9 +373,33 @@ BEGIN
 END;
 $$;
 
+DROP TRIGGER IF EXISTS trg_validar_edicao_ticket ON public.tickets;
 CREATE TRIGGER trg_validar_edicao_ticket
 BEFORE UPDATE ON public.tickets
 FOR EACH ROW EXECUTE FUNCTION public.fn_validar_edicao_ticket();
+
+
+
+CREATE OR REPLACE FUNCTION public.fn_responsaveis_ativos()
+RETURNS TABLE(value UUID, label TEXT)
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+BEGIN
+  IF public.fn_meu_perfil() IN ('atendente','supervisor','admin') THEN
+    RETURN QUERY
+    SELECT p.id, p.nome
+    FROM public.perfis p
+    WHERE p.ativo = TRUE
+    ORDER BY p.nome;
+  END IF;
+
+  RETURN;
+END;
+$$;
+
+GRANT EXECUTE ON FUNCTION public.fn_responsaveis_ativos() TO authenticated;
 
 -- ============================================================
 -- 6. RLS
