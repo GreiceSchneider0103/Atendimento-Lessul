@@ -2,7 +2,7 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 15,
+  "bottomRow": 29,
   "boxShadow": "none",
   "defaultOptionValue": "\"\"",
   "dynamicBindingPathList": [
@@ -11,9 +11,14 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "sourceData"
+    },
+    {
+      "key": "isVisible"
     }
   ],
-  "dynamicHeight": "FIXED",
   "dynamicPropertyPathList": [
     {
       "key": "sourceData"
@@ -24,14 +29,14 @@
   "isFilterable": true,
   "isLoading": false,
   "isRequired": false,
-  "isVisible": true,
-  "key": "14c6509160",
+  "isVisible": "true",
+  "key": "0cd793f3c3",
   "labelAlignment": "left",
   "labelPosition": "Top",
-  "labelText": "Empresa",
+  "labelText": "Responsável/Criador",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 34,
+  "leftColumn": 18,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -45,15 +50,15 @@
   "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
-  "placeholderText": "Select option",
+  "placeholderText": "Todos",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 50,
+  "rightColumn": 34,
   "serverSideFiltering": false,
-  "sourceData": "[{\"label\":\"Todas\",\"value\":\"\"},{\"label\":\"Lessul\",\"value\":\"lessul\"},{\"label\":\"MS Decor\",\"value\":\"ms_decor\"},{\"label\":\"Viva Vida\",\"value\":\"viva_vida\"},{\"label\":\"Movelbento\",\"value\":\"movelbento\"},{\"label\":\"Modifika\",\"value\":\"modifika\"}]",
-  "topRow": 8,
+  "sourceData": "{{ [{ label: 'Todos', value: '' }].concat((listar_responsaveis_relatorios.data || []).map(obj => ({ label: obj.label, value: obj.value }))) }}",
+  "topRow": 22,
   "type": "SELECT_WIDGET",
   "version": 1,
-  "widgetId": "fwin9ih14s",
-  "widgetName": "sel_rel_empresa"
+  "widgetId": "8f5fdb07b5",
+  "widgetName": "sel_rel_responsavel"
 }

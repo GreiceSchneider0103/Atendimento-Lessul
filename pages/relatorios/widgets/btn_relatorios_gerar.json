@@ -12,6 +12,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "isDisabled"
     }
   ],
   "dynamicTriggerPathList": [
@@ -20,7 +23,7 @@
     }
   ],
   "isDefaultClickDisabled": true,
-  "isDisabled": false,
+  "isDisabled": "{{ dp_rel_inicio.selectedDate && dp_rel_fim.selectedDate && moment(dp_rel_inicio.selectedDate).isAfter(moment(dp_rel_fim.selectedDate), 'day') }}",
   "isLoading": false,
   "isVisible": true,
   "key": "845a2853c5",
@@ -31,7 +34,7 @@
   "mobileRightColumn": 23,
   "mobileTopRow": 18,
   "needsErrorInfo": false,
-  "onClick": "{{relatorio_tickets.run();}}",
+  "onClick": "{{(() => {\n  if (dp_rel_inicio.selectedDate && dp_rel_fim.selectedDate && moment(dp_rel_inicio.selectedDate).isAfter(moment(dp_rel_fim.selectedDate), 'day')) {\n    showAlert('Período inválido: Data início não pode ser maior que Data fim.', 'error');\n    return;\n  }\n\n  const perfil = get_meu_perfil_relatorios.data?.[0]?.perfil || 'atendente';\n  const escopo = sel_rel_escopo.selectedOptionValue || 'meus_tickets';\n  if (escopo === 'completo' && !['admin', 'supervisor'].includes(perfil)) {\n    showAlert('Você não tem permissão para relatório completo. Use Meus tickets.', 'warning');\n    return;\n  }\n\n  relatorio_tickets.run()\n    .then(() => showAlert(`Relatório gerado com ${relatorio_tickets.data?.length || 0} registro(s).`, 'success'))\n    .catch(() => showAlert('Não foi possível gerar o relatório. Revise os filtros e tente novamente.', 'error'));\n})();}}",
   "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,

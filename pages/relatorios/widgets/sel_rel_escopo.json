@@ -2,18 +2,23 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 15,
+  "bottomRow": 22,
   "boxShadow": "none",
-  "defaultOptionValue": "\"\"",
+  "defaultOptionValue": "{{ get_meu_perfil_relatorios.data?.[0]?.perfil === 'admin' || get_meu_perfil_relatorios.data?.[0]?.perfil === 'supervisor' ? 'completo' : 'meus_tickets' }}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "sourceData"
+    },
+    {
+      "key": "isVisible"
     }
   ],
-  "dynamicHeight": "FIXED",
   "dynamicPropertyPathList": [
     {
       "key": "sourceData"
@@ -24,14 +29,14 @@
   "isFilterable": true,
   "isLoading": false,
   "isRequired": false,
-  "isVisible": true,
-  "key": "14c6509160",
+  "isVisible": "true",
+  "key": "e6017bf73a",
   "labelAlignment": "left",
   "labelPosition": "Top",
-  "labelText": "Empresa",
+  "labelText": "Escopo do Relatório",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 34,
+  "leftColumn": 18,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -45,15 +50,15 @@
   "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
-  "placeholderText": "Select option",
+  "placeholderText": "Todos",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 50,
+  "rightColumn": 34,
   "serverSideFiltering": false,
-  "sourceData": "[{\"label\":\"Todas\",\"value\":\"\"},{\"label\":\"Lessul\",\"value\":\"lessul\"},{\"label\":\"MS Decor\",\"value\":\"ms_decor\"},{\"label\":\"Viva Vida\",\"value\":\"viva_vida\"},{\"label\":\"Movelbento\",\"value\":\"movelbento\"},{\"label\":\"Modifika\",\"value\":\"modifika\"}]",
-  "topRow": 8,
+  "sourceData": "{{ [{ label: 'Meus tickets', value: 'meus_tickets' }, { label: 'Completo (supervisor/admin)', value: 'completo' }] }}",
+  "topRow": 15,
   "type": "SELECT_WIDGET",
   "version": 1,
-  "widgetId": "fwin9ih14s",
-  "widgetName": "sel_rel_empresa"
+  "widgetId": "aaf3b71c18",
+  "widgetName": "sel_rel_escopo"
 }

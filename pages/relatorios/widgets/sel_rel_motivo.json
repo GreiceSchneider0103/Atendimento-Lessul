@@ -2,7 +2,7 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 15,
+  "bottomRow": 29,
   "boxShadow": "none",
   "defaultOptionValue": "\"\"",
   "dynamicBindingPathList": [
@@ -11,9 +11,14 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "sourceData"
+    },
+    {
+      "key": "isVisible"
     }
   ],
-  "dynamicHeight": "FIXED",
   "dynamicPropertyPathList": [
     {
       "key": "sourceData"
@@ -24,14 +29,14 @@
   "isFilterable": true,
   "isLoading": false,
   "isRequired": false,
-  "isVisible": true,
-  "key": "14c6509160",
+  "isVisible": "true",
+  "key": "dfe1dbe8a5",
   "labelAlignment": "left",
   "labelPosition": "Top",
-  "labelText": "Empresa",
+  "labelText": "Motivo",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 34,
+  "leftColumn": 2,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -45,15 +50,15 @@
   "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
-  "placeholderText": "Select option",
+  "placeholderText": "Todos",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 50,
+  "rightColumn": 18,
   "serverSideFiltering": false,
-  "sourceData": "[{\"label\":\"Todas\",\"value\":\"\"},{\"label\":\"Lessul\",\"value\":\"lessul\"},{\"label\":\"MS Decor\",\"value\":\"ms_decor\"},{\"label\":\"Viva Vida\",\"value\":\"viva_vida\"},{\"label\":\"Movelbento\",\"value\":\"movelbento\"},{\"label\":\"Modifika\",\"value\":\"modifika\"}]",
-  "topRow": 8,
+  "sourceData": "{{ [{label:'Todos',value:''},{label:'Desistência',value:'desistencia'},{label:'Defeito fabricação',value:'defeito_fabricacao'},{label:'Produto incorreto',value:'produto_incorreto'},{label:'Faltando itens',value:'faltando_itens'},{label:'Produto danificado',value:'produto_danificado'},{label:'Problema',value:'problema'}] }}",
+  "topRow": 22,
   "type": "SELECT_WIDGET",
   "version": 1,
-  "widgetId": "fwin9ih14s",
-  "widgetName": "sel_rel_empresa"
+  "widgetId": "76eb956f1d",
+  "widgetName": "sel_rel_motivo"
 }

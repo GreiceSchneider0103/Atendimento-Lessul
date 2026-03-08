@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 6,
+  "bottomRow": 29,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -11,17 +11,20 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-  "fontSize": "1rem",
-  "fontStyle": "BOLD",
+  "fontSize": "0.875rem",
+  "fontStyle": "",
   "isLoading": false,
   "isVisible": true,
-  "key": "3a184e1419",
-  "leftColumn": 2,
+  "key": "118a035eed",
+  "leftColumn": 34,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -31,20 +34,20 @@
   "mobileTopRow": 2,
   "needsErrorInfo": false,
   "overflow": "NONE",
-  "parentColumnSpace": 27.671875,
+  "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 32,
+  "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Relatórios Operacionais e Exportação",
+  "text": "Escopo ativo: {{ sel_rel_escopo.selectedOptionValue === 'completo' ? 'Relatório completo' : 'Meus tickets' }}\nPerfil: {{ get_meu_perfil_relatorios.data?.[0]?.perfil || 'atendente' }}\nRegistros: {{ (relatorio_tickets.data || []).length }}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
-  "topRow": 1,
+  "topRow": 22,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "edc6fd1124",
-  "widgetName": "txt_relatorios_titulo"
+  "widgetId": "b0b1603209",
+  "widgetName": "txt_relatorios_contexto"
 }
