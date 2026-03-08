@@ -328,8 +328,11 @@ DROP POLICY IF EXISTS "tickets: todos leem ativos" ON public.tickets;
 DROP POLICY IF EXISTS "tickets: criar" ON public.tickets;
 DROP POLICY IF EXISTS "tickets: editar" ON public.tickets;
 DROP POLICY IF EXISTS "tickets: sem delete fisico" ON public.tickets;
+DROP POLICY IF EXISTS "auditoria: atendente/supervisor/admin leem" ON public.ticket_auditoria;
 DROP POLICY IF EXISTS "auditoria: supervisor e admin leem" ON public.ticket_auditoria;
 DROP POLICY IF EXISTS "auditoria: apenas triggers gravam" ON public.ticket_auditoria;
+DROP POLICY IF EXISTS "auditoria: sem update" ON public.ticket_auditoria;
+DROP POLICY IF EXISTS "auditoria: sem delete" ON public.ticket_auditoria;
 
 CREATE POLICY "perfis: leitura própria" ON public.perfis FOR SELECT USING (id = auth.uid());
 CREATE POLICY "perfis: admin gerencia" ON public.perfis FOR ALL USING (public.fn_meu_perfil() = 'admin');
@@ -339,5 +342,7 @@ CREATE POLICY "tickets: criar" ON public.tickets FOR INSERT WITH CHECK (public.f
 CREATE POLICY "tickets: editar" ON public.tickets FOR UPDATE USING (public.fn_meu_perfil() IN ('atendente','supervisor','admin'));
 CREATE POLICY "tickets: sem delete fisico" ON public.tickets FOR DELETE USING (FALSE);
 
-CREATE POLICY "auditoria: supervisor e admin leem" ON public.ticket_auditoria FOR SELECT USING (public.fn_meu_perfil() IN ('supervisor','admin'));
+CREATE POLICY "auditoria: atendente/supervisor/admin leem" ON public.ticket_auditoria FOR SELECT USING (public.fn_meu_perfil() IN ('atendente','supervisor','admin'));
 CREATE POLICY "auditoria: apenas triggers gravam" ON public.ticket_auditoria FOR INSERT WITH CHECK (FALSE);
+CREATE POLICY "auditoria: sem update" ON public.ticket_auditoria FOR UPDATE USING (FALSE);
+CREATE POLICY "auditoria: sem delete" ON public.ticket_auditoria FOR DELETE USING (FALSE);
