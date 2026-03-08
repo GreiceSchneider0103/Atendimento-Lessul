@@ -11,13 +11,16 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-  "fontSize": "1rem",
-  "fontStyle": "BOLD",
+  "fontSize": "0.875rem",
+  "fontStyle": "",
   "isLoading": false,
   "isVisible": true,
   "key": "cbab039c9e",
@@ -38,7 +41,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "{{JSON.stringify(listar_usuarios_admin.data, null, 2)}}",
+  "text": "Usuários\\n{{(listar_usuarios_admin.data || []).map(u => `• ${u.nome} (${u.email}) | perfil: ${u.perfil} | ${u.ativo ? 'ativo' : 'inativo'}`).join('\\n') || 'Sem usuários cadastrados'}}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 15,

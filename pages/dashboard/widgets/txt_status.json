@@ -11,13 +11,16 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-  "fontSize": "1rem",
-  "fontStyle": "BOLD",
+  "fontSize": "0.875rem",
+  "fontStyle": "",
   "isLoading": false,
   "isVisible": true,
   "key": "48618afc39",
@@ -38,7 +41,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Por Status: {{JSON.stringify(dash_por_status_dashboard.data)}}",
+  "text": "Por Status\\n{{(dash_por_status_dashboard.data || []).map(x => `• ${x.status}: ${x.qtd}`).join('\\n') || 'Sem dados'}}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 15,

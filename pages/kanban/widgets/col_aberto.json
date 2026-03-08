@@ -11,13 +11,16 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-  "fontSize": "1rem",
-  "fontStyle": "BOLD",
+  "fontSize": "0.875rem",
+  "fontStyle": "",
   "isLoading": false,
   "isVisible": true,
   "key": "fb7ae073a3",
@@ -38,7 +41,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 20,
   "shouldTruncate": false,
-  "text": "Aberto\n{{kanban_tickets.data.filter(x=>x.status_ticket==='aberto').map(x=>`• ${x.nome_cliente} | ${x.empresa} | ${x.motivo}`).join('\\n')}}",
+  "text": "Aberto\\n{{(kanban_tickets.data || []).filter(x=>x.status_ticket==='aberto').map(x=>`• ${x.nome_cliente} | ${x.empresa} | ${x.motivo || '-'}`).join('\\n') || 'Sem tickets'}}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 8,

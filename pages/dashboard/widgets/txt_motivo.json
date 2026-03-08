@@ -11,13 +11,16 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-  "fontSize": "1rem",
-  "fontStyle": "BOLD",
+  "fontSize": "0.875rem",
+  "fontStyle": "",
   "isLoading": false,
   "isVisible": true,
   "key": "0d91ca25bd",
@@ -38,7 +41,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Por Motivo: {{JSON.stringify(dash_por_motivo_dashboard.data)}}",
+  "text": "Por Motivo\\n{{(dash_por_motivo_dashboard.data || []).map(x => `• ${x.motivo}: ${x.qtd}`).join('\\n') || 'Sem dados'}}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 35,

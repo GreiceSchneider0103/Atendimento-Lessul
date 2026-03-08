@@ -11,13 +11,16 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-  "fontSize": "1rem",
-  "fontStyle": "BOLD",
+  "fontSize": "0.875rem",
+  "fontStyle": "",
   "isLoading": false,
   "isVisible": true,
   "key": "e24a6e5506",
@@ -38,7 +41,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Por Empresa: {{JSON.stringify(dash_por_empresa_dashboard.data)}}",
+  "text": "Por Empresa\\n{{(dash_por_empresa_dashboard.data || []).map(x => `• ${x.empresa}: ${x.qtd} tickets | Custo R$ ${Number(x.custo||0).toFixed(2)}`).join('\\n') || 'Sem dados'}}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 25,
