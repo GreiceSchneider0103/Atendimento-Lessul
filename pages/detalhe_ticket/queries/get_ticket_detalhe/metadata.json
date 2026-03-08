@@ -29,7 +29,7 @@
     ],
     "name": "get_ticket_detalhe",
     "pageId": "detalhe_ticket",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

@@ -29,7 +29,7 @@
     ],
     "name": "historico_ticket_edicao",
     "pageId": "editar_ticket",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }
