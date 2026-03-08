@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "-- [Query: dash_por_marketplace]\n-- Gráfico: Reclamações por Canal\nSELECT\n  canal_marketplace,\n  COUNT(*)                        AS qtd,\n  COALESCE(SUM(custos_totais), 0) AS custo\nFROM public.tickets\nWHERE ativo = TRUE\n  AND canal_marketplace IS NOT NULL\nGROUP BY canal_marketplace\nORDER BY qtd DESC;",
+      "body": "-- [Query: dash_por_marketplace]\n-- Gráfico: Reclamações por Canal (valores padronizados)\nSELECT\n  COALESCE(public.fn_normalizar_canal_marketplace(canal_marketplace), 'nao_informado') AS canal_marketplace,\n  COUNT(*)                        AS qtd,\n  COALESCE(SUM(custos_totais), 0) AS custo\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY 1\nORDER BY qtd DESC;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

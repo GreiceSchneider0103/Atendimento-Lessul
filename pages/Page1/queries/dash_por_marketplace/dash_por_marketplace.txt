@@ -1,11 +1,10 @@
 -- [Query: dash_por_marketplace]
--- Gráfico: Reclamações por Canal
+-- Gráfico: Reclamações por Canal (valores padronizados)
 SELECT
-  canal_marketplace,
+  COALESCE(public.fn_normalizar_canal_marketplace(canal_marketplace), 'nao_informado') AS canal_marketplace,
   COUNT(*)                        AS qtd,
   COALESCE(SUM(custos_totais), 0) AS custo
 FROM public.tickets
 WHERE ativo = TRUE
-  AND canal_marketplace IS NOT NULL
-GROUP BY canal_marketplace
+GROUP BY 1
 ORDER BY qtd DESC;

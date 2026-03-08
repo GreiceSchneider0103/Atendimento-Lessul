@@ -22,7 +22,7 @@
   "fontSize": "0.875rem",
   "fontStyle": "",
   "isLoading": false,
-  "isVisible": true,
+  "isVisible": "{{get_meu_perfil_admin.data?.[0]?.perfil === 'admin'}}",
   "key": "cbab039c9e",
   "leftColumn": 2,
   "maxDynamicHeight": 9000,

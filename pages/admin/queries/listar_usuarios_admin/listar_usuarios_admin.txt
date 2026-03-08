@@ -1,3 +1,4 @@
 SELECT id, nome, email, perfil, ativo, criado_em
 FROM public.perfis
+WHERE public.fn_meu_perfil() = 'admin'
 ORDER BY nome;

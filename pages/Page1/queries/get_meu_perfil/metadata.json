@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "--[Query: get_meu_perfil]\nSELECT id, nome, email, perfil\nFROM public.perfis\nWHERE id = {{appsmith.user.idToken.sub}}::UUID -- Sem aspas!\n  AND ativo = TRUE;",
+      "body": "--[Query: get_meu_perfil]\nSELECT id, nome, email, perfil\nFROM public.perfis\nWHERE id = NULLIF({{(() => { const v = (appsmith.user?.idToken?.sub || appsmith.user?.sub || '').trim(); return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v) ? v : ''; })()}}, '')::UUID -- Sem aspas!\n  AND ativo = TRUE;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -29,7 +29,7 @@
     ],
     "name": "get_meu_perfil",
     "pageId": "Page1",
-    "runBehaviour": "MANUAL",
+    "runBehaviour": "AUTOMATIC",
     "userSetOnLoad": false
   }
 }
