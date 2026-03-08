@@ -7,7 +7,7 @@
   "pages": [
     {
       "id": "Page1",
-      "isDefault": true
+      "isDefault": false
     },
     {
       "id": "criar_ticket",
@@ -15,7 +15,7 @@
     },
     {
       "id": "dashboard",
-      "isDefault": false
+      "isDefault": true
     },
     {
       "id": "kanban",

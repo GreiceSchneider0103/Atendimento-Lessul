@@ -851,7 +851,7 @@
   },
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 52,
+  "rightColumn": 64,
   "searchKey": "",
   "tableData": "{{listar_tickets.data}}",
   "textSize": "0.875rem",
