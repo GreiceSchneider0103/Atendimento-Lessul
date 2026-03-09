@@ -29,7 +29,7 @@
   "isRequired": true,
   "isVisible": "{{get_meu_perfil_admin.data?.[0]?.perfil === \"admin\"}}",
   "key": "fsdgg252u5",
-  "label": "ID do Usuário (UUID)",
+  "label": "UUID do usuário existente no Auth",
   "labelAlignment": "left",
   "labelPosition": "Top",
   "labelStyle": "",

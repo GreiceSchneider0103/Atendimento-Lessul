@@ -44,7 +44,7 @@
   "resetFormOnClick": false,
   "responsiveBehavior": "hug",
   "rightColumn": 50,
-  "text": "Novo/Limpar",
+  "text": "Limpar formulário",
   "topRow": 24,
   "type": "BUTTON_WIDGET",
   "version": 1,

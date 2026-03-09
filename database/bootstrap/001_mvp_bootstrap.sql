@@ -3,11 +3,6 @@
 -- Schema PostgreSQL / Supabase — versão compatível com Appsmith
 -- ============================================================
 
--- Uso recomendado:
--- 1) Ambiente novo: execute database/bootstrap/001_mvp_bootstrap.sql
--- 2) Ambiente existente: execute apenas scripts em database/migrations/
--- Este arquivo permanece como referência compatível e não destrutiva.
-
 create extension if not exists pgcrypto;
 
 -- ============================================================

@@ -44,7 +44,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 30,
   "shouldTruncate": false,
-  "text": "Gestão de usuários e perfis",
+  "text": "Gestão de perfis de usuários já existentes no Auth (não cria login novo).",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 14,
