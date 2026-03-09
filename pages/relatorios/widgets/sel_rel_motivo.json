@@ -2,21 +2,15 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 29,
+  "bottomRow": 23,
   "boxShadow": "none",
   "defaultOptionValue": "\"\"",
   "dynamicBindingPathList": [
     {
-      "key": "accentColor"
-    },
-    {
-      "key": "borderRadius"
-    },
-    {
       "key": "sourceData"
     },
     {
-      "key": "isVisible"
+      "key": "borderRadius"
     }
   ],
   "dynamicPropertyPathList": [
@@ -36,7 +30,7 @@
   "labelText": "Motivo",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 2,
+  "leftColumn": 36,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -47,16 +41,18 @@
   "needsErrorInfo": false,
   "optionLabel": "label",
   "optionValue": "value",
+  "originalBottomRow": 30,
+  "originalTopRow": 23,
   "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
   "placeholderText": "Todos",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 18,
+  "rightColumn": 52,
   "serverSideFiltering": false,
   "sourceData": "{{ [{label:'Todos',value:''},{label:'Desistência',value:'desistencia'},{label:'Defeito fabricação',value:'defeito_fabricacao'},{label:'Produto incorreto',value:'produto_incorreto'},{label:'Faltando itens',value:'faltando_itens'},{label:'Produto danificado',value:'produto_danificado'},{label:'Problema',value:'problema'}] }}",
-  "topRow": 22,
+  "topRow": 16,
   "type": "SELECT_WIDGET",
   "version": 1,
   "widgetId": "76eb956f1d",

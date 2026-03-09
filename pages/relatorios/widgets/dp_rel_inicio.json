@@ -8,6 +8,7 @@
   "dateFormat": "DD-MM-YYYY",
   "datePickerType": "DATE_PICKER",
   "defaultDate": "",
+  "defaultText": "",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
@@ -29,7 +30,7 @@
   "labelPosition": "Top",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 50,
+  "leftColumn": 53,
   "maxDate": "2121-12-31T18:29:00.000Z",
   "maxDynamicHeight": 9000,
   "minDate": "1920-12-31T18:30:00.000Z",
@@ -45,13 +46,12 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 56,
+  "rightColumn": 62,
   "shortcuts": false,
   "timePrecision": "minute",
   "topRow": 8,
   "type": "DATE_PICKER_WIDGET2",
   "version": 2,
   "widgetId": "3m5czwjazm",
-  "widgetName": "dp_rel_inicio",
-  "defaultText": ""
+  "widgetName": "dp_rel_inicio"
 }

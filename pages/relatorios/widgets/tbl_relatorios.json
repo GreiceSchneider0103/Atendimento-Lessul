@@ -4,7 +4,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 98,
+  "bottomRow": 99,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "cachedTableData": {},
   "canFreezeColumn": true,
@@ -65,6 +65,69 @@
   "delimiter": ",",
   "dynamicBindingPathList": [
     {
+      "key": "tableData"
+    },
+    {
+      "key": "primaryColumns.motivo.computedValue"
+    },
+    {
+      "key": "primaryColumns.data_reclamacao.computedValue"
+    },
+    {
+      "key": "primaryColumns.sla_status.computedValue"
+    },
+    {
+      "key": "primaryColumns.status_ticket.computedValue"
+    },
+    {
+      "key": "primaryColumns.nome_cliente.computedValue"
+    },
+    {
+      "key": "primaryColumns.valor_coleta.computedValue"
+    },
+    {
+      "key": "primaryColumns.canal_marketplace.computedValue"
+    },
+    {
+      "key": "primaryColumns.status_reclamacao.computedValue"
+    },
+    {
+      "key": "primaryColumns.uf.computedValue"
+    },
+    {
+      "key": "primaryColumns.criado_em.computedValue"
+    },
+    {
+      "key": "primaryColumns.responsavel_nome.computedValue"
+    },
+    {
+      "key": "primaryColumns.produto.computedValue"
+    },
+    {
+      "key": "primaryColumns.valor_reembolso.computedValue"
+    },
+    {
+      "key": "primaryColumns.prazo_conclusao.computedValue"
+    },
+    {
+      "key": "primaryColumns.cpf.computedValue"
+    },
+    {
+      "key": "primaryColumns.id.computedValue"
+    },
+    {
+      "key": "primaryColumns.empresa.computedValue"
+    },
+    {
+      "key": "primaryColumns.sku.computedValue"
+    },
+    {
+      "key": "primaryColumns.custos_totais.computedValue"
+    },
+    {
+      "key": "primaryColumns.numero_venda.computedValue"
+    },
+    {
       "key": "accentColor"
     },
     {
@@ -72,69 +135,6 @@
     },
     {
       "key": "boxShadow"
-    },
-    {
-      "key": "tableData"
-    },
-    {
-      "key": "primaryColumns.id.computedValue"
-    },
-    {
-      "key": "primaryColumns.nome_cliente.computedValue"
-    },
-    {
-      "key": "primaryColumns.cpf.computedValue"
-    },
-    {
-      "key": "primaryColumns.uf.computedValue"
-    },
-    {
-      "key": "primaryColumns.numero_venda.computedValue"
-    },
-    {
-      "key": "primaryColumns.canal_marketplace.computedValue"
-    },
-    {
-      "key": "primaryColumns.empresa.computedValue"
-    },
-    {
-      "key": "primaryColumns.produto.computedValue"
-    },
-    {
-      "key": "primaryColumns.sku.computedValue"
-    },
-    {
-      "key": "primaryColumns.motivo.computedValue"
-    },
-    {
-      "key": "primaryColumns.status_reclamacao.computedValue"
-    },
-    {
-      "key": "primaryColumns.status_ticket.computedValue"
-    },
-    {
-      "key": "primaryColumns.sla_status.computedValue"
-    },
-    {
-      "key": "primaryColumns.prazo_conclusao.computedValue"
-    },
-    {
-      "key": "primaryColumns.custos_totais.computedValue"
-    },
-    {
-      "key": "primaryColumns.valor_reembolso.computedValue"
-    },
-    {
-      "key": "primaryColumns.valor_coleta.computedValue"
-    },
-    {
-      "key": "primaryColumns.data_reclamacao.computedValue"
-    },
-    {
-      "key": "primaryColumns.criado_em.computedValue"
-    },
-    {
-      "key": "primaryColumns.responsavel_nome.computedValue"
     }
   ],
   "dynamicPropertyPathList": [
@@ -164,6 +164,8 @@
   "mobileRightColumn": 47,
   "mobileTopRow": 1,
   "needsErrorInfo": false,
+  "originalBottomRow": 99,
+  "originalTopRow": 31,
   "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -855,7 +857,7 @@
   "searchKey": "",
   "tableData": "{{relatorio_tickets.data}}",
   "textSize": "0.875rem",
-  "topRow": 30,
+  "topRow": 31,
   "totalRecordsCount": 0,
   "type": "TABLE_WIDGET_V2",
   "version": 2,

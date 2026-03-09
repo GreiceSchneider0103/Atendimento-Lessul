@@ -2,21 +2,15 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 29,
+  "bottomRow": 23,
   "boxShadow": "none",
   "defaultOptionValue": "\"\"",
   "dynamicBindingPathList": [
     {
-      "key": "accentColor"
-    },
-    {
-      "key": "borderRadius"
-    },
-    {
       "key": "sourceData"
     },
     {
-      "key": "isVisible"
+      "key": "borderRadius"
     }
   ],
   "dynamicPropertyPathList": [
@@ -36,7 +30,7 @@
   "labelText": "Responsável/Criador",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 18,
+  "leftColumn": 27,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -47,16 +41,18 @@
   "needsErrorInfo": false,
   "optionLabel": "label",
   "optionValue": "value",
+  "originalBottomRow": 30,
+  "originalTopRow": 23,
   "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
   "placeholderText": "Todos",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 34,
+  "rightColumn": 36,
   "serverSideFiltering": false,
   "sourceData": "{{ [{ label: 'Todos', value: '' }].concat((listar_responsaveis_relatorios.data || []).map(obj => ({ label: obj.label, value: obj.value }))) }}",
-  "topRow": 22,
+  "topRow": 16,
   "type": "SELECT_WIDGET",
   "version": 1,
   "widgetId": "8f5fdb07b5",

@@ -1,19 +1,13 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 29,
+  "bottomRow": 16,
   "dynamicBindingPathList": [
     {
-      "key": "truncateButtonColor"
+      "key": "text"
     },
     {
       "key": "fontFamily"
-    },
-    {
-      "key": "borderRadius"
-    },
-    {
-      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -24,7 +18,7 @@
   "isLoading": false,
   "isVisible": true,
   "key": "118a035eed",
-  "leftColumn": 34,
+  "leftColumn": 2,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -33,18 +27,20 @@
   "mobileRightColumn": 23,
   "mobileTopRow": 2,
   "needsErrorInfo": false,
+  "originalBottomRow": 16,
+  "originalTopRow": 8,
   "overflow": "NONE",
   "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 62,
+  "rightColumn": 30,
   "shouldTruncate": false,
   "text": "Escopo ativo: {{ sel_rel_escopo.selectedOptionValue === 'completo' ? 'Relatório completo' : 'Meus tickets' }}\nPerfil: {{ get_meu_perfil_relatorios.data?.[0]?.perfil || 'atendente' }}\nRegistros: {{ (relatorio_tickets.data || []).length }}\nExportação: Excel compatível (.xls) gerado no Appsmith; CSV/XLSX nativo pode ser evoluído sem quebrar o fluxo atual.",
   "textAlign": "LEFT",
   "textColor": "#231F20",
-  "topRow": 22,
+  "topRow": 8,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,

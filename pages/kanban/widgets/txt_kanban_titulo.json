@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 6,
+  "bottomRow": 5,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -30,6 +30,8 @@
   "mobileRightColumn": 23,
   "mobileTopRow": 2,
   "needsErrorInfo": false,
+  "originalBottomRow": 6,
+  "originalTopRow": 1,
   "overflow": "NONE",
   "parentColumnSpace": 27.671875,
   "parentId": "0",
@@ -38,7 +40,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 30,
   "shouldTruncate": false,
-  "text": "Kanban Operacional de Tickets",
+  "text": "Operacional de Tickets",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 1,

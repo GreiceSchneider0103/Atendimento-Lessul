@@ -2,21 +2,15 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 22,
+  "bottomRow": 15,
   "boxShadow": "none",
   "defaultOptionValue": "\"\"",
   "dynamicBindingPathList": [
     {
-      "key": "accentColor"
-    },
-    {
-      "key": "borderRadius"
-    },
-    {
       "key": "sourceData"
     },
     {
-      "key": "isVisible"
+      "key": "borderRadius"
     }
   ],
   "dynamicPropertyPathList": [
@@ -36,7 +30,7 @@
   "labelText": "Marketplace",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 34,
+  "leftColumn": 42,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -47,16 +41,18 @@
   "needsErrorInfo": false,
   "optionLabel": "label",
   "optionValue": "value",
+  "originalBottomRow": 22,
+  "originalTopRow": 15,
   "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
   "placeholderText": "Todos",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 50,
+  "rightColumn": 53,
   "serverSideFiltering": false,
   "sourceData": "{{ [{label:'Todos',value:''},{label:'Mercado Livre',value:'mercado_livre'},{label:'Shopee',value:'shopee'},{label:'Magalu',value:'magalu'},{label:'Amazon',value:'amazon'},{label:'Site',value:'site'}] }}",
-  "topRow": 15,
+  "topRow": 8,
   "type": "SELECT_WIDGET",
   "version": 1,
   "widgetId": "dd6ecf4e77",

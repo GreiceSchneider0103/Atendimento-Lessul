@@ -2,21 +2,15 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 22,
+  "bottomRow": 23,
   "boxShadow": "none",
   "defaultOptionValue": "\"\"",
   "dynamicBindingPathList": [
     {
-      "key": "accentColor"
-    },
-    {
-      "key": "borderRadius"
-    },
-    {
       "key": "sourceData"
     },
     {
-      "key": "isVisible"
+      "key": "borderRadius"
     }
   ],
   "dynamicPropertyPathList": [
@@ -36,7 +30,7 @@
   "labelText": "Status do Ticket",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 50,
+  "leftColumn": 52,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -56,7 +50,7 @@
   "rightColumn": 62,
   "serverSideFiltering": false,
   "sourceData": "{{ [{label:'Todos',value:''},{label:'Aberto',value:'aberto'},{label:'Concluído',value:'concluido'},{label:'Aguardando cliente',value:'aguardando_cliente'},{label:'Aguardando devolução',value:'aguardando_devolucao'},{label:'Aguardando assistência',value:'aguardando_assistencia'},{label:'Aguardando marketplace',value:'aguardando_marketplace'}] }}",
-  "topRow": 15,
+  "topRow": 16,
   "type": "SELECT_WIDGET",
   "version": 1,
   "widgetId": "45f2b11876",

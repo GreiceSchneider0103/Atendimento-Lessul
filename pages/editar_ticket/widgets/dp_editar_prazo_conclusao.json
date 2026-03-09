@@ -2,12 +2,13 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 23,
+  "bottomRow": 20,
   "boxShadow": "none",
   "closeOnSelection": true,
   "dateFormat": "DD-MM-YYYY",
   "datePickerType": "DATE_PICKER",
   "defaultDate": "{{get_ticket_edicao.data?.[0]?.prazo_conclusao || ''}}",
+  "defaultText": "",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
@@ -32,7 +33,7 @@
   "labelPosition": "Top",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 42,
+  "leftColumn": 30,
   "maxDate": "2121-12-31T18:29:00.000Z",
   "maxDynamicHeight": 9000,
   "minDate": "1920-12-31T18:30:00.000Z",
@@ -48,13 +49,12 @@
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 62,
+  "rightColumn": 44,
   "shortcuts": false,
   "timePrecision": "minute",
-  "topRow": 16,
+  "topRow": 13,
   "type": "DATE_PICKER_WIDGET2",
   "version": 2,
   "widgetId": "3m5czwjazm",
-  "widgetName": "dp_editar_prazo_conclusao",
-  "defaultText": ""
+  "widgetName": "dp_editar_prazo_conclusao"
 }

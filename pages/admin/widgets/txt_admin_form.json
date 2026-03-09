@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 17,
+  "bottomRow": 16,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -11,9 +11,6 @@
     },
     {
       "key": "borderRadius"
-    },
-    {
-      "key": "text"
     },
     {
       "key": "isVisible"
@@ -36,6 +33,8 @@
   "mobileRightColumn": 23,
   "mobileTopRow": 2,
   "needsErrorInfo": false,
+  "originalBottomRow": 17,
+  "originalTopRow": 14,
   "overflow": "NONE",
   "parentColumnSpace": 27.671875,
   "parentId": "0",
@@ -44,10 +43,10 @@
   "responsiveBehavior": "fill",
   "rightColumn": 30,
   "shouldTruncate": false,
-  "text": "Gestão de perfis de usuários já existentes no Auth (não cria login novo).",
+  "text": "Gestão de perfis de usuários",
   "textAlign": "LEFT",
   "textColor": "#231F20",
-  "topRow": 14,
+  "topRow": 12,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,

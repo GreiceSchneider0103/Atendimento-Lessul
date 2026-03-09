@@ -1,20 +1,20 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 13,
+  "bottomRow": 7,
   "boxShadow": "none",
   "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
   "buttonVariant": "SECONDARY",
   "disabledWhenInvalid": false,
   "dynamicBindingPathList": [
     {
+      "key": "isDisabled"
+    },
+    {
       "key": "buttonColor"
     },
     {
       "key": "borderRadius"
-    },
-    {
-      "key": "isDisabled"
     }
   ],
   "dynamicTriggerPathList": [
@@ -27,7 +27,7 @@
   "isLoading": false,
   "isVisible": true,
   "key": "04021a8a63",
-  "leftColumn": 24,
+  "leftColumn": 28,
   "minWidth": 120,
   "mobileBottomRow": 22,
   "mobileLeftColumn": 7,
@@ -35,6 +35,8 @@
   "mobileTopRow": 18,
   "needsErrorInfo": false,
   "onClick": "{{(() => {\n  const dados = relatorio_tickets.data || [];\n  if (!dados.length) {\n    showAlert('Gere o relatório antes de exportar.', 'warning');\n    return;\n  }\n\n  const colunas = Object.keys(dados[0]);\n  const escape = (v) => {\n    const valor = v == null ? '' : String(v);\n    if (/[;\\n\"]/g.test(valor)) return `\"${valor.replace(/\"/g, '\"\"')}\"`;\n    return valor;\n  };\n\n  const linhas = [colunas.join(';')].concat(dados.map(row => colunas.map(c => escape(row[c])).join(';')));\n  const csv = `\\uFEFF${linhas.join('\\n')}`;\n  const arquivo = `relatorio_tickets_${moment().format('YYYYMMDD_HHmm')}.csv`;\n  download(csv, arquivo, 'text/csv');\n  showAlert('Exportação CSV concluída.', 'success');\n})();}}",
+  "originalBottomRow": 13,
+  "originalTopRow": 8,
   "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -45,7 +47,7 @@
   "responsiveBehavior": "hug",
   "rightColumn": 38,
   "text": "Exportar CSV",
-  "topRow": 8,
+  "topRow": 2,
   "type": "BUTTON_WIDGET",
   "version": 1,
   "widgetId": "relcsv001",

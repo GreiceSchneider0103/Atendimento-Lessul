@@ -2,24 +2,18 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 22,
+  "bottomRow": 23,
   "boxShadow": "none",
   "defaultOptionValue": "{{ get_meu_perfil_relatorios.data?.[0]?.perfil === 'admin' || get_meu_perfil_relatorios.data?.[0]?.perfil === 'supervisor' ? 'completo' : 'meus_tickets' }}",
   "dynamicBindingPathList": [
     {
-      "key": "accentColor"
-    },
-    {
-      "key": "borderRadius"
-    },
-    {
       "key": "sourceData"
     },
     {
-      "key": "isVisible"
+      "key": "defaultOptionValue"
     },
     {
-      "key": "defaultOptionValue"
+      "key": "borderRadius"
     }
   ],
   "dynamicPropertyPathList": [
@@ -39,7 +33,7 @@
   "labelText": "Escopo do Relatório",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 18,
+  "leftColumn": 11,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -50,16 +44,18 @@
   "needsErrorInfo": false,
   "optionLabel": "label",
   "optionValue": "value",
+  "originalBottomRow": 23,
+  "originalTopRow": 16,
   "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
   "placeholderText": "Todos",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 34,
+  "rightColumn": 27,
   "serverSideFiltering": false,
   "sourceData": "{{ [{ label: 'Meus tickets', value: 'meus_tickets' }, { label: 'Completo (supervisor/admin)', value: 'completo' }] }}",
-  "topRow": 15,
+  "topRow": 16,
   "type": "SELECT_WIDGET",
   "version": 1,
   "widgetId": "aaf3b71c18",

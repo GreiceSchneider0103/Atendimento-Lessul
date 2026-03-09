@@ -1,12 +1,20 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 42,
+  "bottomRow": 13,
   "dynamicBindingPathList": [
-    {"key": "truncateButtonColor"},
-    {"key": "fontFamily"},
-    {"key": "borderRadius"},
-    {"key": "text"}
+    {
+      "key": "truncateButtonColor"
+    },
+    {
+      "key": "fontFamily"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "text"
+    }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
@@ -16,7 +24,7 @@
   "isLoading": false,
   "isVisible": true,
   "key": "9f7d3f2ef1",
-  "leftColumn": 44,
+  "leftColumn": 43,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -25,18 +33,20 @@
   "mobileRightColumn": 23,
   "mobileTopRow": 2,
   "needsErrorInfo": false,
+  "originalBottomRow": 42,
+  "originalTopRow": 8,
   "overflow": "NONE",
   "parentColumnSpace": 27.671875,
   "parentId": "0",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 62,
+  "rightColumn": 61,
   "shouldTruncate": false,
   "text": "Concluídos ({{(kanban_tickets.data || []).filter(x => x.status_ticket==='concluido').length}})",
   "textAlign": "LEFT",
   "textColor": "#231F20",
-  "topRow": 8,
+  "topRow": 9,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
