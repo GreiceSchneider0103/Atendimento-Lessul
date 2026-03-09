@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n  empresa::TEXT AS empresa,\n  COALESCE(SUM(valor_reembolso), 0) AS total_reembolso\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY empresa\nORDER BY total_reembolso DESC;",
+      "body": "SELECT\n  CASE empresa::TEXT\n    WHEN 'lessul' THEN 'Lessul'\n    WHEN 'ms_decor' THEN 'MS Decor'\n    WHEN 'viva_vida' THEN 'Viva Vida'\n    WHEN 'movelbento' THEN 'Movelbento'\n    WHEN 'modifika' THEN 'Modifika'\n    ELSE COALESCE(empresa::TEXT, '-')\n  END AS empresa,\n  COALESCE(SUM(valor_reembolso), 0) AS total_reembolso\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY empresa\nORDER BY total_reembolso DESC;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

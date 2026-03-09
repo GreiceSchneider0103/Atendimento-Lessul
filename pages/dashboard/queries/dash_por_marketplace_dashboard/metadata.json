@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n  COALESCE(canal_marketplace, 'nao_informado') AS marketplace,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY COALESCE(canal_marketplace, 'nao_informado')\nORDER BY qtd DESC;",
+      "body": "SELECT\n  CASE COALESCE(canal_marketplace, 'nao_informado')\n    WHEN 'mercado_livre' THEN 'Mercado Livre'\n    WHEN 'shopee' THEN 'Shopee'\n    WHEN 'magalu' THEN 'Magalu'\n    WHEN 'amazon' THEN 'Amazon'\n    WHEN 'site' THEN 'Site'\n    ELSE 'Não informado'\n  END AS marketplace,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY COALESCE(canal_marketplace, 'nao_informado')\nORDER BY qtd DESC;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

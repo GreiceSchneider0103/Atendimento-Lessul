@@ -1,0 +1,27 @@
+WITH payload AS (
+  SELECT
+    NULLIF({{(inp_admin_id.text || '').trim()}}, '')::UUID AS id,
+    NULLIF({{(inp_admin_nome.text || '').trim().replace(/'/g, "''") ? "'" + inp_admin_nome.text.trim().replace(/'/g, "''") + "'" : "NULL"}}, '')::TEXT AS nome,
+    NULLIF({{(inp_admin_email.text || '').trim().replace(/'/g, "''") ? "'" + inp_admin_email.text.trim().replace(/'/g, "''") + "'" : "NULL"}}, '')::TEXT AS email,
+    COALESCE(NULLIF({{sel_admin_perfil.selectedOptionValue ? "'" + sel_admin_perfil.selectedOptionValue + "'" : "NULL"}}, '')::public.perfil_enum, 'atendente'::public.perfil_enum) AS perfil,
+    COALESCE(NULLIF({{sel_admin_ativo.selectedOptionValue ? "'" + sel_admin_ativo.selectedOptionValue + "'" : "NULL"}}, '')::BOOLEAN, TRUE) AS ativo
+), usuario_auth AS (
+  SELECT u.id
+  FROM auth.users u
+  JOIN payload p ON p.id = u.id
+)
+INSERT INTO public.perfis (id, nome, email, perfil, ativo)
+SELECT p.id, p.nome, p.email, p.perfil, p.ativo
+FROM payload p
+JOIN usuario_auth ua ON ua.id = p.id
+WHERE public.fn_meu_perfil() = 'admin'
+  AND p.id IS NOT NULL
+  AND p.nome IS NOT NULL
+  AND p.email IS NOT NULL
+ON CONFLICT (id) DO UPDATE
+SET nome = EXCLUDED.nome,
+    email = EXCLUDED.email,
+    perfil = EXCLUDED.perfil,
+    ativo = EXCLUDED.ativo
+WHERE public.fn_meu_perfil() = 'admin'
+RETURNING id, nome, email, perfil, ativo;

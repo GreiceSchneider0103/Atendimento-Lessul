@@ -4,14 +4,54 @@ SELECT
   t.cpf,
   t.uf,
   t.numero_venda,
-  t.canal_marketplace,
-  t.empresa,
+  CASE COALESCE(t.canal_marketplace, 'nao_informado')
+    WHEN 'mercado_livre' THEN 'Mercado Livre'
+    WHEN 'shopee' THEN 'Shopee'
+    WHEN 'magalu' THEN 'Magalu'
+    WHEN 'amazon' THEN 'Amazon'
+    WHEN 'site' THEN 'Site'
+    ELSE 'Não informado'
+  END AS canal_marketplace,
+  CASE t.empresa::TEXT
+    WHEN 'lessul' THEN 'Lessul'
+    WHEN 'ms_decor' THEN 'MS Decor'
+    WHEN 'viva_vida' THEN 'Viva Vida'
+    WHEN 'movelbento' THEN 'Movelbento'
+    WHEN 'modifika' THEN 'Modifika'
+    ELSE COALESCE(t.empresa::TEXT, '-')
+  END AS empresa,
   t.produto,
   t.sku,
-  t.motivo,
-  t.status_reclamacao,
-  t.status_ticket,
-  t.sla_status,
+  CASE t.motivo::TEXT
+    WHEN 'desistencia' THEN 'Desistência'
+    WHEN 'defeito_fabricacao' THEN 'Defeito de Fabricação'
+    WHEN 'produto_incorreto' THEN 'Produto incorreto'
+    WHEN 'faltando_itens' THEN 'Faltando itens'
+    WHEN 'produto_danificado' THEN 'Produto danificado'
+    WHEN 'problema' THEN 'Problema'
+    ELSE COALESCE(t.motivo::TEXT, '-')
+  END AS motivo,
+  CASE t.status_reclamacao::TEXT
+    WHEN 'afetando' THEN 'Afetando'
+    WHEN 'nao_afetando' THEN 'Não afetando'
+    WHEN 'removida' THEN 'Removida'
+    ELSE COALESCE(t.status_reclamacao::TEXT, '-')
+  END AS status_reclamacao,
+  CASE t.status_ticket::TEXT
+    WHEN 'aberto' THEN 'Aberto'
+    WHEN 'concluido' THEN 'Concluído'
+    WHEN 'aguardando_cliente' THEN 'Aguardando cliente'
+    WHEN 'aguardando_devolucao' THEN 'Aguardando devolução'
+    WHEN 'aguardando_assistencia' THEN 'Aguardando assistência'
+    WHEN 'aguardando_marketplace' THEN 'Aguardando marketplace'
+    ELSE COALESCE(t.status_ticket::TEXT, '-')
+  END AS status_ticket,
+  CASE t.sla_status
+    WHEN 'concluido' THEN 'Concluído'
+    WHEN 'atrasado' THEN 'Atrasado'
+    WHEN 'no_prazo' THEN 'No prazo'
+    ELSE COALESCE(t.sla_status, '-')
+  END AS sla_status,
   t.prazo_conclusao,
   t.custos_totais,
   t.valor_reembolso,

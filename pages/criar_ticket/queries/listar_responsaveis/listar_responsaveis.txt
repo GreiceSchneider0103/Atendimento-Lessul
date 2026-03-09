@@ -1,6 +1,2 @@
-SELECT
-  nome AS label,
-  id::text AS value
-FROM public.perfis
-WHERE ativo = true
-ORDER BY nome;
+SELECT value::TEXT AS value, label
+FROM public.fn_responsaveis_ativos();

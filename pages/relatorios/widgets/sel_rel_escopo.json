@@ -17,6 +17,9 @@
     },
     {
       "key": "isVisible"
+    },
+    {
+      "key": "defaultOptionValue"
     }
   ],
   "dynamicPropertyPathList": [

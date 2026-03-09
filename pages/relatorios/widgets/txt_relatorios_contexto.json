@@ -41,7 +41,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Escopo ativo: {{ sel_rel_escopo.selectedOptionValue === 'completo' ? 'Relatório completo' : 'Meus tickets' }}\nPerfil: {{ get_meu_perfil_relatorios.data?.[0]?.perfil || 'atendente' }}\nRegistros: {{ (relatorio_tickets.data || []).length }}",
+  "text": "Escopo ativo: {{ sel_rel_escopo.selectedOptionValue === 'completo' ? 'Relatório completo' : 'Meus tickets' }}\nPerfil: {{ get_meu_perfil_relatorios.data?.[0]?.perfil || 'atendente' }}\nRegistros: {{ (relatorio_tickets.data || []).length }}\nExportação: Excel compatível (.xls) gerado no Appsmith; CSV/XLSX nativo pode ser evoluído sem quebrar o fluxo atual.",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 22,

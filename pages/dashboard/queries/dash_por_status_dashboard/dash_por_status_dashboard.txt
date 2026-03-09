@@ -1,5 +1,13 @@
 SELECT
-  status_ticket::TEXT AS status,
+  CASE status_ticket::TEXT
+    WHEN 'aberto' THEN 'Aberto'
+    WHEN 'concluido' THEN 'Concluído'
+    WHEN 'aguardando_cliente' THEN 'Aguardando cliente'
+    WHEN 'aguardando_devolucao' THEN 'Aguardando devolução'
+    WHEN 'aguardando_assistencia' THEN 'Aguardando assistência'
+    WHEN 'aguardando_marketplace' THEN 'Aguardando marketplace'
+    ELSE COALESCE(status_ticket::TEXT, '-')
+  END AS status,
   COUNT(*) AS qtd
 FROM public.tickets
 WHERE ativo = TRUE

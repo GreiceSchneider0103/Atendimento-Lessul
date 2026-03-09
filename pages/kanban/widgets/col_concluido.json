@@ -3,18 +3,10 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 42,
   "dynamicBindingPathList": [
-    {
-      "key": "truncateButtonColor"
-    },
-    {
-      "key": "fontFamily"
-    },
-    {
-      "key": "borderRadius"
-    },
-    {
-      "key": "text"
-    }
+    {"key": "truncateButtonColor"},
+    {"key": "fontFamily"},
+    {"key": "borderRadius"},
+    {"key": "text"}
   ],
   "dynamicHeight": "AUTO_HEIGHT",
   "dynamicTriggerPathList": [],
@@ -23,7 +15,7 @@
   "fontStyle": "",
   "isLoading": false,
   "isVisible": true,
-  "key": "bb25fe2ded",
+  "key": "9f7d3f2ef1",
   "leftColumn": 44,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
@@ -41,13 +33,13 @@
   "responsiveBehavior": "fill",
   "rightColumn": 62,
   "shouldTruncate": false,
-  "text": "Concluídos ({{(kanban_tickets.data || []).filter(x => x.status_ticket==='concluido').length}})\\n\\n{{kanban_tickets.isLoading ? 'Carregando tickets...' : ((kanban_tickets.data || []).filter(x => x.status_ticket==='concluido').slice(0, 30).map(x => `#${x.id} • ${x.nome_cliente}\\n${x.empresa || '-'} • ${x.canal_marketplace || '-'}`).join('\\n\\n') || 'Nenhum ticket concluído no período carregado.')}}",
+  "text": "Concluídos ({{(kanban_tickets.data || []).filter(x => x.status_ticket==='concluido').length}})\\n\\n{{kanban_tickets.isLoading ? 'Carregando tickets...' : ((kanban_tickets.data || []).filter(x => x.status_ticket==='concluido').slice(0, 30).map(x => `#${x.id} • ${x.nome_cliente}\\n${x.empresa || '-'} • ${x.motivo || 'Sem motivo'}\\n${x.status_ticket_label || 'Concluído'}`).join('\\n\\n') || 'Nenhum ticket concluído no momento.')}}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 8,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "3f697e4ab9",
+  "widgetId": "67e8f3ab2c",
   "widgetName": "col_concluido"
 }

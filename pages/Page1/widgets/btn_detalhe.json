@@ -12,6 +12,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "isDisabled"
     }
   ],
   "dynamicTriggerPathList": [
@@ -20,7 +23,7 @@
     }
   ],
   "isDefaultClickDisabled": true,
-  "isDisabled": false,
+  "isDisabled": "{{!tbl_tickets.selectedRow || !tbl_tickets.selectedRow.id}}",
   "isLoading": false,
   "isVisible": true,
   "key": "4f5a709a90",
@@ -31,7 +34,7 @@
   "mobileRightColumn": 23,
   "mobileTopRow": 18,
   "needsErrorInfo": false,
-  "onClick": "{{navigateTo('detalhe_ticket', { ticket_id: tbl_tickets.selectedRow.id }, 'SAME_WINDOW');}}",
+  "onClick": "{{(() => { const id = Number(tbl_tickets.selectedRow?.id || 0); if (!id) { showAlert('Selecione um ticket válido na tabela.', 'warning'); return; } navigateTo('detalhe_ticket', { ticket_id: id }, 'SAME_WINDOW'); })();}}",
   "parentColumnSpace": 11.59375,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -41,7 +44,7 @@
   "resetFormOnClick": false,
   "responsiveBehavior": "hug",
   "rightColumn": 31,
-  "text": "Detalhe",
+  "text": "Detalhe selecionado",
   "topRow": 18,
   "type": "BUTTON_WIDGET",
   "version": 1,
