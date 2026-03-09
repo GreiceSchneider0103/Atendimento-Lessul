@@ -1,0 +1,2 @@
+SELECT value::TEXT AS value, label
+FROM public.fn_responsaveis_ativos();

@@ -964,7 +964,7 @@
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
       "columnType": "button",
-      "computedValue": "{{(() => { const tableData = tbl_tickets.processedTableData || []; return tableData.map(() => 'acao_inativar'); })()}}",
+      "computedValue": "{{'Inativar'}}",
       "currencyCode": "USD",
       "decimals": 0,
       "enableFilter": true,

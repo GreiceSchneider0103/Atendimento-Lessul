@@ -3,7 +3,7 @@
   "animateLoading": true,
   "autoFocus": false,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 40,
+  "bottomRow": 56,
   "boxShadow": "none",
   "defaultText": "{{get_ticket_edicao.data?.[0]?.sku || ''}}",
   "dynamicBindingPathList": [
@@ -49,7 +49,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 22,
   "showStepArrows": false,
-  "topRow": 33,
+  "topRow": 49,
   "type": "INPUT_WIDGET_V2",
   "version": 2,
   "widgetId": "pqe9qp48qq",
