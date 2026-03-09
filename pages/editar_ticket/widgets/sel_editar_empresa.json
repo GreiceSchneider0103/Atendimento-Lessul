@@ -2,7 +2,7 @@
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 40,
+  "bottomRow": 48,
   "boxShadow": "none",
   "defaultOptionValue": "{{get_ticket_edicao.data?.[0]?.empresa ? String(get_ticket_edicao.data?.[0]?.empresa) : ''}}",
   "dynamicBindingPathList": [
@@ -57,7 +57,7 @@
   "rightColumn": 22,
   "serverSideFiltering": false,
   "sourceData": "{{\n[\n  { label: \"Lessul\", value: \"lessul\" },\n  { label: \"MS Decor\", value: \"ms_decor\" },\n  { label: \"Viva Vida\", value: \"viva_vida\" },\n  { label: \"Movelbento\", value: \"movelbento\" },\n  { label: \"Modifika\", value: \"modifika\" }\n]\n}}",
-  "topRow": 33,
+  "topRow": 41,
   "type": "SELECT_WIDGET",
   "version": 1,
   "widgetId": "w1pp0zc9xj",

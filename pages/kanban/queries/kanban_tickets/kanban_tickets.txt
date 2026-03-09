@@ -1,10 +1,47 @@
-SELECT id, nome_cliente,
-       COALESCE(public.fn_normalizar_canal_marketplace(canal_marketplace), 'nao_informado') AS canal_marketplace,
-       empresa::TEXT AS empresa,
-       motivo::TEXT AS motivo,
-       prazo_conclusao,
-       status_ticket::TEXT AS status_ticket
-FROM public.tickets
-WHERE ativo = TRUE
-ORDER BY prazo_conclusao NULLS LAST, criado_em DESC
+SELECT t.id, t.nome_cliente,
+       CASE COALESCE(public.fn_normalizar_canal_marketplace(t.canal_marketplace), 'nao_informado')
+         WHEN 'mercado_livre' THEN 'Mercado Livre'
+         WHEN 'shopee' THEN 'Shopee'
+         WHEN 'magalu' THEN 'Magalu'
+         WHEN 'amazon' THEN 'Amazon'
+         WHEN 'site' THEN 'Site'
+         ELSE 'Não informado'
+       END AS canal_marketplace,
+       CASE t.empresa::TEXT
+         WHEN 'lessul' THEN 'Lessul'
+         WHEN 'ms_decor' THEN 'MS Decor'
+         WHEN 'viva_vida' THEN 'Viva Vida'
+         WHEN 'movelbento' THEN 'Movelbento'
+         WHEN 'modifika' THEN 'Modifika'
+         ELSE COALESCE(t.empresa::TEXT, '-')
+       END AS empresa,
+       CASE t.motivo::TEXT
+         WHEN 'desistencia' THEN 'Desistência'
+         WHEN 'defeito_fabricacao' THEN 'Defeito de Fabricação'
+         WHEN 'produto_incorreto' THEN 'Produto incorreto'
+         WHEN 'faltando_itens' THEN 'Faltando itens'
+         WHEN 'produto_danificado' THEN 'Produto danificado'
+         WHEN 'problema' THEN 'Problema'
+         ELSE COALESCE(t.motivo::TEXT, 'Sem motivo')
+       END AS motivo,
+       p.nome AS responsavel_nome,
+       t.prazo_conclusao,
+       CASE t.status_ticket::TEXT
+         WHEN 'aberto' THEN 'aberto'
+         WHEN 'concluido' THEN 'concluido'
+         ELSE 'andamento'
+       END AS status_ticket,
+       CASE t.status_ticket::TEXT
+         WHEN 'aberto' THEN 'Aberto'
+         WHEN 'concluido' THEN 'Concluído'
+         WHEN 'aguardando_cliente' THEN 'Aguardando cliente'
+         WHEN 'aguardando_devolucao' THEN 'Aguardando devolução'
+         WHEN 'aguardando_assistencia' THEN 'Aguardando assistência'
+         WHEN 'aguardando_marketplace' THEN 'Aguardando marketplace'
+         ELSE COALESCE(t.status_ticket::TEXT, '-')
+       END AS status_ticket_label
+FROM public.tickets t
+LEFT JOIN public.perfis p ON p.id = t.responsavel
+WHERE t.ativo = TRUE
+ORDER BY t.prazo_conclusao NULLS LAST, t.criado_em DESC
 LIMIT 300;

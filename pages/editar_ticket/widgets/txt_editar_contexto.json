@@ -11,6 +11,9 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "text"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
@@ -38,7 +41,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 46,
   "shouldTruncate": false,
-  "text": "Edite os principais campos operacionais do ticket selecionado.\\nTicket ID: {{appsmith.URL.queryParams.ticket_id || \"-\"}}",
+  "text": "{{`Edite os principais campos operacionais do ticket selecionado.\nTicket ID: ${appsmith.URL.queryParams.ticket_id || '-'}`}}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
   "topRow": 25,

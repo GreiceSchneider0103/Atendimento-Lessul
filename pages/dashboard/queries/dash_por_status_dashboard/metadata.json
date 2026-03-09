@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n  status_ticket::TEXT AS status,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY status_ticket\nORDER BY qtd DESC;",
+      "body": "SELECT\n  CASE status_ticket::TEXT\n    WHEN 'aberto' THEN 'Aberto'\n    WHEN 'concluido' THEN 'Concluído'\n    WHEN 'aguardando_cliente' THEN 'Aguardando cliente'\n    WHEN 'aguardando_devolucao' THEN 'Aguardando devolução'\n    WHEN 'aguardando_assistencia' THEN 'Aguardando assistência'\n    WHEN 'aguardando_marketplace' THEN 'Aguardando marketplace'\n    ELSE COALESCE(status_ticket::TEXT, '-')\n  END AS status,\n  COUNT(*) AS qtd\nFROM public.tickets\nWHERE ativo = TRUE\nGROUP BY status_ticket\nORDER BY qtd DESC;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

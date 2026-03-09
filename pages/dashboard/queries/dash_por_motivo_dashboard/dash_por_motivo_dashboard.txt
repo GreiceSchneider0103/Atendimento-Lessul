@@ -1,5 +1,13 @@
 SELECT
-  COALESCE(motivo::TEXT, 'nao_informado') AS motivo,
+  CASE COALESCE(motivo::TEXT, 'nao_informado')
+    WHEN 'desistencia' THEN 'Desistência'
+    WHEN 'defeito_fabricacao' THEN 'Defeito de Fabricação'
+    WHEN 'produto_incorreto' THEN 'Produto incorreto'
+    WHEN 'faltando_itens' THEN 'Faltando itens'
+    WHEN 'produto_danificado' THEN 'Produto danificado'
+    WHEN 'problema' THEN 'Problema'
+    ELSE 'Não informado'
+  END AS motivo,
   COUNT(*) AS qtd
 FROM public.tickets
 WHERE ativo = TRUE
